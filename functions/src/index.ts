@@ -7,6 +7,12 @@
  * See a full list of supported triggers at https://firebase.google.com/docs/functions
  */
 
+<<<<<<< HEAD
+import {onRequest} from "firebase-functions/v2/https";
+import * as logger from "firebase-functions/logger";
+
+=======
+>>>>>>> c508e99c5f602c1ee6f0c13001957361524f1736
 // Start writing functions
 // https://firebase.google.com/docs/functions/typescript
 
