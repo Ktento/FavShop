@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState }from 'react';
 import { Drawer, IconButton, AppBar, Toolbar, Typography } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import Sidebar from './Sidebar';

@@ -18,7 +18,8 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "typeRoots": ["./node_modules/@types", "src/types/custom.d.ts"]  /* 拡張子にあわせた型定義を行うファイルを指定*/
   },
   "include": [
     "src"
