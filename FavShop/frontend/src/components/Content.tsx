@@ -1,5 +1,5 @@
+// Content.tsx
 import React from 'react';
-import '../CSS/Content.css';
 
 interface ContentProps {
   user: string | null;
@@ -7,10 +7,10 @@ interface ContentProps {
 
 const Content: React.FC<ContentProps> = ({ user }) => {
   return (
-    <div className="content">
-      {user && <h1>ようこそ, {user}さん</h1>}
+    <div>
+      {user ? <p>Hello, {user}!</p> : <p>Please log in.</p>}            //未実装リストを表示する。
     </div>
   );
-}
+};
 
 export default Content;
