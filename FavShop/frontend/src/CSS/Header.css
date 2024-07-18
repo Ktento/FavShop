@@ -1,29 +1,38 @@
 /* src/components/Header.css */
+
+/* デフォルトのヘッダーのスタイル */
 .header {
-    /* 背景画像挿入 */
-    background-image: url('../assets/images/header_image.jpg');
-    background-size: cover;
-    background-position: center;
-    
-    /* ヘッダーの高さを設定 */
-    height: 100px;
-    display: flex;
-    
-    /* 子要素を縦方向（垂直方向）中央に配置 */
-    /* 子要素を横方向（水平方向）中央に配置 */
-    align-items: center;
-    justify-content: center;
+  /* 背景画像挿入 */
+  background-image: url('../assets/images/header_image.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ヘッダー内のコンテンツのスタイルを設定 */
+.header-content {
+  /* テキストを中央揃えにする */
+  text-align: center;
+}
+
+/* ヘッダーのロゴのスタイルを設定 */
+.header-logo {
+  /* ロゴ画像の高さ設定 */
+  height: 75px;
+}
+
+/* スマートフォン（例えば、最大幅 600px）の場合のスタイル */
+@media screen and (max-width: 600px) {
+  .header {
+    height: 80px; /* 適宜調整 */
+    background-size: contain; /* 背景画像を調整 */
   }
   
-  /* ヘッダー内のコンテンツのスタイルを設定 */
-  .header-content {
-    /* テキストを中央揃えにする */
-    text-align: center;
-  }
-  
-  /* ヘッダーのロゴのスタイルを設定 */
   .header-logo {
-    /* ロゴ画像の高さ設定 */
-    height: 75px;
+    height: 50px; /* ロゴの高さを適宜調整 */
   }
   
+}
