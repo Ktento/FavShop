@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import '../CSS/SignUp_Modal.css';
-
+//import { getAllTodos } from '../../../backend/サインイン用'; サインイン用の関数呼び出し
 interface SignUpModalProps {
   onClose: () => void;
 }
@@ -29,15 +29,14 @@ const SignUp_Modal: React.FC<SignUpModalProps> = ({onClose}) => {
       setInputError('パスワードが一致しません');
       return;
     }
+
+
+
+
    /* 関数呼び出し */
 /********************************************* 
- * import axios from 'axios';をこのコンポーネントに適用する。
- * /api/login  にある関数コンポーネントに対して入力したusernameとpasswordを送信。
- * response.dataという形でsuccessにusernameとpasswordの登録結果を返す。
- * 
     try {
-      const response = await axios.post('/api/login', { username, password });
-      const { success } = response.data;
+      const success = await getAllTodos(username, password);
       
       if (success) {
         setInputError(null);
@@ -52,8 +51,10 @@ const SignUp_Modal: React.FC<SignUpModalProps> = ({onClose}) => {
   };
 ****************************************************************/
 
+
+
         /* 仮ログイン */
-        if (username == 'user' && password == 'pass' && password == 'pass') {
+        if (username == 'user' && password == 'pass' && confirmPassword == 'pass') {
           alert('ログイン成功');
           setInputError(null);
           onClose();

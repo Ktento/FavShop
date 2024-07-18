@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import '../CSS/SignIn_Modal.css'; 
-//import axios from 'axios'; api通信を行う
+//import { getAllTodos } from '../../../backend/db.ts'; ログイン用の関数呼び出し
 
 interface SignInModalProps {
   openSignUpModal: () => void;
@@ -25,14 +25,16 @@ const SignInModal: React.FC<SignInModalProps> = ({ openSignUpModal, onClose, set
       return;
     }
 
+
+
+
     /**** 
     try {
-      const response = await axios.post('../../../backend/db.ts', { username, password });
-      const { success } = response.data;
+      const success = await getAllTodos(username, password);
       
       if (success) {
         setInputError(null);
-        setUser(user.username);     //userstatusを設定
+        setUser(username);     //userstatusを設定
         onClose(); 
         closeDrawer();
         alert('ログイン成功');
@@ -45,6 +47,11 @@ const SignInModal: React.FC<SignInModalProps> = ({ openSignUpModal, onClose, set
     }
   };
 ****************************************************************/
+
+
+
+
+
     /* 仮ログイン */
     if (username == 'user' && password == 'pass') {
       setInputError(null);
