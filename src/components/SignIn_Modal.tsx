@@ -5,9 +5,10 @@ interface SignInModalProps {
   openSignUpModal: () => void;
   onClose: () => void;
   setUser: (user: string | null) => void;
+  closeDrawer: () => void;
 }
 
-const SignInModal: React.FC<SignInModalProps> = ({ openSignUpModal, onClose, setUser }) => {
+const SignInModal: React.FC<SignInModalProps> = ({ openSignUpModal, onClose, setUser,closeDrawer }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [loginError, setLoginError] = useState(false);
@@ -51,6 +52,7 @@ const SignInModal: React.FC<SignInModalProps> = ({ openSignUpModal, onClose, set
       alert('ログイン成功');
       setUser(username);
       onClose();
+      closeDrawer();
     } else {
       setInputError(null);
       setInputError('ログインできません');

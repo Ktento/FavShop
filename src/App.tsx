@@ -1,15 +1,15 @@
+// App.tsx
 import React, { useState } from 'react';
 import './App.css';
 import Header from './components/Header';
-import Sidebar from './components/Sidebar';
 import Content from './components/Content';
 
 const App: React.FC = () => {
-  const [user, setUser] = useState<string | null>(null);
+  const [user, setUser] = useState<string | null>(null);          //**ユーザ情報を保持 */
 
   return (
     <div className="App">
-      <Header />
+      <Header user={user} setUser={setUser} />
       <div className="main">
         <Content user={user} />
       </div>
