@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import '../CSS/SignIn_Modal.css'; 
+//import axios from 'axios'; api通信を行う
 
 interface SignInModalProps {
   openSignUpModal: () => void;
@@ -23,14 +24,10 @@ const SignInModal: React.FC<SignInModalProps> = ({ openSignUpModal, onClose, set
       setInputError('ユーザー名/パスワードは英数字のみです');
       return;
     }
-    /* 関数呼び出し */
-/********************************************* 
- * import axios from 'axios';をこのコンポーネントに適用する。
- * /api/login  にある関数コンポーネントに対して入力したusernameとpasswordを送信。
- * 
- * 
+
+    /**** 
     try {
-      const response = await axios.post('/api/login', { username, password });
+      const response = await axios.post('../../../backend/db.ts', { username, password });
       const { success } = response.data;
       
       if (success) {
