@@ -1,9 +1,9 @@
 import { supabase } from './supabase';
 
 // ログインできるかを取得するための非同期関数
-export const Login = async (id:string,pass:string):Promise<boolean> => {
+export const Login = async (user_name:string,pass:string):Promise<boolean> => {
 // todoテーブルからすべてのカラムを取得し、todosに代入します。
-let {data:userinfo,error} = await supabase.from("User").select('*').eq('user_id', id).eq('password', pass);
+let {data:userinfo,error} = await supabase.from("users").select('*').eq('user_name', user_name).eq('user_pass', pass);
 if (error) {
     console.log(error)
   }
@@ -16,3 +16,7 @@ if (error) {
   }
 
 };
+/*テスト用のコード
+const user="Ktento";
+const pass="Kento0721";
+console.log(Login(user,pass))*/

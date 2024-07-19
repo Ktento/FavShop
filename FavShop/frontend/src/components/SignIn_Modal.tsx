@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import '../CSS/SignIn_Modal.css'; 
-import {Login} from '../backend/db';
+import {Login} from '../backend/Login';
 //import { getAllTodos } from '../../../backend/db.ts'; ログイン用の関数呼び出し
 
 interface SignInModalProps {

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import '../CSS/SignUp_Modal.css';
-//import { getAllTodos } from '../../../backend/サインイン用'; サインイン用の関数呼び出し
+import { InsertUser } from '../backend/SignUp'; //サインイン用の関数呼び出し
 interface SignUpModalProps {
   onClose: () => void;
 }
@@ -17,9 +17,10 @@ const SignUp_Modal: React.FC<SignUpModalProps> = ({onClose}) => {
 
     // 英数字の検証
     const alphanumericRegex = /^[a-zA-Z0-9]+$/;
-
+    let entryflag=true;
     if (!alphanumericRegex.test(username) || !alphanumericRegex.test(password)) {
       setInputError('ユーザー名/パスワードは英数字のみです');
+      entryflag=false;
       return;
     }
 
@@ -27,17 +28,11 @@ const SignUp_Modal: React.FC<SignUpModalProps> = ({onClose}) => {
     // パスワードと確認パスワードの検証
     if (password !== confirmPassword) {
       setInputError('パスワードが一致しません');
+      entryflag=false
       return;
     }
-
-
-
-
-   /* 関数呼び出し */
-/********************************************* 
     try {
-      const success = await getAllTodos(username, password);
-      
+      const success = await InsertUser(username, password);
       if (success) {
         setInputError(null);
         onClose(); 
@@ -49,11 +44,7 @@ const SignUp_Modal: React.FC<SignUpModalProps> = ({onClose}) => {
       setInputError('ログイン中にエラーが発生しました');
     }
   };
-****************************************************************/
-
-
-
-        /* 仮ログイン */
+        /*** 仮ログイン
         if (username == 'user' && password == 'pass' && confirmPassword == 'pass') {
           alert('ログイン成功');
           setInputError(null);
@@ -61,7 +52,9 @@ const SignUp_Modal: React.FC<SignUpModalProps> = ({onClose}) => {
         } else {
           setInputError(null);
         }
-  }
+        }
+        ***/
+ 
 
   return (
     <div className="modal-content">
