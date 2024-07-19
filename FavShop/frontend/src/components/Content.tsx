@@ -24,6 +24,7 @@ const CustomCardWrapper = styled('div')({
   gap: '16px', // カード間のスペースを設定
   height: 'auto', // 必要に応じて高さを調整
   padding: '16px', // 必要に応じてパディングを追加
+  marginTop: '60px', // ヘッダーの高さ分だけマージンを追加
 });
 
 const CustomCardRoot = styled(Card)({

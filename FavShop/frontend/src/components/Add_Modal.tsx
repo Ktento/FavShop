@@ -16,6 +16,10 @@ const Add_Modal: React.FC<AddModalProps> = ({ onClose, closeDrawer }) => {
   const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
   const [selectedResult, setSelectedResult] = useState<SearchResult | null>(null);
 
+
+
+
+
   // ダミーの検索関数（実際のAPI呼び出し等をここに実装）
   const handleSearch = () => {
     const results: SearchResult[] = [
@@ -30,6 +34,8 @@ const Add_Modal: React.FC<AddModalProps> = ({ onClose, closeDrawer }) => {
     setSearchResults(results);
   };
 
+
+  
   // 選択された検索結果を処理する関数
   const handleSelectResult = (result: SearchResult) => {
     setSelectedResult(result);
