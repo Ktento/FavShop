@@ -82,3 +82,4 @@ const Sidebar: React.FC<SidebarProps> = ({ setUser, closeDrawer }) => {
 }
 
 export default Sidebar;
+
