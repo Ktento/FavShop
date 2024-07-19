@@ -7,11 +7,14 @@ interface Place {
       lng: number;
     };
 }
-let BASE_URL=process.env.REACT_APP_GOOGLE_PLACES_API_URL;
-let API_KEY=process.env.REACT_APP_GOOGLE_PLACES_API_KEY;
 
-
+const BASE_URL: string = process.env.REACT_APP_GOOGLE_PLACES_API_URL ?? "";
+const API_KEY: string = process.env.REACT_APP_GOOGLE_PLACES_API_KEY ?? "";
 export const searchPlaceByName = async (Shopname:string):Promise<Place[]> => {
+  // 環境変数が正しく設定されているか確認
+  if (!BASE_URL || !API_KEY) {
+    throw new Error("BASE_URL or API_KEY is not defined");
+  }
     const response=await axios.get(BASE_URL,{
         params:{
             key:API_KEY,
