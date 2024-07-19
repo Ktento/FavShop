@@ -1,7 +1,7 @@
 import { supabase } from './supabase';
 
-// すべてのTodoを取得するための非同期関数
-export const getAllTodos = async (id:string,pass:string):Promise<boolean> => {
+// ログインできるかを取得するための非同期関数
+export const Login = async (id:string,pass:string):Promise<boolean> => {
 // todoテーブルからすべてのカラムを取得し、todosに代入します。
 let {data:userinfo,error} = await supabase.from("User").select('*').eq('user_id', id).eq('password', pass);
 if (error) {
