@@ -1,5 +1,4 @@
 import axios from "axios";
-require('dotenv').config();
 interface Place {
     name: string;
     address: string;
