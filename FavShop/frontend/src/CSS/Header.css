@@ -1,38 +1,51 @@
-/* src/components/Header.css */
-
-/* デフォルトのヘッダーのスタイル */
 .header {
-  /* 背景画像挿入 */
-  background-image: url('../assets/images/header_image.jpg');
-  background-size: cover;
-  background-position: center;
-  height: 100px;
+  background-color: #2196f3; /* 青色の背景に設定 */
+  height: 60px; /* ヘッダーの高さを低く設定 */
   display: flex;
   align-items: center;
-  justify-content: center;
+  position: fixed; /* ヘッダーを固定 */
+  width: 100%; /* ヘッダーを画面全体の幅に設定 */
+  z-index: 1100; /* ヘッダーが他の要素の上に表示されるように設定 */
+  padding-left: 20px; /* 左側に余裕を追加 */
 }
 
-/* ヘッダー内のコンテンツのスタイルを設定 */
-.header-content {
-  /* テキストを中央揃えにする */
-  text-align: center;
+/* ツールバーのスタイルを設定 */
+.toolbar {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: flex-start; /* アイテムを左に寄せる */
+}
+
+/* メニューボタンのスタイルを設定 */
+.menu-button {
+  font-size: 3rem; /* メニューボタンをさらに大きくする */
+  margin-right: 16px; /* メニューボタンとロゴの間にスペースを追加 */
 }
 
 /* ヘッダーのロゴのスタイルを設定 */
 .header-logo {
-  /* ロゴ画像の高さ設定 */
-  height: 75px;
+  height: 40px; /* ロゴ画像の高さを低く設定 */
+  margin-right: 16px; /* メニューボタンとロゴの間にスペースを追加 */
+}
+
+/* タイトルのスタイルを設定 */
+.title {
+  flex-grow: 1; /* タイトルを可能な限り広げる */
 }
 
 /* スマートフォン（例えば、最大幅 600px）の場合のスタイル */
 @media screen and (max-width: 600px) {
   .header {
-    height: 80px; /* 適宜調整 */
-    background-size: contain; /* 背景画像を調整 */
+    height: 50px; /* 適宜調整 */
   }
   
   .header-logo {
-    height: 50px; /* ロゴの高さを適宜調整 */
+    height: 30px; /* ロゴの高さを適宜調整 */
   }
   
+  .menu-button {
+    font-size: 2rem; /* スマホの場合のメニューボタンの大きさを調整 */
+    margin-right: 8px; /* メニューボタンとロゴの間にスペースを追加 */
+  }
 }

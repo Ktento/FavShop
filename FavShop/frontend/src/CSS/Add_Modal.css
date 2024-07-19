@@ -14,12 +14,13 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 10px; /* 上に寄せるためにマージンを減らす */
 }
 
 .modal-title {
   font-size: 24px;
   font-weight: bold;
+  margin: 0; /* タイトルのマージンをリセット */
 }
 
 .close-button {
@@ -64,7 +65,7 @@
   list-style-type: none;
   padding: 0;
   margin-top: 20px;
-  max-height: 200px;
+  max-height: 300px; /* リストの高さを増やす */
   overflow-y: auto;
   border: 1px solid #ddd;
   border-radius: 4px;
@@ -75,6 +76,7 @@
   border-bottom: 1px solid #ddd;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  word-wrap: break-word; /* 長い文字列が折り返されるようにする */
 }
 
 .result-item:last-child {

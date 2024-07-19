@@ -1,4 +1,3 @@
-// Sidebar.tsx
 import React, { useState } from 'react';
 import Footer from './Footer';
 import Modal from './Modal';
@@ -7,6 +6,7 @@ import SignInModal from './SignIn_Modal';
 import SignUpModal from './SignUp_Modal';
 import PositionModal from './Position_Modal'; // PositionModal のインポート
 import AddModal from './Add_Modal';
+import InfoModal from './Info_Modal'; // InfoModal のインポート
 import '../CSS/Sidebar.css';
 import button_position_Image from '../assets/images/Map pin.png';
 import button_add_Image from '../assets/images/Plus.png';
@@ -21,6 +21,7 @@ const Sidebar: React.FC<SidebarProps> = ({ setUser, closeDrawer }) => {
   const [signUpModalOpen, setSignUpModalOpen] = useState(false);
   const [addModalOpen, setAddModalOpen] = useState(false);
   const [positionModalOpen, setPositionModalOpen] = useState(false);
+  const [infoModalOpen, setInfoModalOpen] = useState(false); // InfoModal の状態を追加
 
   const openSignInModal = () => {
     setSignInModalOpen(true);
@@ -54,8 +55,17 @@ const Sidebar: React.FC<SidebarProps> = ({ setUser, closeDrawer }) => {
     setPositionModalOpen(false);
   };
 
+  const openInfoModal = () => {
+    setInfoModalOpen(true);
+  };
+
+  const closeInfoModal = () => {
+    setInfoModalOpen(false);
+  };
+
   return (
     <div className="sidebar">
+      <button className="sidebar-button text-button" onClick={openInfoModal}>FavShopとは</button> {/* InfoModal ボタン */}
       <button className="sidebar-button text-button" onClick={openSignInModal}>Sign In</button>
       <button className="sidebar-button" onClick={openAddModal}>
         <img src={button_add_Image} alt="add" className="button-image" />
@@ -77,9 +87,9 @@ const Sidebar: React.FC<SidebarProps> = ({ setUser, closeDrawer }) => {
       <Modal isOpen={positionModalOpen} onClose={closePositionModal}>
         <PositionModal onClose={closePositionModal} closeDrawer={closeDrawer} />
       </Modal>
+      <InfoModal open={infoModalOpen} onClose={closeInfoModal} /> {/* InfoModal の追加 */}
     </div>
   );
-}
+};
 
 export default Sidebar;
-
