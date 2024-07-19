@@ -1,3 +1,4 @@
+// Header.tsx
 import React, { useState } from 'react';
 import { Drawer, IconButton, AppBar, Toolbar, Typography } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -5,9 +6,15 @@ import Sidebar from './Sidebar';
 import logo from '../assets/images/FavShop_logo.png';
 import '../CSS/Header.css';
 
-const Header: React.FC = () => {
-  const [drawerOpen, setDrawerOpen] = useState(false);
+interface HeaderProps {
+  user: string | null; 
+  setUser: (user: string | null) => void; 
+}
 
+const Header: React.FC<HeaderProps> = ({ user, setUser }) => {
+  const [drawerOpen, setDrawerOpen] = useState(false);          //サイドバーの状態を保持
+
+  //サイドバーの設定
   const toggleDrawer = (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
     if (
       event.type === 'keydown' &&
@@ -16,6 +23,10 @@ const Header: React.FC = () => {
       return;
     }
     setDrawerOpen(open);
+  };
+
+  const closeDrawer = () => {
+    setDrawerOpen(false);
   };
 
   return (
@@ -31,7 +42,7 @@ const Header: React.FC = () => {
         </Toolbar>
       </AppBar>
       <Drawer anchor="left" open={drawerOpen} onClose={toggleDrawer(false)}>
-        <Sidebar setUser={(user) => console.log(user)} />
+        <Sidebar setUser={setUser} closeDrawer={closeDrawer} />
       </Drawer>
     </>
   );
