@@ -5,13 +5,13 @@ import Header from './components/Header';
 import Content from './components/Content';
 
 const App: React.FC = () => {
-  const [user, setUser] = useState<Number | null>(null);          //**ユーザ情報を保持 */
+  const [user_id, setUser] = useState<Number | null>(null);          //**ユーザ情報を保持 */
 
   return (
     <div className="App">
-      <Header user={user} setUser={setUser} />
+      <Header user_id={user_id} setUser={setUser} />
       <div className="main">
-        <Content user={user} />
+        <Content user_id={user_id} />
       </div>
     </div>
   );
