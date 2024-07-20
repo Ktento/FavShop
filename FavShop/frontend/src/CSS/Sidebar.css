@@ -1,36 +1,32 @@
 /* サイドバーのスタイル */
 .sidebar {
-  flex: 1;
-  background-color: #f0f0f0;
+  width: 250px;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  padding-top: 10px; /* ボタンを上に詰める */
-  z-index: 1200; /* サイドバーの z-index */
+  justify-content: space-between;
+  z-index: 1200; /* サイドバーのZインデックスを設定して、モーダルより低くする */
 }
 
-/* サイドバーボタンのスタイル */
+/* サイドバーのボタンスタイル */
 .sidebar-button {
-  width: 150px;
-  height: 50px;
-  margin: 10px;
-  padding: 10px 20px;
-  font-size: 16px;
+  width: 100%;
+  padding: 10px;
+  border: none;
+  background: none;
   cursor: pointer;
   display: flex;
   align-items: center;
-  justify-content: center;
-  border: 2px solid black; /* ボタンの枠を黒に設定 */
-  background-color: #f0f0f0;
-  color: black;
+  justify-content: flex-start;
+  transition: background 0.3s;
 }
 
-.text-button {
-  background-color: #f0f0f0;
-  color: black;
+.sidebar-button:hover {
+  background: rgba(0, 0, 0, 0.1);
 }
 
-.button-image {
-  width: 24px;
-  height: 24px;
+.sidebar-button img.button-image {
+  margin-right: 10px;
+  width: 20px;
+  height: 20px;
 }

@@ -1,4 +1,3 @@
-/* ヘッダーのスタイル */
 .header {
   background-color: #2196f3; /* 青色の背景に設定 */
   height: 60px; /* ヘッダーの高さを低く設定 */
@@ -10,7 +9,7 @@
   padding-left: 20px; /* 左側に余裕を追加 */
 }
 
-/* ツールバーのスタイル */
+/* ツールバーのスタイルを設定 */
 .toolbar {
   display: flex;
   align-items: center;
@@ -18,24 +17,24 @@
   justify-content: flex-start; /* アイテムを左に寄せる */
 }
 
-/* メニューボタンのスタイル */
+/* メニューボタンのスタイルを設定 */
 .menu-button {
   font-size: 3rem; /* メニューボタンをさらに大きくする */
   margin-right: 16px; /* メニューボタンとロゴの間にスペースを追加 */
 }
 
-/* ヘッダーのロゴのスタイル */
+/* ヘッダーのロゴのスタイルを設定 */
 .header-logo {
   height: 40px; /* ロゴ画像の高さを低く設定 */
   margin-right: 16px; /* メニューボタンとロゴの間にスペースを追加 */
 }
 
-/* タイトルのスタイル */
+/* タイトルのスタイルを設定 */
 .title {
   flex-grow: 1; /* タイトルを可能な限り広げる */
 }
 
-/* スマートフォン（最大幅 600px）の場合のスタイル */
+/* スマートフォン（例えば、最大幅 600px）の場合のスタイル */
 @media screen and (max-width: 600px) {
   .header {
     height: 50px; /* 適宜調整 */
