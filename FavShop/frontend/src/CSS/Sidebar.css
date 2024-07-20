@@ -1,18 +1,18 @@
 /* Sidebar.css */
 .sidebar {
   position: fixed; /* サイドバーを画面に固定 */
-  bottom: 0; /* 画面の底に配置 */
+  top: 0; /* 画面の上に配置 */
   left: 0; /* 画面の左端に配置 */
   background-color: #f0f0f0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 10px; /* 上部のパディング */
-  width: 100%; /* 横幅を画面全体に */
-  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2); /* 上に影を付ける */
-  z-index: 1000; /* 他の要素の上に表示する */
+  padding-top: 10px; /* ボタンを上に詰める */
+  width: 250px; /* サイドバーの幅を固定 */
+  height: 100vh; /* ビューポートの高さに合わせる */
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2); /* 右側に影を付ける */
   overflow: hidden; /* スクロールを無効にする */
-  max-height: 100vh; /* ビューポートの高さを超えないようにする */
+  z-index: 1000; /* 他の要素の上に表示する */
 }
 
 .sidebar-button {
