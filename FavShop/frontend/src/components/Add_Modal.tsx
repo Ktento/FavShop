@@ -36,7 +36,7 @@ const Add_Modal: React.FC<AddModalProps> = ({ onClose, closeDrawer }) => {
   // 選択された検索結果を処理する関数
   const handleSelectResult = (result: SearchResult) => {
     setSelectedResult(result);
-    console.log(setSearchResults);
+    console.log(setSelectedResult);
   };
 
   // 決定ボタンを押された場合の処理
