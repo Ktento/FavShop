@@ -1,32 +1,56 @@
-/* サイドバーのスタイル */
 .sidebar {
-  width: 250px;
-  height: 100%;
+  width: 250px; /* デスクトップでのサイドバーの幅を設定 */
+  background-color: #f0f0f0;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  z-index: 1200; /* サイドバーのZインデックスを設定して、モーダルより低くする */
+  padding: 10px;
+  position: relative;
+  height: 100%; /* サイドバーを画面全体の高さに設定 */
 }
 
-/* サイドバーのボタンスタイル */
+.close-sidebar-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: black;
+}
+
 .sidebar-button {
   width: 100%;
+  height: 50px;
+  margin: 10px 0;
   padding: 10px;
-  border: none;
-  background: none;
+  font-size: 16px;
   cursor: pointer;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  transition: background 0.3s;
+  justify-content: center;
+  border: 2px solid black;
+  background-color: #f0f0f0;
+  color: black;
 }
 
-.sidebar-button:hover {
-  background: rgba(0, 0, 0, 0.1);
+.text-button {
+  background-color: #f0f0f0;
+  color: black;
 }
 
-.sidebar-button img.button-image {
-  margin-right: 10px;
-  width: 20px;
-  height: 20px;
+.button-image {
+  width: 24px;
+  height: 24px;
+}
+
+@media screen and (max-width: 600px) {
+  .sidebar {
+    width: 80%; /* スマホでのサイドバーの幅を調整 */
+  }
+
+  .close-sidebar-button {
+    top: 20px;
+    right: 20px;
+  }
 }

@@ -34,18 +34,26 @@
   flex-grow: 1; /* タイトルを可能な限り広げる */
 }
 
-/* スマートフォン（例えば、最大幅 600px）の場合のスタイル */
+/* サイドバードロワーのスタイルを設定 */
+.sidebar-drawer {
+  width: 250px;
+}
+
 @media screen and (max-width: 600px) {
   .header {
     height: 50px; /* 適宜調整 */
   }
-  
+
   .header-logo {
     height: 30px; /* ロゴの高さを適宜調整 */
   }
-  
+
   .menu-button {
     font-size: 2rem; /* スマホの場合のメニューボタンの大きさを調整 */
     margin-right: 8px; /* メニューボタンとロゴの間にスペースを追加 */
+  }
+
+  .sidebar-drawer {
+    width: 80%;
   }
 }

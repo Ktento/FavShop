@@ -19,7 +19,7 @@ interface SidebarProps {
   closeDrawer: () => void;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ user,user_id,setUser,setUserID, closeDrawer }) => {
+const Sidebar: React.FC<SidebarProps> = ({ user, user_id, setUser, setUserID, closeDrawer }) => {
   const [signInModalOpen, setSignInModalOpen] = useState(false);
   const [signUpModalOpen, setSignUpModalOpen] = useState(false);
   const [addModalOpen, setAddModalOpen] = useState(false);
@@ -68,6 +68,7 @@ const Sidebar: React.FC<SidebarProps> = ({ user,user_id,setUser,setUserID, close
 
   return (
     <div className="sidebar">
+      <button className="close-sidebar-button" onClick={closeDrawer}>X</button>
       <button className="sidebar-button text-button" onClick={openInfoModal}>FavShopとは</button>
       <button className="sidebar-button text-button" onClick={openSignInModal}>Sign In</button>
       <button className="sidebar-button" onClick={openAddModal}>
@@ -79,13 +80,13 @@ const Sidebar: React.FC<SidebarProps> = ({ user,user_id,setUser,setUserID, close
       <Footer />
 
       <Modal isOpen={signInModalOpen} onClose={closeSignInModal}>
-        <SignInModal openSignUpModal={openSignUpModal} onClose={closeSignInModal} setUser={setUser} setUserID={setUserID} closeDrawer={closeDrawer}/>
+        <SignInModal openSignUpModal={openSignUpModal} onClose={closeSignInModal} setUser={setUser} setUserID={setUserID} closeDrawer={closeDrawer} />
       </Modal>
       <Modal2 isOpen={signUpModalOpen} onClose={closeSignUpModal}>
         <SignUpModal onClose={closeSignUpModal} />
       </Modal2>
       <Modal isOpen={addModalOpen} onClose={closeAddModal}>
-        <AddModal onClose={closeAddModal} closeDrawer={closeDrawer} user={user} user_id={user_id} setUser={setUser} setUserID={setUserID}/>
+        <AddModal onClose={closeAddModal} closeDrawer={closeDrawer} user={user} user_id={user_id} setUser={setUser} setUserID={setUserID} />
       </Modal>
       <Modal isOpen={positionModalOpen} onClose={closePositionModal}>
         <PositionModal onClose={closePositionModal} closeDrawer={closeDrawer} />
