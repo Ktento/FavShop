@@ -28,7 +28,6 @@ const Add_Modal: React.FC<AddModalProps> = ({ onClose, closeDrawer }) => {
     }
 
     }catch(error){
-      console.error('Error during search:', error);
     }
   };
 
