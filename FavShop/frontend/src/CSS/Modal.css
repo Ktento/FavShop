@@ -1,29 +1,18 @@
+/* オーバーレイの基本スタイル */
 .modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(255, 255, 255, 0.9); /* 白背景で透明度を調整 */
+  background: rgba(255, 255, 255, 0.9); /* 背景色と透明度を調整 */
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1300; /* 高いZインデックスを設定して前面に表示 */
+  z-index: 1300; /* 高いZインデックスを設定 */
 }
 
-.modal-overlay-2 {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(255, 255, 255, 0); /* 完全に透明 */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1500; /* 高いZインデックスを設定して前面に表示 */
-}
-
+/* モーダルコンテンツのスタイル */
 .modal-content {
   background: white;
   padding: 20px;
@@ -33,6 +22,7 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 影を追加してモーダルを強調 */
 }
 
+/* 閉じるボタンのスタイル */
 .modal-close {
   position: absolute;
   top: 10px;

@@ -24,7 +24,8 @@ const Sidebar: React.FC<SidebarProps> = ({ setUser, closeDrawer }) => {
   const [infoModalOpen, setInfoModalOpen] = useState(false);
 
   const openSignInModal = () => {
-    setSignInModalOpen(true);
+    closeDrawer(); // サイドバーを閉じる
+    setSignInModalOpen(true); // サインインモーダルを開く
   };
 
   const closeSignInModal = () => {
@@ -32,7 +33,8 @@ const Sidebar: React.FC<SidebarProps> = ({ setUser, closeDrawer }) => {
   };
 
   const openSignUpModal = () => {
-    setSignUpModalOpen(true);
+    closeDrawer(); // サイドバーを閉じる
+    setSignUpModalOpen(true); // サインアップモーダルを開く
   };
 
   const closeSignUpModal = () => {
@@ -40,7 +42,8 @@ const Sidebar: React.FC<SidebarProps> = ({ setUser, closeDrawer }) => {
   };
 
   const openAddModal = () => {
-    setAddModalOpen(true);
+    closeDrawer(); // サイドバーを閉じる
+    setAddModalOpen(true); // アドモーダルを開く
   };
 
   const closeAddModal = () => {
@@ -48,7 +51,8 @@ const Sidebar: React.FC<SidebarProps> = ({ setUser, closeDrawer }) => {
   };
 
   const openPositionModal = () => {
-    setPositionModalOpen(true);
+    closeDrawer(); // サイドバーを閉じる
+    setPositionModalOpen(true); // ポジションモーダルを開く
   };
 
   const closePositionModal = () => {
@@ -56,7 +60,8 @@ const Sidebar: React.FC<SidebarProps> = ({ setUser, closeDrawer }) => {
   };
 
   const openInfoModal = () => {
-    setInfoModalOpen(true);
+    closeDrawer(); // サイドバーを閉じる
+    setInfoModalOpen(true); // インフォモーダルを開く
   };
 
   const closeInfoModal = () => {
@@ -75,6 +80,7 @@ const Sidebar: React.FC<SidebarProps> = ({ setUser, closeDrawer }) => {
       </button>
       <Footer />
 
+      {/* モーダルをSidebarの外に配置 */}
       <Modal isOpen={signInModalOpen} onClose={closeSignInModal}>
         <SignInModal openSignUpModal={openSignUpModal} onClose={closeSignInModal} setUser={setUser} closeDrawer={closeDrawer}/>
       </Modal>
