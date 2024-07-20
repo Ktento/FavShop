@@ -73,6 +73,7 @@ const App: React.FC = () => {
         )}
         
         <Content user_id={user_id} />
+
       </div>
 
       {/* モーダルをサイドバーの外に移動 */}
