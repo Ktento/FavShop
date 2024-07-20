@@ -16,17 +16,7 @@ const Header: React.FC<HeaderProps> = ({ user, user_id,setUser,setUserID }) => {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [userName, setUserName] = useState<string | null>(null);
 
-  useEffect(() => {
-    if (user_id !== null) {
-      find_username(user_id).then(result => {
-        if (result.success) {
-          setUserName(result.user_name || null);
-        } else {
-          setUserName(null);
-        }
-      });
-    }
-  }, [user_id]);
+
 
   const toggleDrawer = (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
     if (
