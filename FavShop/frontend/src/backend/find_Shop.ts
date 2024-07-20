@@ -17,7 +17,7 @@ export const searchPlaceByName = async (Shopname:string):Promise<SearchResult[]>
   if (!BASE_URL || !API_KEY) {
     throw new Error("BASE_URL or API_KEY is not defined");
   }
-    const response = await fetch(`${BASE_URL}?key=${API_KEY}&query=${encodeURIComponent(Shopname)}`);
+    const response = await fetch(`/api/search-places?query=${encodeURIComponent(Shopname)}`);
     console.log(response)
     const data = await response.json();
     console.log('API Response:', data); // レスポンスをコンソールに出力
