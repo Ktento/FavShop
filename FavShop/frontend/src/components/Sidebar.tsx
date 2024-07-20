@@ -68,6 +68,7 @@ const Sidebar: React.FC<SidebarProps> = ({ user,user_id,setUser,setUserID, close
 
   return (
     <div className="sidebar">
+      <button className="close-sidebar-button" onClick={closeDrawer}>X</button>
       <button className="sidebar-button text-button" onClick={openInfoModal}>FavShopとは</button>
       <button className="sidebar-button text-button" onClick={openSignInModal}>Sign In</button>
       <button className="sidebar-button" onClick={openAddModal}>
