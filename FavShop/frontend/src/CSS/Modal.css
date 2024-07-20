@@ -8,7 +8,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1000; /* 高いZインデックスを設定して前面に表示 */
+  z-index: 1300; /* 高いZインデックスを設定して前面に表示 */
 }
 
 .modal-overlay-2 {
@@ -21,7 +21,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1000; /* 高いZインデックスを設定して前面に表示 */
+  z-index: 1500; /* 高いZインデックスを設定して前面に表示 */
 }
 
 .modal-content {
