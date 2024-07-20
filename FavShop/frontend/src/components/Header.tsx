@@ -7,8 +7,8 @@ import '../CSS/Header.css';
 import { find_username } from '../backend/find_username';
 
 interface HeaderProps {
-  user_id: Number | null; 
-  setUser: (user_id: Number | null) => void; 
+  user_id: Number | null;
+  setUser: (user_id: Number | null) => void;
 }
 
 const Header: React.FC<HeaderProps> = ({ user_id, setUser }) => {
@@ -50,7 +50,7 @@ const Header: React.FC<HeaderProps> = ({ user_id, setUser }) => {
           </IconButton>
           <img src={logo} alt="Logo" className="header-logo" />
           <Typography variant="h6" component="div" className="title">
-            {userName ? `ログイン中:${userName}` : '未ログイン'}
+            {userName ? `ログイン中: ${userName}` : '未ログイン'}
           </Typography>
         </Toolbar>
       </AppBar>

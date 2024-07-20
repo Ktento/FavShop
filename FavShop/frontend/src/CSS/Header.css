@@ -1,4 +1,4 @@
-/* Header styles */
+/* ヘッダーのスタイル */
 .header {
   background-color: #2196f3; /* 青色の背景に設定 */
   height: 60px; /* ヘッダーの高さを低く設定 */
@@ -10,7 +10,7 @@
   padding-left: 20px; /* 左側に余裕を追加 */
 }
 
-/* ツールバーのスタイルを設定 */
+/* ツールバーのスタイル */
 .toolbar {
   display: flex;
   align-items: center;
@@ -18,24 +18,24 @@
   justify-content: flex-start; /* アイテムを左に寄せる */
 }
 
-/* メニューボタンのスタイルを設定 */
+/* メニューボタンのスタイル */
 .menu-button {
   font-size: 3rem; /* メニューボタンをさらに大きくする */
   margin-right: 16px; /* メニューボタンとロゴの間にスペースを追加 */
 }
 
-/* ヘッダーのロゴのスタイルを設定 */
+/* ヘッダーのロゴのスタイル */
 .header-logo {
   height: 40px; /* ロゴ画像の高さを低く設定 */
   margin-right: 16px; /* メニューボタンとロゴの間にスペースを追加 */
 }
 
-/* タイトルのスタイルを設定 */
+/* タイトルのスタイル */
 .title {
   flex-grow: 1; /* タイトルを可能な限り広げる */
 }
 
-/* スマートフォン（例えば、最大幅 600px）の場合のスタイル */
+/* スマートフォン（最大幅 600px）の場合のスタイル */
 @media screen and (max-width: 600px) {
   .header {
     height: 50px; /* 適宜調整 */
@@ -49,40 +49,4 @@
     font-size: 2rem; /* スマホの場合のメニューボタンの大きさを調整 */
     margin-right: 8px; /* メニューボタンとロゴの間にスペースを追加 */
   }
-}
-
-/* Modal styles */
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.5); /* 背景色を暗くする */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1200; /* ヘッダーよりも下だがサイドバーより上 */
-}
-
-/* Modal content styles */
-.modal-content {
-  background: white;
-  padding: 20px;
-  border-radius: 5px;
-  position: relative;
-  width: 300px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 影を追加してモーダルを強調 */
-}
-
-/* Close button styles */
-.close-button {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: none;
-  border: none;
-  font-size: 20px;
-  cursor: pointer;
-  color: #000;
 }
