@@ -1,20 +1,21 @@
 import React, { useState } from 'react';
 import '../CSS/Add_Modal.css';
 import { SearchResult, searchPlaceByName } from '../backend/find_Shop';
+import {InsertShop} from '../backend/entry_shop';
+
 interface AddModalProps {
   onClose: () => void;
   closeDrawer: () => void;
+  user?: Number | null; 
+  setUser?: (user_id: Number | null) => void; 
 }
 
 
-
-const Add_Modal: React.FC<AddModalProps> = ({ onClose, closeDrawer }) => {
+const Add_Modal: React.FC<AddModalProps> = ({ onClose, closeDrawer },{ user, setUser }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
   const [selectedResult, setSelectedResult] = useState<SearchResult | null>(null);
-
-
-
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
   // 店舗検索関数
   const handleSearch = async() => {
@@ -31,8 +32,6 @@ const Add_Modal: React.FC<AddModalProps> = ({ onClose, closeDrawer }) => {
     }
   };
 
-
-  
   // 選択された検索結果を処理する関数
   const handleSelectResult = (result: SearchResult) => {
     setSelectedResult(result);
@@ -41,6 +40,10 @@ const Add_Modal: React.FC<AddModalProps> = ({ onClose, closeDrawer }) => {
 
   // 決定ボタンを押された場合の処理
   const handleConfirmSelection = () => {
+    /*
+    const place_id={selectedResult?.place_id}
+    InsertShop(${user})*/
+
     if (selectedResult) {
       onClose();
       closeDrawer();

@@ -4,10 +4,11 @@ import CloseIcon from '@mui/icons-material/Close';
 import { styled } from '@mui/material/styles';
 
 interface ModalData {
-  image: string;
+  image: string; // メイン画像URL
   title: string;
   address: string;
   hours: string;
+  images: string[]; // サムネイル画像URLの配列
 }
 
 interface ContentModalProps {
@@ -85,7 +86,7 @@ const DeleteButton = styled(IconButton)({
 // ContentModalコンポーネントの定義
 const ContentModal: React.FC<ContentModalProps> = ({ open, handleClose, data }) => {
   const [mainImage, setMainImage] = useState<string | null>(data?.image || null);
-  const [thumbnails, setThumbnails] = useState<string[]>([]);
+  const [thumbnails, setThumbnails] = useState<string[]>(data?.images || []);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
