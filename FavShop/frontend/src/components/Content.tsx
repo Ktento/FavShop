@@ -3,18 +3,11 @@ import { styled } from '@mui/material/styles';
 import { Card, CardActionArea, CardContent, CardMedia, Typography } from '@mui/material';
 import ContentModal from './Content_Modal';
 import '../CSS/Content.css';
-
-interface CardData {
-  id: number;
-  plaseid: number;
-  image: string;
-  title: string;
-  address: string;
-  hours: string;
-}
+import { CardData } from '../backend/detail_shop';
 
 interface ContentProps {
   user_id: Number | null;
+  location : { latitude: number; longitude: number } | null
 }
 
 // スタイルを定義
@@ -110,9 +103,9 @@ const cardData: CardData[] = [
   },
 ];
 
-const Content: React.FC<ContentProps> = ({ user_id }) => {
+const Content: React.FC<ContentProps> = ({ user_id,location }) => {
   const [selectedCard, setSelectedCard] = useState<CardData | null>(null);
-
+  console.log(location);
   const handleCardClick = (card: CardData) => {
     setSelectedCard(card);
   };
