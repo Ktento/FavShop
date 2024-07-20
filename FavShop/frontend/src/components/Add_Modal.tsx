@@ -39,11 +39,16 @@ const Add_Modal: React.FC<AddModalProps> = ({ onClose, closeDrawer },{ user, set
   };
 
   // 決定ボタンを押された場合の処理
-  const handleConfirmSelection = () => {
+  const handleConfirmSelection = async() => {
     if(selectedResult){
-      InsertShop(user, selectedResult.place_id);
-      onClose();
-      closeDrawer();
+      const success = await InsertShop(user, selectedResult.place_id);
+      if(success){
+        onClose();
+        closeDrawer();
+      }else{
+        console.log("Bad Insert");
+      }
+
     }else{
       console.log("No result Error");
     }
