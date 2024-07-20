@@ -11,7 +11,7 @@ interface AddModalProps {
 }
 
 
-const Add_Modal: React.FC<AddModalProps> = ({ onClose, closeDrawer },{ user, setUser }) => {
+const Add_Modal: React.FC<AddModalProps> = ({ onClose, closeDrawer,user, setUser }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
   const [selectedResult, setSelectedResult] = useState<SearchResult | null>(null);
