@@ -73,12 +73,7 @@ const Sidebar: React.FC<SidebarProps> = ({ user, user_id, setUser, setUserID, cl
       <IconButton
         aria-label="close"
         onClick={closeDrawer}
-        sx={{
-          position: 'absolute',
-          right: 8,
-          top: 8,
-          color: (theme) => theme.palette.grey[500],
-        }}
+        className="close-sidebar-button"
       >
         <CloseIcon />
       </IconButton>
