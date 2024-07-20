@@ -6,6 +6,7 @@ import '../CSS/Content.css';
 
 interface CardData {
   id: number;
+  plaseid: number;
   image: string;
   title: string;
   address: string;
@@ -69,6 +70,7 @@ const getStatusClass = (hours: string): string => {
 const cardData: CardData[] = [
   {
     id: 1,
+    plaseid: 11111,
     image: 'https://via.placeholder.com/300x140?text=Image+1',
     title: '店名1',
     address: '住所1',
@@ -76,6 +78,7 @@ const cardData: CardData[] = [
   },
   {
     id: 2,
+    plaseid: 11111,
     image: 'https://via.placeholder.com/300x140?text=Image+2',
     title: '店名2',
     address: '住所2',
@@ -83,6 +86,7 @@ const cardData: CardData[] = [
   },
   {
     id: 3,
+    plaseid: 11111,
     image: 'https://via.placeholder.com/300x140?text=Image+3',
     title: '店名3',
     address: '住所3',
@@ -90,6 +94,7 @@ const cardData: CardData[] = [
   },
   {
     id: 4,
+    plaseid: 11111,
     image: 'https://via.placeholder.com/300x140?text=Image+4',
     title: '店名4',
     address: '住所4',
@@ -97,6 +102,7 @@ const cardData: CardData[] = [
   },
   {
     id: 5,
+    plaseid: 11111,
     image: 'https://via.placeholder.com/300x140?text=Image+5',
     title: '店名5',
     address: '住所5',

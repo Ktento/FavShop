@@ -4,11 +4,10 @@ import CloseIcon from '@mui/icons-material/Close';
 import { styled } from '@mui/material/styles';
 
 interface ModalData {
-  image: string; // メイン画像URL
+  image: string;
   title: string;
   address: string;
   hours: string;
-  images: string[]; // サムネイル画像URLの配列
 }
 
 interface ContentModalProps {
@@ -51,76 +50,8 @@ const ImageSpace = styled('div')({
   justifyContent: 'center',
 });
 
-// サムネイルのスタイル設定
-const ThumbnailSpace = styled('div')({
-  display: 'flex',
-  gap: '8px',
-  overflowX: 'scroll',
-  marginTop: 16,
-});
-
-// サムネイルの個別スタイル設定
-const Thumbnail = styled('div')({
-  position: 'relative',
-  width: 100,
-  height: 100,
-  backgroundColor: '#ccc',
-  overflow: 'hidden',
-  borderRadius: 4,
-});
-
-const ThumbnailImage = styled('img')({
-  width: '100%',
-  height: '100%',
-  objectFit: 'cover',
-});
-
-const DeleteButton = styled(IconButton)({
-  position: 'absolute',
-  top: 0,
-  left: 0,
-  backgroundColor: 'rgba(255, 255, 255, 0.7)',
-  zIndex: 1,
-});
-
-// ContentModalコンポーネントの定義
 const ContentModal: React.FC<ContentModalProps> = ({ open, handleClose, data }) => {
   const [mainImage, setMainImage] = useState<string | null>(data?.image || null);
-  const [thumbnails, setThumbnails] = useState<string[]>(data?.images || []);
-  const [selectedFile, setSelectedFile] = useState<File | null>(null);
-
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        if (reader.result) {
-          setThumbnails([...thumbnails, reader.result as string]);
-        }
-      };
-      reader.readAsDataURL(file);
-    }
-  };
-
-  const handleAddThumbnail = () => {
-    const input = document.createElement('input');
-    input.type = 'file';
-    input.accept = 'image/*';
-    input.onchange = (event) => handleFileChange(event as unknown as React.ChangeEvent<HTMLInputElement>);
-    input.click();
-  };
-
-  const handleDeleteThumbnail = (index: number) => {
-    setThumbnails(thumbnails.filter((_, i) => i !== index));
-  };
-
-  const handleSwapImage = (index: number) => {
-    const newMainImage = thumbnails[index];
-    const updatedThumbnails = [...thumbnails];
-    updatedThumbnails[index] = mainImage || '';
-    setMainImage(newMainImage);
-    setThumbnails(updatedThumbnails);
-  };
 
   if (!data) return null;
 
@@ -172,23 +103,6 @@ const ContentModal: React.FC<ContentModalProps> = ({ open, handleClose, data }) 
             </ImageSpace>
           </Grid>
         </Grid>
-        <ThumbnailSpace>
-          {thumbnails.map((thumbnail, index) => (
-            <Thumbnail key={index}>
-              <ThumbnailImage
-                src={thumbnail}
-                alt={`Thumbnail ${index}`}
-                onClick={() => handleSwapImage(index)}
-              />
-              <DeleteButton onClick={() => handleDeleteThumbnail(index)}>
-                <CloseIcon />
-              </DeleteButton>
-            </Thumbnail>
-          ))}
-          <Button onClick={handleAddThumbnail} style={{ marginTop: 16 }}>
-            サムネイルを追加
-          </Button>
-        </ThumbnailSpace>
       </Box>
     </Modal>
   );
