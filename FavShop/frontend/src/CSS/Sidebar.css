@@ -48,5 +48,8 @@
 @media screen and (max-width: 600px) {
   .sidebar {
     width: 100%; /* モバイル画面でのサイドバーの幅を100%に設定 */
+    position: fixed; /* サイドバーを固定 */
+    top: 0;
+    left: 0;
   }
 }

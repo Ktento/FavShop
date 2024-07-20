@@ -43,7 +43,7 @@ const Header: React.FC<HeaderProps> = ({ user, user_id, setUser, setUserID }) =>
         </Toolbar>
       </AppBar>
       <Drawer
-        anchor="left" // サイドバーを左側に表示するように設定
+        anchor="left"
         open={drawerOpen}
         onClose={toggleDrawer(false)}
         PaperProps={{
