@@ -1,5 +1,3 @@
-import { Apartment } from "@mui/icons-material";
-
 export interface SearchResult {
   title: string;
   description: string;
