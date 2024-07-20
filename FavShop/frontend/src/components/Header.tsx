@@ -12,7 +12,7 @@ interface HeaderProps {
   setUserID: (user_id: Number | null) => void;
 }
 
-const Header: React.FC<HeaderProps> = ({ user, user_id,setUser,setUserID }) => {
+const Header: React.FC<HeaderProps> = ({ user, user_id, setUser, setUserID }) => {
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   const toggleDrawer = (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
@@ -42,7 +42,14 @@ const Header: React.FC<HeaderProps> = ({ user, user_id,setUser,setUserID }) => {
           </Typography>
         </Toolbar>
       </AppBar>
-      <Drawer anchor="left" open={drawerOpen} onClose={toggleDrawer(false)}>
+      <Drawer
+        anchor="left" // サイドバーを左側に表示するように設定
+        open={drawerOpen}
+        onClose={toggleDrawer(false)}
+        PaperProps={{
+          sx: { width: { xs: '100%', sm: 250 } }, // スマホでは100%、デスクトップでは250pxの幅
+        }}
+      >
         <Sidebar user={user} user_id={user_id} setUser={setUser} setUserID={setUserID} closeDrawer={closeDrawer} />
       </Drawer>
     </>
