@@ -15,18 +15,19 @@ const Add_Modal: React.FC<AddModalProps> = ({ onClose, closeDrawer }) => {
 
 
 
-  console.log("AAAAAAAAAAAAa");
 
   // ダミーの検索関数（実際のAPI呼び出し等をここに実装）
   const handleSearch = async() => {
     try{
     console.log(searchTerm);
+
     if (searchTerm.trim() === '') return;
     if(searchTerm!=undefined){
     const results = await searchPlaceByName(searchTerm);
+    console.log("結果"+results);
     setSearchResults(results);
     }
-
+    console.log("AAAAAAAAaaaa");
     }catch(error){
     }
   };
