@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import '../CSS/SignIn_Modal.css'; 
+//import { getAllTodos } from '../../../backend/db.ts'; ログイン用の関数呼び出し
 
 interface SignInModalProps {
   openSignUpModal: () => void;
   onClose: () => void;
   setUser: (user: string | null) => void;
+  closeDrawer: () => void;
 }
 
-const SignInModal: React.FC<SignInModalProps> = ({ openSignUpModal, onClose, setUser }) => {
+const SignInModal: React.FC<SignInModalProps> = ({ openSignUpModal, onClose, setUser,closeDrawer }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [loginError, setLoginError] = useState(false);
@@ -22,20 +24,20 @@ const SignInModal: React.FC<SignInModalProps> = ({ openSignUpModal, onClose, set
       setInputError('ユーザー名/パスワードは英数字のみです');
       return;
     }
-    /* 関数呼び出し */
-/********************************************* 
- * import axios from 'axios';をこのコンポーネントに適用する。
- * /api/login  にある関数コンポーネントに対して入力したusernameとpasswordを送信。
- * response.dataという形でsuccessにusernameとpasswordの検証結果。userに登録してあるusernameを返す。
- * 
+
+
+
+
+    /**** 
     try {
-      const response = await axios.post('/api/login', { username, password });
-      const { success, user } = response.data;
+      const success = await getAllTodos(username, password);
       
       if (success) {
         setInputError(null);
-        setUser(user.username);     //userstatusを設定
+        setUser(username);     //userstatusを設定
         onClose(); 
+        closeDrawer();
+        alert('ログイン成功');
       } else {
         setInputError(null);
       }
@@ -45,12 +47,18 @@ const SignInModal: React.FC<SignInModalProps> = ({ openSignUpModal, onClose, set
     }
   };
 ****************************************************************/
+
+
+
+
+
     /* 仮ログイン */
     if (username == 'user' && password == 'pass') {
       setInputError(null);
-      alert('ログイン成功');
       setUser(username);
       onClose();
+      closeDrawer();
+      alert('ログイン成功');
     } else {
       setInputError(null);
       setInputError('ログインできません');
