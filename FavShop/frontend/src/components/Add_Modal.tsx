@@ -29,6 +29,7 @@ const Add_Modal: React.FC<AddModalProps> = ({ onClose, closeDrawer }) => {
     }
     console.log("AAAAAAAAaaaa");
     }catch(error){
+      console.log(error)
     }
   };
 
