@@ -12,11 +12,14 @@ import button_position_Image from '../assets/images/Map pin.png';
 import button_add_Image from '../assets/images/Plus.png';
 
 interface SidebarProps {
-  setUser: (user: Number | null) => void;
+  user: string | null; 
+  user_id: Number | null;
+  setUser: (user: string | null) => void;
+  setUserID: (user_id: Number | null) => void;
   closeDrawer: () => void;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ setUser, closeDrawer }) => {
+const Sidebar: React.FC<SidebarProps> = ({ user,user_id,setUser,setUserID, closeDrawer }) => {
   const [signInModalOpen, setSignInModalOpen] = useState(false);
   const [signUpModalOpen, setSignUpModalOpen] = useState(false);
   const [addModalOpen, setAddModalOpen] = useState(false);
@@ -76,13 +79,13 @@ const Sidebar: React.FC<SidebarProps> = ({ setUser, closeDrawer }) => {
       <Footer />
 
       <Modal isOpen={signInModalOpen} onClose={closeSignInModal}>
-        <SignInModal openSignUpModal={openSignUpModal} onClose={closeSignInModal} setUser={setUser} closeDrawer={closeDrawer}/>
+        <SignInModal openSignUpModal={openSignUpModal} onClose={closeSignInModal} setUser={setUser} setUserID={setUserID} closeDrawer={closeDrawer}/>
       </Modal>
       <Modal2 isOpen={signUpModalOpen} onClose={closeSignUpModal}>
         <SignUpModal onClose={closeSignUpModal} />
       </Modal2>
       <Modal isOpen={addModalOpen} onClose={closeAddModal}>
-        <AddModal onClose={closeAddModal} closeDrawer={closeDrawer}/>
+        <AddModal onClose={closeAddModal} closeDrawer={closeDrawer} user={user} user_id={user_id} setUser={setUser} setUserID={setUserID}/>
       </Modal>
       <Modal isOpen={positionModalOpen} onClose={closePositionModal}>
         <PositionModal onClose={closePositionModal} closeDrawer={closeDrawer} />

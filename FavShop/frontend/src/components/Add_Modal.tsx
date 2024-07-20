@@ -3,14 +3,17 @@ import '../CSS/Add_Modal.css';
 import { SearchResult, searchPlaceByName } from '../backend/find_Shop';
 
 interface AddModalProps {
+  user: string | null; 
+  user_id: Number | null;
+  setUser: (user: string | null) => void;
+  setUserID: (user_id: Number | null) => void;
   onClose: () => void;
   closeDrawer: () => void;
-  user_id?: Number | null; 
-  setUser?: (user_id: Number | null) => void; 
+
 }
 
 
-const Add_Modal: React.FC<AddModalProps> = ({ onClose, closeDrawer,user_id, setUser }) => {
+const Add_Modal: React.FC<AddModalProps> = ({ onClose, closeDrawer,user_id}) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
   const [selectedResult, setSelectedResult] = useState<SearchResult | null>(null);
