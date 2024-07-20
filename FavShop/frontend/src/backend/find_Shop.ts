@@ -13,6 +13,7 @@ interface Photo {
 const BASE_URL: string = process.env.REACT_APP_GOOGLE_PLACES_API_URL ?? "";
 const API_KEY: string = process.env.REACT_APP_GOOGLE_PLACES_API_KEY ?? "";
 export const searchPlaceByName = async (Shopname:string):Promise<SearchResult[]> => {
+  console.log("AAAAAAAAAAAA")
   // 環境変数が正しく設定されているか確認
   if (!BASE_URL || !API_KEY) {
     throw new Error("BASE_URL or API_KEY is not defined");
