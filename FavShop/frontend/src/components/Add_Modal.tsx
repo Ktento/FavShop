@@ -16,7 +16,7 @@ const Add_Modal: React.FC<AddModalProps> = ({ onClose, closeDrawer }) => {
 
 
 
-  // ダミーの検索関数（実際のAPI呼び出し等をここに実装）
+  // 店舗検索関数
   const handleSearch = async() => {
     try{
     console.log(searchTerm);
@@ -24,10 +24,8 @@ const Add_Modal: React.FC<AddModalProps> = ({ onClose, closeDrawer }) => {
     if (searchTerm.trim() === '') return;
     if(searchTerm!=undefined){
     const results = await searchPlaceByName(searchTerm);
-    console.log("結果"+results);
     setSearchResults(results);
     }
-    console.log("AAAAAAAAaaaa");
     }catch(error){
       console.log(error)
     }
@@ -38,6 +36,7 @@ const Add_Modal: React.FC<AddModalProps> = ({ onClose, closeDrawer }) => {
   // 選択された検索結果を処理する関数
   const handleSelectResult = (result: SearchResult) => {
     setSelectedResult(result);
+    console.log(setSearchResults);
   };
 
   // 決定ボタンを押された場合の処理
