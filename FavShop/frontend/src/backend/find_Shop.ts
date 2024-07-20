@@ -1,3 +1,5 @@
+import { Apartment } from "@mui/icons-material";
+
 export interface SearchResult {
   title: string;
   description: string;
@@ -13,11 +15,11 @@ interface Photo {
 const BASE_URL: string = process.env.REACT_APP_GOOGLE_PLACES_API_URL ?? "";
 const API_KEY: string = process.env.REACT_APP_GOOGLE_PLACES_API_KEY ?? "";
 export const searchPlaceByName = async (Shopname:string):Promise<SearchResult[]> => {
-  console.log(Shopname)
   // 環境変数が正しく設定されているか確認
   if (!BASE_URL || !API_KEY) {
     throw new Error("BASE_URL or API_KEY is not defined");
   }
+  console.log(BASE_URL,API_KEY)
     const response = await fetch(`${BASE_URL}?key=${API_KEY}&query=${encodeURIComponent(Shopname)}`);
     const data = await response.json();
     console.log('API Response:', data); // レスポンスをコンソールに出力
