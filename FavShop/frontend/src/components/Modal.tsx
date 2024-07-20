@@ -1,5 +1,4 @@
-// Modal.tsx (変更部分)
-import React, { ReactNode, useEffect } from 'react';
+import React, { ReactNode } from 'react';
 import '../CSS/Modal.css';
 
 interface ModalProps {
@@ -9,15 +8,15 @@ interface ModalProps {
 }
 
 const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
-  useEffect(() => {
-    if (isOpen) {
-      document.body.classList.add('modal-open');
-    } else {
-      document.body.classList.remove('modal-open');
-    }
-  }, [isOpen]);
-
   if (!isOpen) return null;
+
+  // モーダルが開いている間はスクロールを無効にする
+  React.useEffect(() => {
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, []);
 
   return (
     <div className="modal-overlay">

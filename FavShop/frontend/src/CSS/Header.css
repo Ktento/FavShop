@@ -5,7 +5,7 @@
   align-items: center;
   position: fixed; /* ヘッダーを固定 */
   width: 100%; /* ヘッダーを画面全体の幅に設定 */
-  z-index: 1200; /* ヘッダーが他の要素の上に表示されるように設定 */
+  z-index: 1100; /* ヘッダーが他の要素の上に表示されるように設定 */
   padding-left: 20px; /* 左側に余裕を追加 */
 }
 
@@ -39,11 +39,11 @@
   .header {
     height: 50px; /* 適宜調整 */
   }
-
+  
   .header-logo {
     height: 30px; /* ロゴの高さを適宜調整 */
   }
-
+  
   .menu-button {
     font-size: 2rem; /* スマホの場合のメニューボタンの大きさを調整 */
     margin-right: 8px; /* メニューボタンとロゴの間にスペースを追加 */

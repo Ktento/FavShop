@@ -4,19 +4,28 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Sidebar from './Sidebar';
 import logo from '../assets/images/Favshop_logo_white.png';
 import '../CSS/Header.css';
+import { find_username } from '../backend/find_username';
 
 interface HeaderProps {
-  user: string | null; 
   user_id: Number | null; 
-  setUser: (user: string | null) => void;
-  setUserID: (user_id: Number | null) => void;
+  setUser: (user_id: Number | null) => void; 
 }
 
-const Header: React.FC<HeaderProps> = ({ user, user_id,setUser,setUserID }) => {
+const Header: React.FC<HeaderProps> = ({ user_id, setUser }) => {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [userName, setUserName] = useState<string | null>(null);
 
-
+  useEffect(() => {
+    if (user_id !== null) {
+      find_username(user_id).then(result => {
+        if (result.success) {
+          setUserName(result.user_name || null);
+        } else {
+          setUserName(null);
+        }
+      });
+    }
+  }, [user_id]);
 
   const toggleDrawer = (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
     if (
@@ -41,12 +50,12 @@ const Header: React.FC<HeaderProps> = ({ user, user_id,setUser,setUserID }) => {
           </IconButton>
           <img src={logo} alt="Logo" className="header-logo" />
           <Typography variant="h6" component="div" className="title">
-            {user ? `ログイン中:${user}` : '未ログイン'}
+            {userName ? `ログイン中:${userName}` : '未ログイン'}
           </Typography>
         </Toolbar>
       </AppBar>
       <Drawer anchor="left" open={drawerOpen} onClose={toggleDrawer(false)}>
-        <Sidebar user={user} user_id={user_id} setUser={setUser} setUserID={setUserID} closeDrawer={closeDrawer} />
+        <Sidebar setUser={setUser} closeDrawer={closeDrawer} />
       </Drawer>
     </>
   );

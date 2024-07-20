@@ -26,16 +26,45 @@ const Sidebar: React.FC<SidebarProps> = ({ user,user_id,setUser,setUserID, close
   const [positionModalOpen, setPositionModalOpen] = useState(false);
   const [infoModalOpen, setInfoModalOpen] = useState(false);
 
-  const openSignInModal = () => setSignInModalOpen(true);
-  const closeSignInModal = () => setSignInModalOpen(false);
-  const openSignUpModal = () => setSignUpModalOpen(true);
-  const closeSignUpModal = () => setSignUpModalOpen(false);
-  const openAddModal = () => setAddModalOpen(true);
-  const closeAddModal = () => setAddModalOpen(false);
-  const openPositionModal = () => setPositionModalOpen(true);
-  const closePositionModal = () => setPositionModalOpen(false);
-  const openInfoModal = () => setInfoModalOpen(true);
-  const closeInfoModal = () => setInfoModalOpen(false);
+  const openSignInModal = () => {
+    setSignInModalOpen(true);
+  };
+
+  const closeSignInModal = () => {
+    setSignInModalOpen(false);
+  };
+
+  const openSignUpModal = () => {
+    setSignUpModalOpen(true);
+  };
+
+  const closeSignUpModal = () => {
+    setSignUpModalOpen(false);
+  };
+
+  const openAddModal = () => {
+    setAddModalOpen(true);
+  };
+
+  const closeAddModal = () => {
+    setAddModalOpen(false);
+  };
+
+  const openPositionModal = () => {
+    setPositionModalOpen(true);
+  };
+
+  const closePositionModal = () => {
+    setPositionModalOpen(false);
+  };
+
+  const openInfoModal = () => {
+    setInfoModalOpen(true);
+  };
+
+  const closeInfoModal = () => {
+    setInfoModalOpen(false);
+  };
 
   return (
     <div className="sidebar">
