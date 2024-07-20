@@ -40,6 +40,8 @@ const Add_Modal: React.FC<AddModalProps> = ({ onClose, closeDrawer },{ user, set
 
   // 決定ボタンを押された場合の処理
   const handleConfirmSelection = async() => {
+    console.log("AAAAAAAAAAAAAAAAA")
+    console.log(user,selectedResult?.place_id)
     if(selectedResult){
       const response = await fetch("/api/server_supabase",{
         method: 'POST',
