@@ -19,6 +19,7 @@ export const searchPlaceByName = async (Shopname:string):Promise<SearchResult[]>
   }
     const response = await fetch(`${BASE_URL}?key=${API_KEY}&query=${encodeURIComponent(Shopname)}`);
     const data = await response.json();
+    console.log('API Response:', data); // レスポンスをコンソールに出力
     if (!data.results) {
       throw new Error("Invalid API response format");
     }
