@@ -1,7 +1,7 @@
-import React from 'react';
-import { styled } from '@mui/material/styles';
-import { Modal, Box, Typography, Grid, IconButton } from '@mui/material';
+import React, { useState } from 'react';
+import { Modal, Box, Typography, Grid, IconButton, Button } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
+import { styled } from '@mui/material/styles';
 
 interface ModalData {
   image: string;
@@ -23,8 +23,8 @@ const style = {
   left: '50%',
   transform: 'translate(-50%, -50%)',
   width: '80%',
-  maxWidth: '800px',
-  height: '80%',
+  maxWidth: '600px',
+  height: 'auto',
   bgcolor: 'background.paper',
   border: '2px solid #000',
   boxShadow: 24,
@@ -34,41 +34,93 @@ const style = {
 
 // 地図のスタイル設定
 const MapSpace = styled('div')({
-  width: '100%',
-  height: '30vh',
+  width: '80%',
+  height: '20vh',
   backgroundColor: '#eee',
-  marginBottom: 16,
+  margin: '0 auto 16px auto',
 });
 
 // メイン画像のスタイル設定
 const ImageSpace = styled('div')({
   width: '100%',
-  height: '50vh',
+  height: '30vh',
   backgroundColor: '#ddd',
   display: 'flex',
-  justifyContent: 'center',
   alignItems: 'center',
-  position: 'relative',
+  justifyContent: 'center',
 });
 
 // サムネイルのスタイル設定
 const ThumbnailSpace = styled('div')({
   display: 'flex',
-  flexDirection: 'row',
   gap: '8px',
   overflowX: 'scroll',
   marginTop: 16,
-  padding: '0 4px',
 });
 
 // サムネイルの個別スタイル設定
 const Thumbnail = styled('div')({
+  position: 'relative',
   width: 100,
   height: 100,
   backgroundColor: '#ccc',
+  overflow: 'hidden',
+  borderRadius: 4,
 });
 
+const ThumbnailImage = styled('img')({
+  width: '100%',
+  height: '100%',
+  objectFit: 'cover',
+});
+
+const DeleteButton = styled(IconButton)({
+  position: 'absolute',
+  top: 0,
+  left: 0,
+  backgroundColor: 'rgba(255, 255, 255, 0.7)',
+  zIndex: 1,
+});
+
+// ContentModalコンポーネントの定義
 const ContentModal: React.FC<ContentModalProps> = ({ open, handleClose, data }) => {
+  const [mainImage, setMainImage] = useState<string | null>(data?.image || null);
+  const [thumbnails, setThumbnails] = useState<string[]>([]);
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        if (reader.result) {
+          setThumbnails([...thumbnails, reader.result as string]);
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleAddThumbnail = () => {
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = 'image/*';
+    input.onchange = (event) => handleFileChange(event as unknown as React.ChangeEvent<HTMLInputElement>);
+    input.click();
+  };
+
+  const handleDeleteThumbnail = (index: number) => {
+    setThumbnails(thumbnails.filter((_, i) => i !== index));
+  };
+
+  const handleSwapImage = (index: number) => {
+    const newMainImage = thumbnails[index];
+    const updatedThumbnails = [...thumbnails];
+    updatedThumbnails[index] = mainImage || '';
+    setMainImage(newMainImage);
+    setThumbnails(updatedThumbnails);
+  };
+
   if (!data) return null;
 
   return (
@@ -93,7 +145,7 @@ const ContentModal: React.FC<ContentModalProps> = ({ open, handleClose, data }) 
         </IconButton>
         <MapSpace>地図</MapSpace> {/* 地図を表示するスペース */}
         <Grid container spacing={2}>
-          <Grid item xs={12} md={6}>
+          <Grid item xs={6}>
             <Typography id="modal-title" variant="h6" component="h2">
               {data.title}
             </Typography>
@@ -113,18 +165,28 @@ const ContentModal: React.FC<ContentModalProps> = ({ open, handleClose, data }) 
               お気に入り解除
             </Typography>
           </Grid>
-          <Grid item xs={12} md={6}>
+          <Grid item xs={6}>
             <ImageSpace>
-              {/* ここにメイン画像が入ります */}
-              <img src={data.image} alt={data.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              {mainImage && <img src={mainImage} alt={data.title} style={{ maxWidth: '100%', maxHeight: '100%' }} />}
             </ImageSpace>
           </Grid>
         </Grid>
         <ThumbnailSpace>
-          {/* サムネイル画像の例 */}
-          <Thumbnail />
-          <Thumbnail />
-          <Thumbnail />
+          {thumbnails.map((thumbnail, index) => (
+            <Thumbnail key={index}>
+              <ThumbnailImage
+                src={thumbnail}
+                alt={`Thumbnail ${index}`}
+                onClick={() => handleSwapImage(index)}
+              />
+              <DeleteButton onClick={() => handleDeleteThumbnail(index)}>
+                <CloseIcon />
+              </DeleteButton>
+            </Thumbnail>
+          ))}
+          <Button onClick={handleAddThumbnail} style={{ marginTop: 16 }}>
+            サムネイルを追加
+          </Button>
         </ThumbnailSpace>
       </Box>
     </Modal>

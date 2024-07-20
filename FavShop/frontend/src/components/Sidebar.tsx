@@ -4,9 +4,9 @@ import Modal from './Modal';
 import Modal2 from './Modal2';
 import SignInModal from './SignIn_Modal';
 import SignUpModal from './SignUp_Modal';
-import PositionModal from './Position_Modal'; // PositionModal のインポート
+import PositionModal from './Position_Modal';
 import AddModal from './Add_Modal';
-import InfoModal from './Info_Modal'; // InfoModal のインポート
+import InfoModal from './Info_Modal';
 import '../CSS/Sidebar.css';
 import button_position_Image from '../assets/images/Map pin.png';
 import button_add_Image from '../assets/images/Plus.png';
@@ -21,7 +21,7 @@ const Sidebar: React.FC<SidebarProps> = ({ setUser, closeDrawer }) => {
   const [signUpModalOpen, setSignUpModalOpen] = useState(false);
   const [addModalOpen, setAddModalOpen] = useState(false);
   const [positionModalOpen, setPositionModalOpen] = useState(false);
-  const [infoModalOpen, setInfoModalOpen] = useState(false); // InfoModal の状態を追加
+  const [infoModalOpen, setInfoModalOpen] = useState(false);
 
   const openSignInModal = () => {
     setSignInModalOpen(true);
@@ -65,7 +65,7 @@ const Sidebar: React.FC<SidebarProps> = ({ setUser, closeDrawer }) => {
 
   return (
     <div className="sidebar">
-      <button className="sidebar-button text-button" onClick={openInfoModal}>FavShopとは</button> {/* InfoModal ボタン */}
+      <button className="sidebar-button text-button" onClick={openInfoModal}>FavShopとは</button>
       <button className="sidebar-button text-button" onClick={openSignInModal}>Sign In</button>
       <button className="sidebar-button" onClick={openAddModal}>
         <img src={button_add_Image} alt="add" className="button-image" />
@@ -87,7 +87,7 @@ const Sidebar: React.FC<SidebarProps> = ({ setUser, closeDrawer }) => {
       <Modal isOpen={positionModalOpen} onClose={closePositionModal}>
         <PositionModal onClose={closePositionModal} closeDrawer={closeDrawer} />
       </Modal>
-      <InfoModal open={infoModalOpen} onClose={closeInfoModal} /> {/* InfoModal の追加 */}
+      <InfoModal open={infoModalOpen} onClose={closeInfoModal} />
     </div>
   );
 };

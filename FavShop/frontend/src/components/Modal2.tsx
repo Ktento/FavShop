@@ -8,7 +8,7 @@ interface ModalProps {
   children: React.ReactNode;
 }
 
-const Modal2: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {       //モーダルに内包されているモーダルの土台
+const Modal2: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
   if (!isOpen) return null;
 
   return (

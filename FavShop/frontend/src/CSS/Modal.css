@@ -10,6 +10,7 @@
   justify-content: center;
   z-index: 1000; /* 高いZインデックスを設定して前面に表示 */
 }
+
 .modal-overlay-2 {
   position: fixed;
   top: 0;
@@ -22,6 +23,7 @@
   justify-content: center;
   z-index: 1000; /* 高いZインデックスを設定して前面に表示 */
 }
+
 .modal-content {
   background: white;
   padding: 20px;
