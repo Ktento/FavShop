@@ -16,45 +16,56 @@ interface ContentModalProps {
   data: ModalData | null;
 }
 
+// モーダルのスタイル設定
 const style = {
   position: 'absolute' as 'absolute',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: '80%', // モーダルの幅をレスポンシブに設定
-  maxWidth: '600px', // 最大幅を設定
-  height: 'auto', // モーダルの高さを自動調整
+  width: '80%',
+  maxWidth: '800px',
+  height: '80%',
   bgcolor: 'background.paper',
   border: '2px solid #000',
   boxShadow: 24,
   p: 4,
-  overflow: 'auto', // 内容が多い場合にスクロールを許可
+  overflow: 'auto',
 };
 
+// 地図のスタイル設定
 const MapSpace = styled('div')({
   width: '100%',
-  height: '20vh', // 地図の高さをレスポンシブに設定
-  backgroundColor: '#eee', // ダミー用の背景色
+  height: '30vh',
+  backgroundColor: '#eee',
   marginBottom: 16,
 });
 
+// メイン画像のスタイル設定
 const ImageSpace = styled('div')({
   width: '100%',
-  height: '30vh',
-  backgroundColor: '#ddd', // ダミー用の背景色
+  height: '50vh',
+  backgroundColor: '#ddd',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  position: 'relative',
 });
 
+// サムネイルのスタイル設定
 const ThumbnailSpace = styled('div')({
   display: 'flex',
+  flexDirection: 'row',
   gap: '8px',
   overflowX: 'scroll',
   marginTop: 16,
+  padding: '0 4px',
 });
 
+// サムネイルの個別スタイル設定
 const Thumbnail = styled('div')({
   width: 100,
   height: 100,
-  backgroundColor: '#ccc', // ダミー用の背景色
+  backgroundColor: '#ccc',
 });
 
 const ContentModal: React.FC<ContentModalProps> = ({ open, handleClose, data }) => {
@@ -80,9 +91,9 @@ const ContentModal: React.FC<ContentModalProps> = ({ open, handleClose, data }) 
         >
           <CloseIcon />
         </IconButton>
-        <MapSpace>地図</MapSpace>
+        <MapSpace>地図</MapSpace> {/* 地図を表示するスペース */}
         <Grid container spacing={2}>
-          <Grid item xs={6}>
+          <Grid item xs={12} md={6}>
             <Typography id="modal-title" variant="h6" component="h2">
               {data.title}
             </Typography>
@@ -102,15 +113,18 @@ const ContentModal: React.FC<ContentModalProps> = ({ open, handleClose, data }) 
               お気に入り解除
             </Typography>
           </Grid>
-          <Grid item xs={6}>
-            <ImageSpace>{/* ここにメイン画像が入ります */}</ImageSpace>
+          <Grid item xs={12} md={6}>
+            <ImageSpace>
+              {/* ここにメイン画像が入ります */}
+              <img src={data.image} alt={data.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+            </ImageSpace>
           </Grid>
         </Grid>
         <ThumbnailSpace>
+          {/* サムネイル画像の例 */}
           <Thumbnail />
           <Thumbnail />
           <Thumbnail />
-          {/* ここに追加のサムネイルが入ります */}
         </ThumbnailSpace>
       </Box>
     </Modal>
