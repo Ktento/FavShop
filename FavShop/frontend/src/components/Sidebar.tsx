@@ -82,14 +82,16 @@ const Sidebar: React.FC<SidebarProps> = ({ user, user_id, setUser, setUserID, cl
       >
         <CloseIcon />
       </IconButton>
-      <button className="sidebar-button text-button" onClick={openInfoModal}>FavShopとは</button>
-      <button className="sidebar-button text-button" onClick={openSignInModal}>Sign In</button>
-      <button className="sidebar-button" onClick={openAddModal}>
-        <img src={button_add_Image} alt="add" className="button-image" />
-      </button>
-      <button className="sidebar-button" onClick={openPositionModal}>
-        <img src={button_position_Image} alt="position" className="button-image" />
-      </button>
+      <div className="sidebar-content">
+        <button className="sidebar-button text-button" onClick={openInfoModal}>FavShopとは</button>
+        <button className="sidebar-button text-button" onClick={openSignInModal}>Sign In</button>
+        <button className="sidebar-button" onClick={openAddModal}>
+          <img src={button_add_Image} alt="add" className="button-image" />
+        </button>
+        <button className="sidebar-button" onClick={openPositionModal}>
+          <img src={button_position_Image} alt="position" className="button-image" />
+        </button>
+      </div>
       <Footer />
 
       <Modal isOpen={signInModalOpen} onClose={closeSignInModal}>
