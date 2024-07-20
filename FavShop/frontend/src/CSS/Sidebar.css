@@ -1,11 +1,12 @@
-/* Sidebar.css */
-.sidebar { 
+.sidebar {
   flex: 1;
   background-color: #f0f0f0;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding-top: 10px; /* ボタンを上に詰める */
+  position: relative; /* モーダルの表示順序に影響するために追加 */
+  z-index: 1200; /* モーダルより低い値に設定 */
 }
 
 .sidebar-button {

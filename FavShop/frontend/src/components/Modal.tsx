@@ -7,13 +7,13 @@ interface ModalProps {
   children: ReactNode;
 }
 
-const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {    //モーダルの土台作成
+const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
   if (!isOpen) return null;
 
   return (
     <div className="modal-overlay">
-      <div className="modal">
-        <button className="close-button" onClick={onClose}>X</button>
+      <div className="modal-content">
+        <button className="modal-close" onClick={onClose}>X</button>
         {children}
       </div>
     </div>

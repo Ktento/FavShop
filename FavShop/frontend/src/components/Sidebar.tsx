@@ -24,8 +24,7 @@ const Sidebar: React.FC<SidebarProps> = ({ setUser, closeDrawer }) => {
   const [infoModalOpen, setInfoModalOpen] = useState(false);
 
   const openSignInModal = () => {
-    closeDrawer(); // サイドバーを閉じる
-    setSignInModalOpen(true); // サインインモーダルを開く
+    setSignInModalOpen(true);
   };
 
   const closeSignInModal = () => {
@@ -33,8 +32,7 @@ const Sidebar: React.FC<SidebarProps> = ({ setUser, closeDrawer }) => {
   };
 
   const openSignUpModal = () => {
-    closeDrawer(); // サイドバーを閉じる
-    setSignUpModalOpen(true); // サインアップモーダルを開く
+    setSignUpModalOpen(true);
   };
 
   const closeSignUpModal = () => {
@@ -42,8 +40,7 @@ const Sidebar: React.FC<SidebarProps> = ({ setUser, closeDrawer }) => {
   };
 
   const openAddModal = () => {
-    closeDrawer(); // サイドバーを閉じる
-    setAddModalOpen(true); // アドモーダルを開く
+    setAddModalOpen(true);
   };
 
   const closeAddModal = () => {
@@ -51,8 +48,7 @@ const Sidebar: React.FC<SidebarProps> = ({ setUser, closeDrawer }) => {
   };
 
   const openPositionModal = () => {
-    closeDrawer(); // サイドバーを閉じる
-    setPositionModalOpen(true); // ポジションモーダルを開く
+    setPositionModalOpen(true);
   };
 
   const closePositionModal = () => {
@@ -60,8 +56,7 @@ const Sidebar: React.FC<SidebarProps> = ({ setUser, closeDrawer }) => {
   };
 
   const openInfoModal = () => {
-    closeDrawer(); // サイドバーを閉じる
-    setInfoModalOpen(true); // インフォモーダルを開く
+    setInfoModalOpen(true);
   };
 
   const closeInfoModal = () => {
@@ -80,15 +75,14 @@ const Sidebar: React.FC<SidebarProps> = ({ setUser, closeDrawer }) => {
       </button>
       <Footer />
 
-      {/* モーダルをSidebarの外に配置 */}
       <Modal isOpen={signInModalOpen} onClose={closeSignInModal}>
-        <SignInModal openSignUpModal={openSignUpModal} onClose={closeSignInModal} setUser={setUser} closeDrawer={closeDrawer}/>
+        <SignInModal openSignUpModal={openSignUpModal} onClose={closeSignInModal} setUser={setUser} closeDrawer={closeDrawer} />
       </Modal>
       <Modal2 isOpen={signUpModalOpen} onClose={closeSignUpModal}>
         <SignUpModal onClose={closeSignUpModal} />
       </Modal2>
       <Modal isOpen={addModalOpen} onClose={closeAddModal}>
-        <AddModal onClose={closeAddModal} closeDrawer={closeDrawer}/>
+        <AddModal onClose={closeAddModal} closeDrawer={closeDrawer} />
       </Modal>
       <Modal isOpen={positionModalOpen} onClose={closePositionModal}>
         <PositionModal onClose={closePositionModal} closeDrawer={closeDrawer} />
