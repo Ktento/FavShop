@@ -5,7 +5,7 @@ import Header from './components/Header';
 import Content from './components/Content';
 
 const App: React.FC = () => {
-  const [user, setUser] = useState<string | null>(null);          //**ユーザ情報を保持 */
+  const [user, setUser] = useState<Number | null>(null);          //**ユーザ情報を保持 */
 
   return (
     <div className="App">
