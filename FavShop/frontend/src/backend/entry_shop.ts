@@ -13,7 +13,8 @@ if (status==201) {
     return false;
   } 
 };
-    /*テスト用のプログラム
-    const user="user";
-    const pass="pass"
-    InsertUser(user,pass);*/
+    /*テスト用のプログラム*/
+    /*
+    const user="5";
+    const pass="passss"
+    InsertShop(user,pass);*/

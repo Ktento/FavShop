@@ -11,7 +11,7 @@ interface AddModalProps {
 }
 
 
-const Add_Modal: React.FC<AddModalProps> = ({ onClose, closeDrawer },{ user, setUser }) => {
+const Add_Modal: React.FC<AddModalProps> = ({ onClose, closeDrawer,user, setUser }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
   const [selectedResult, setSelectedResult] = useState<SearchResult | null>(null);
@@ -39,11 +39,24 @@ const Add_Modal: React.FC<AddModalProps> = ({ onClose, closeDrawer },{ user, set
   };
 
   // 決定ボタンを押された場合の処理
-  const handleConfirmSelection = () => {
+  const handleConfirmSelection = async() => {
+    console.log("AAAAAAAAAAAAAAAAA")
+    console.log(user,selectedResult?.place_id)
     if(selectedResult){
-      InsertShop(user, selectedResult.place_id);
-      onClose();
-      closeDrawer();
+      const response = await fetch("/api/server_supabase",{
+        method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ user_id: user, place_id: selectedResult.place_id })
+      });
+      const success = await response.json();
+      if(response.ok){
+        onClose();
+        closeDrawer();
+      }else{
+        console.log("Bad Insert");
+      }
     }else{
       console.log("No result Error");
     }
