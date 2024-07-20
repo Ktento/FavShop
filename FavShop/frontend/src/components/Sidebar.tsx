@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { IconButton } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
 import Footer from './Footer';
 import Modal from './Modal';
 import Modal2 from './Modal2';
@@ -68,7 +70,18 @@ const Sidebar: React.FC<SidebarProps> = ({ user, user_id, setUser, setUserID, cl
 
   return (
     <div className="sidebar">
-      <button className="close-sidebar-button" onClick={closeDrawer}>X</button>
+      <IconButton
+        aria-label="close"
+        onClick={closeDrawer}
+        sx={{
+          position: 'absolute',
+          right: 8,
+          top: 8,
+          color: (theme) => theme.palette.grey[500],
+        }}
+      >
+        <CloseIcon />
+      </IconButton>
       <button className="sidebar-button text-button" onClick={openInfoModal}>FavShopとは</button>
       <button className="sidebar-button text-button" onClick={openSignInModal}>Sign In</button>
       <button className="sidebar-button" onClick={openAddModal}>

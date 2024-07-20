@@ -9,6 +9,7 @@
   top: 0;
   left: 0;
   overflow-y: auto; /* スクロール可能にする */
+  overflow-x: hidden; /* 横スクロールを防ぐ */
 }
 
 .close-sidebar-button {
