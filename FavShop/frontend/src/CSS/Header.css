@@ -1,3 +1,4 @@
+/* Header styles */
 .header {
   background-color: #2196f3; /* 青色の背景に設定 */
   height: 60px; /* ヘッダーの高さを低く設定 */
@@ -48,4 +49,40 @@
     font-size: 2rem; /* スマホの場合のメニューボタンの大きさを調整 */
     margin-right: 8px; /* メニューボタンとロゴの間にスペースを追加 */
   }
+}
+
+/* Modal styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5); /* 背景色を暗くする */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1200; /* ヘッダーよりも下だがサイドバーより上 */
+}
+
+/* Modal content styles */
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 5px;
+  position: relative;
+  width: 300px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 影を追加してモーダルを強調 */
+}
+
+/* Close button styles */
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #000;
 }

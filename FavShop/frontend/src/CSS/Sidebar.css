@@ -1,17 +1,15 @@
-.sidebar {
+.sidebar { 
   flex: 1;
   background-color: #f0f0f0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 10px; /* ボタンを上に詰める */
-  position: relative; /* モーダルの表示順序に影響するために追加 */
-  z-index: 1200; /* モーダルより低い値に設定 */
+  padding-top: 10px;
 }
 
 .sidebar-button {
-  width: 150px; /* ボタンの幅を統一 */
-  height: 50px; /* ボタンの高さを統一 */
+  width: 150px;
+  height: 50px;
   margin: 10px;
   padding: 10px 20px;
   font-size: 16px;
@@ -19,14 +17,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 2px solid black; /* ボタンの枠を黒に設定 */
-  background-color: #f0f0f0; /* 背景色を統一 */
-  color: black; /* テキスト色を統一 */
+  border: 2px solid black;
+  background-color: #f0f0f0;
+  color: black;
 }
 
 .text-button {
-  background-color: #f0f0f0; /* 背景色を統一 */
-  color: black; /* テキスト色を統一 */
+  background-color: #f0f0f0;
+  color: black;
 }
 
 .button-image {

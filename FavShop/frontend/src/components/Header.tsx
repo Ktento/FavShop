@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Drawer, IconButton, AppBar, Toolbar, Typography } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import Sidebar from './Sidebar';
@@ -16,7 +16,6 @@ const Header: React.FC<HeaderProps> = ({ user_id, setUser }) => {
   const [userName, setUserName] = useState<string | null>(null);
 
   useEffect(() => {
-    // user が null でない場合に find_username を呼び出す
     if (user_id !== null) {
       find_username(user_id).then(result => {
         if (result.success) {
@@ -41,7 +40,6 @@ const Header: React.FC<HeaderProps> = ({ user_id, setUser }) => {
   const closeDrawer = () => {
     setDrawerOpen(false);
   };
-
 
   return (
     <>

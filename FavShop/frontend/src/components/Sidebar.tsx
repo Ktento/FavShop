@@ -76,13 +76,13 @@ const Sidebar: React.FC<SidebarProps> = ({ setUser, closeDrawer }) => {
       <Footer />
 
       <Modal isOpen={signInModalOpen} onClose={closeSignInModal}>
-        <SignInModal openSignUpModal={openSignUpModal} onClose={closeSignInModal} setUser={setUser} closeDrawer={closeDrawer} />
+        <SignInModal openSignUpModal={openSignUpModal} onClose={closeSignInModal} setUser={setUser} closeDrawer={closeDrawer}/>
       </Modal>
       <Modal2 isOpen={signUpModalOpen} onClose={closeSignUpModal}>
         <SignUpModal onClose={closeSignUpModal} />
       </Modal2>
       <Modal isOpen={addModalOpen} onClose={closeAddModal}>
-        <AddModal onClose={closeAddModal} closeDrawer={closeDrawer} />
+        <AddModal onClose={closeAddModal} closeDrawer={closeDrawer}/>
       </Modal>
       <Modal isOpen={positionModalOpen} onClose={closePositionModal}>
         <PositionModal onClose={closePositionModal} closeDrawer={closeDrawer} />
