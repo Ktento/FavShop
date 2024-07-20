@@ -6,7 +6,7 @@ import {Login} from '../backend/Login';
 interface SignInModalProps {
   openSignUpModal: () => void;
   onClose: () => void;
-  setUser: (user: string | null) => void;
+  setUser: (user_id: Number | null) => void;
   closeDrawer: () => void;
 }
 
@@ -28,11 +28,10 @@ const SignInModal: React.FC<SignInModalProps> = ({ openSignUpModal, onClose, set
 
 
     try {
-      const success = await Login(username, password);
-      
-      if (success) {
+      const response = await Login(username, password);//Loginできるか試す
+      if (response.success) {//responce.successに成功したらtrueが入る
         setInputError(null);
-        setUser(username);     //userstatusを設定
+        setUser(response.user_id??null);     //userstatusを設定
         onClose(); 
         closeDrawer();
         alert('ログイン成功');

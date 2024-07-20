@@ -1,17 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { Drawer, IconButton, AppBar, Toolbar, Typography } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import Sidebar from './Sidebar';
 import logo from '../assets/images/Favshop_logo_white.png';
 import '../CSS/Header.css';
+import { find_username } from '../backend/find_username';
 
 interface HeaderProps {
-  user: string | null; 
-  setUser: (user: string | null) => void; 
+  user: Number | null; 
+  setUser: (user: Number | null) => void; 
 }
 
 const Header: React.FC<HeaderProps> = ({ user, setUser }) => {
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [userName, setUserName] = useState<string | null>(null);
+
+  useEffect(() => {
+    // user が null でない場合に find_username を呼び出す
+    if (user !== null) {
+      find_username(user).then(result => {
+        if (result.success) {
+          setUserName(result.user_name || null);
+        } else {
+          setUserName(null);
+        }
+      });
+    }
+  }, [user]);
 
   const toggleDrawer = (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
     if (
@@ -26,6 +41,7 @@ const Header: React.FC<HeaderProps> = ({ user, setUser }) => {
   const closeDrawer = () => {
     setDrawerOpen(false);
   };
+
 
   return (
     <>

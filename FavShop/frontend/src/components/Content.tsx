@@ -14,7 +14,7 @@ interface CardData {
 }
 
 interface ContentProps {
-  user: string | null;
+  user: Number | null;
 }
 
 // スタイルを定義

@@ -1,1 +1,6 @@
 
+
+/*Supabase
+"https://tavjbblzfwmkgjrmumop.supabase.co/"!,
+"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRhdmpiYmx6Zndta2dqcm11bW9wIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjA5Nzk5NjIsImV4cCI6MjAzNjU1NTk2Mn0.RmVq2S6LwLUzeiC3-zqLj5nApI3i8IYqD5NET5a_3WA"!
+*/

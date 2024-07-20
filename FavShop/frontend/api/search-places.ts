@@ -18,11 +18,6 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   try {
     const response = await fetch(`${BASE_URL}?key=${API_KEY}&query=${encodeURIComponent(query)}`);
     const data = await response.json();
-
-    if (!data.results) {
-      return res.status(500).json({ error: 'Invalid API response format' });
-    }
-
     res.status(200).json(data);
   } catch (error) {
     res.status(500).json({ error: 'Error fetching data from Google Places API' });
