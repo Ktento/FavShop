@@ -4,14 +4,15 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Sidebar from './Sidebar';
 import logo from '../assets/images/Favshop_logo_white.png';
 import '../CSS/Header.css';
-import { find_username } from '../backend/find_username';
 
 interface HeaderProps {
+  user: string | null; 
   user_id: Number | null; 
-  setUser: (user_id: Number | null) => void; 
+  setUser: (user: string | null) => void;
+  setUserID: (user_id: Number | null) => void;
 }
 
-const Header: React.FC<HeaderProps> = ({ user_id, setUser }) => {
+const Header: React.FC<HeaderProps> = ({ user, user_id,setUser,setUserID }) => {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [userName, setUserName] = useState<string | null>(null);
 
@@ -50,12 +51,12 @@ const Header: React.FC<HeaderProps> = ({ user_id, setUser }) => {
           </IconButton>
           <img src={logo} alt="Logo" className="header-logo" />
           <Typography variant="h6" component="div" className="title">
-            {userName ? `ログイン中:${userName}` : '未ログイン'}
+            {user ? `ログイン中:${user}` : '未ログイン'}
           </Typography>
         </Toolbar>
       </AppBar>
       <Drawer anchor="left" open={drawerOpen} onClose={toggleDrawer(false)}>
-        <Sidebar setUser={setUser} closeDrawer={closeDrawer} />
+        <Sidebar user={user} user_id={user_id} setUser={setUser} setUserID={setUserID} closeDrawer={closeDrawer} />
       </Drawer>
     </>
   );

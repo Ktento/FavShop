@@ -1,16 +1,19 @@
 import React, { useState } from 'react';
 import '../CSS/Add_Modal.css';
 import { SearchResult, searchPlaceByName } from '../backend/find_Shop';
-
+import {InsertShop} from '../backend/entry_shop';
 interface AddModalProps {
+  user: string | null; 
+  user_id: Number | null;
+  setUser: (user: string | null) => void;
+  setUserID: (user_id: Number | null) => void;
   onClose: () => void;
   closeDrawer: () => void;
-  user_id?: Number | null; 
-  setUser?: (user_id: Number | null) => void; 
+
 }
 
 
-const Add_Modal: React.FC<AddModalProps> = ({ onClose, closeDrawer,user_id, setUser }) => {
+const Add_Modal: React.FC<AddModalProps> = ({ onClose, closeDrawer,user_id}) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
   const [selectedResult, setSelectedResult] = useState<SearchResult | null>(null);
@@ -41,8 +44,15 @@ const Add_Modal: React.FC<AddModalProps> = ({ onClose, closeDrawer,user_id, setU
   const handleConfirmSelection = async() => {
     console.log("AAAAAAAAAAAAAAAAA")
     console.log(user_id,selectedResult?.place_id)
-    if(selectedResult){
-      const response = await fetch("/api/server_supabase",{
+    if(selectedResult&&user_id!=null){
+      const success = await InsertShop(user_id, selectedResult.place_id);
+      if(success){
+        onClose();
+        closeDrawer();
+      }else{
+        console.log("Bad Insert");
+      }
+      /*const response = await fetch("/api/server_supabase",{
         method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -55,7 +65,7 @@ const Add_Modal: React.FC<AddModalProps> = ({ onClose, closeDrawer,user_id, setU
         closeDrawer();
       }else{
         console.log("Bad Insert");
-      }
+      }*/
     }else{
       console.log("No result Error");
     }
