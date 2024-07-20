@@ -1,15 +1,12 @@
 import React, { useState } from 'react';
 import '../CSS/Add_Modal.css';
-
+import { SearchResult, searchPlaceByName } from '../backend/find_Shop';
 interface AddModalProps {
   onClose: () => void;
   closeDrawer: () => void;
 }
 
-interface SearchResult {
-  title: string;
-  description: string;
-}
+
 
 const Add_Modal: React.FC<AddModalProps> = ({ onClose, closeDrawer }) => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -18,20 +15,21 @@ const Add_Modal: React.FC<AddModalProps> = ({ onClose, closeDrawer }) => {
 
 
 
-
+  console.log("AAAAAAAAAAAAa");
 
   // ダミーの検索関数（実際のAPI呼び出し等をここに実装）
-  const handleSearch = () => {
-    const results: SearchResult[] = [
-      { title: 'Item 1', description: 'Description 1' },
-      { title: 'Item 2', description: 'Description 2' },
-      { title: 'Item 3', description: 'Description 3' },
-      { title: 'Item 4', description: 'Description 4' },
-      { title: 'Item 5', description: 'Description 5' },
-      { title: 'Item 6', description: 'Description 6' },
-      { title: 'Item 7', description: 'Description 7' },
-    ];
+  const handleSearch = async() => {
+    try{
+    console.log(searchTerm);
+    if (searchTerm.trim() === '') return;
+    if(searchTerm!=undefined){
+    const results = await searchPlaceByName(searchTerm);
     setSearchResults(results);
+    }
+
+    }catch(error){
+      console.error('Error during search:', error);
+    }
   };
 
 
