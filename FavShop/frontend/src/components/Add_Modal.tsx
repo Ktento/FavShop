@@ -1,17 +1,16 @@
 import React, { useState } from 'react';
 import '../CSS/Add_Modal.css';
 import { SearchResult, searchPlaceByName } from '../backend/find_Shop';
-import {InsertShop} from '../backend/entry_shop';
 
 interface AddModalProps {
   onClose: () => void;
   closeDrawer: () => void;
-  user?: Number | null; 
+  user_id?: Number | null; 
   setUser?: (user_id: Number | null) => void; 
 }
 
 
-const Add_Modal: React.FC<AddModalProps> = ({ onClose, closeDrawer,user, setUser }) => {
+const Add_Modal: React.FC<AddModalProps> = ({ onClose, closeDrawer,user_id, setUser }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
   const [selectedResult, setSelectedResult] = useState<SearchResult | null>(null);
@@ -41,14 +40,14 @@ const Add_Modal: React.FC<AddModalProps> = ({ onClose, closeDrawer,user, setUser
   // 決定ボタンを押された場合の処理
   const handleConfirmSelection = async() => {
     console.log("AAAAAAAAAAAAAAAAA")
-    console.log(user,selectedResult?.place_id)
+    console.log(user_id,selectedResult?.place_id)
     if(selectedResult){
       const response = await fetch("/api/server_supabase",{
         method: 'POST',
           headers: {
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify({ user_id: user, place_id: selectedResult.place_id })
+          body: JSON.stringify({ user_id: user_id, place_id: selectedResult.place_id })
       });
       const success = await response.json();
       if(response.ok){
