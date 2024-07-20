@@ -32,7 +32,7 @@ const SignInModal: React.FC<SignInModalProps> = ({ openSignUpModal, onClose, set
       const response = await Login(username, password);//Loginできるか試す
       if (response.success) {//responce.successに成功したらtrueが入る
         setInputError(null);
-        setUsername(username);
+        setUser(response.username??null);
         setUserID(response.user_id??null);     //userstatusを設定
         onClose(); 
         closeDrawer();
