@@ -14,7 +14,7 @@ interface CardData {
 }
 
 interface ContentProps {
-  user: Number | null;
+  user_id: Number | null;
 }
 
 // スタイルを定義
@@ -110,7 +110,7 @@ const cardData: CardData[] = [
   },
 ];
 
-const Content: React.FC<ContentProps> = ({ user }) => {
+const Content: React.FC<ContentProps> = ({ user_id }) => {
   const [selectedCard, setSelectedCard] = useState<CardData | null>(null);
 
   const handleCardClick = (card: CardData) => {

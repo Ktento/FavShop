@@ -12,14 +12,13 @@ import InfoModal from './components/Info_Modal';
 import Sidebar from './components/Sidebar';
 
 const App: React.FC = () => {
-  const [user, setUser] = useState<Number | null>(null); // ユーザ情報を保持
   const [signInModalOpen, setSignInModalOpen] = useState(false);
   const [signUpModalOpen, setSignUpModalOpen] = useState(false);
   const [addModalOpen, setAddModalOpen] = useState(false);
   const [positionModalOpen, setPositionModalOpen] = useState(false);
   const [infoModalOpen, setInfoModalOpen] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(true); // サイドバーの開閉状態
-
+  const [user_id, setUser] = useState<Number | null>(null);          //**ユーザ情報を保持 */
   const closeDrawer = () => {
     setSidebarOpen(false); // サイドバーを閉じる
   };
@@ -66,12 +65,14 @@ const App: React.FC = () => {
 
   return (
     <div className="App">
-      <Header user={user} setUser={setUser} />
+      <Header user_id={user_id} setUser={setUser} />
       <div className="main">
+
         {sidebarOpen && (
           <Sidebar setUser={setUser} closeDrawer={closeDrawer} />
         )}
-        <Content user={user} />
+        
+        <Content user_id={user_id} />
       </div>
 
       {/* モーダルをサイドバーの外に移動 */}

@@ -5,7 +5,7 @@ import button_position_Image from '../assets/images/Map pin.png';
 import button_add_Image from '../assets/images/Plus.png';
 
 interface SidebarProps {
-  setUser: (user: Number | null) => void;
+  setUser: (user_id: Number | null) => void;
   closeDrawer: () => void;
 }
 

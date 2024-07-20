@@ -7,18 +7,18 @@ import '../CSS/Header.css';
 import { find_username } from '../backend/find_username';
 
 interface HeaderProps {
-  user: Number | null; 
-  setUser: (user: Number | null) => void; 
+  user_id: Number | null; 
+  setUser: (user_id: Number | null) => void; 
 }
 
-const Header: React.FC<HeaderProps> = ({ user, setUser }) => {
+const Header: React.FC<HeaderProps> = ({ user_id, setUser }) => {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [userName, setUserName] = useState<string | null>(null);
 
   useEffect(() => {
     // user が null でない場合に find_username を呼び出す
-    if (user !== null) {
-      find_username(user).then(result => {
+    if (user_id !== null) {
+      find_username(user_id).then(result => {
         if (result.success) {
           setUserName(result.user_name || null);
         } else {
@@ -26,7 +26,7 @@ const Header: React.FC<HeaderProps> = ({ user, setUser }) => {
         }
       });
     }
-  }, [user]);
+  }, [user_id]);
 
   const toggleDrawer = (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
     if (
@@ -52,7 +52,7 @@ const Header: React.FC<HeaderProps> = ({ user, setUser }) => {
           </IconButton>
           <img src={logo} alt="Logo" className="header-logo" />
           <Typography variant="h6" component="div" className="title">
-            {user ? `ログイン中:${user}` : '未ログイン'}
+            {userName ? `ログイン中:${userName}` : '未ログイン'}
           </Typography>
         </Toolbar>
       </AppBar>
