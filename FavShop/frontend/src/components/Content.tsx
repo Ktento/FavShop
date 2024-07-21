@@ -65,6 +65,7 @@ const getStatusClass = (hours: string): string => {
   const [openTimeStr, closeTimeStr] = formattedHours.split('-');
   const [openHour, openMinute] = openTimeStr.split(':').map(Number);
   const [closeHour, closeMinute] = closeTimeStr.split(':').map(Number);
+  console.log(openHour,openMinute,closeHour,closeMinute);
 
   // 本日の営業開始と終了の Date オブジェクトを作成
   const openTime = new Date();
