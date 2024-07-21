@@ -5,13 +5,11 @@ import ContentModal from './Content_Modal';
 import '../CSS/Content.css';
 import { CardData } from '../App';
 
-
 interface ContentProps {
   user_id: number | null;
-  location : { latitude: number|null; longitude: number|null } | null;
-  carddata : CardData[]|null;
-  //CardData配列をすべて初期化するか、配列の一つを更新するか選べる
-  setCardData:React.Dispatch<React.SetStateAction<CardData[]>>;
+  location: { latitude: number | null; longitude: number | null } | null;
+  carddata: CardData[] | null;
+  setCardData: React.Dispatch<React.SetStateAction<CardData[]>>;
 }
 
 // スタイルを定義
@@ -36,11 +34,35 @@ const CustomCardMedia = styled(CardMedia)({
   height: 140,
 });
 
+const convertTo24HourFormat = (time: string, period: string): string => {
+  let [hours, minutes] = time.split(':').map(Number);
+  if (period === 'PM' && hours < 12) hours += 12;
+  if (period === 'AM' && hours === 12) hours = 0;
+  return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
+};
+
+const formatHours = (hours: string): string => {
+  // 曜日を取り除く
+  const timeRange = hours.replace(/^(Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday):?\s*/, '');
+
+  // 営業時間を分割
+  const [openTimeStr, closeTimeStr] = timeRange.split('–').map(str => str.trim());
+  const [openHHMM, openAMPM] = openTimeStr.split(' ');
+  const [closeHHMM, closeAMPM] = closeTimeStr.split(' ');
+
+  // 24時間形式に変換
+  const start24Hour = convertTo24HourFormat(openHHMM, openAMPM);
+  const end24Hour = convertTo24HourFormat(closeHHMM, closeAMPM);
+
+  return `${start24Hour}-${end24Hour}`;
+};
+
 const getStatusClass = (hours: string): string => {
   const currentTime = new Date();
-
-  // 営業時間を分割して Date オブジェクトを作成
-  const [openTimeStr, closeTimeStr] = hours.split('-');
+  const formattedHours = formatHours(hours);
+  
+  // 分割して時間を取得
+  const [openTimeStr, closeTimeStr] = formattedHours.split('-');
   const [openHour, openMinute] = openTimeStr.split(':').map(Number);
   const [closeHour, closeMinute] = closeTimeStr.split(':').map(Number);
 
@@ -62,7 +84,8 @@ const getStatusClass = (hours: string): string => {
     return 'open'; // 営業中
   }
 };
-const Content: React.FC<ContentProps> = ({ user_id,location,carddata }) => {
+
+const Content: React.FC<ContentProps> = ({ user_id, location, carddata }) => {
   const [selectedCard, setSelectedCard] = useState<CardData | null>(null);
 
   const handleCardClick = (card: CardData) => {
@@ -89,7 +112,7 @@ const Content: React.FC<ContentProps> = ({ user_id,location,carddata }) => {
   return (
     <>
       <CustomCardWrapper>
-        {carddata&&carddata.map(card => (
+        {carddata && carddata.map(card => (
           <CustomCardRoot key={card.id} onClick={() => handleCardClick(card)}>
             <CardActionArea>
               <CustomCardMedia
@@ -104,7 +127,7 @@ const Content: React.FC<ContentProps> = ({ user_id,location,carddata }) => {
                   {card.address}
                 </Typography>
                 <Typography className="card-hours" variant="body2" color="textSecondary" component="p">
-                  {card.hours}
+                  {formatHours(card.hours)}
                 </Typography>
               </CardContent>
               <div className="status-wrapper">
