@@ -49,6 +49,7 @@ const formatHours = (hours: string): string => {
   const [openTimeStr, closeTimeStr] = timeRange.split('–').map(str => str.trim());
   const [openHHMM, openAMPM] = openTimeStr.split(' ');
   const [closeHHMM, closeAMPM] = closeTimeStr.split(' ');
+  console.log(openHHMM,openAMPM);
 
   // 24時間形式に変換
   const start24Hour = convertTo24HourFormat(openHHMM, openAMPM);
@@ -65,6 +66,7 @@ const getStatusClass = (hours: string): string => {
   const [openTimeStr, closeTimeStr] = formattedHours.split('-');
   const [openHour, openMinute] = openTimeStr.split(':').map(Number);
   const [closeHour, closeMinute] = closeTimeStr.split(':').map(Number);
+
   console.log(openHour,openMinute,closeHour,closeMinute);
 
   // 本日の営業開始と終了の Date オブジェクトを作成
