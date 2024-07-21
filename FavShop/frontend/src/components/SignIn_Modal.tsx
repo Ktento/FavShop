@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import '../CSS/SignIn_Modal.css'; 
 import {Login} from '../backend/Login';
-//import { getAllTodos } from '../../../backend/db.ts'; ログイン用の関数呼び出し
+import { CardData } from '../App';
 
 interface SignInModalProps {
   openSignUpModal: () => void;
@@ -9,9 +9,12 @@ interface SignInModalProps {
   setUser: (user: string | null) => void;
   setUserID: (user_id: Number | null) => void;
   closeDrawer: () => void;
+  carddata : CardData[]|null;
+  //CardData配列をすべて初期化するか、配列の一つを更新するか選べる
+  setCardData:React.Dispatch<React.SetStateAction<CardData[]>>;
 }
 
-const SignInModal: React.FC<SignInModalProps> = ({ openSignUpModal, onClose, setUser,setUserID,closeDrawer }) => {
+const SignInModal: React.FC<SignInModalProps> = ({ openSignUpModal, onClose, setUser,setUserID,closeDrawer,setCardData}) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [loginError, setLoginError] = useState(false);
@@ -45,6 +48,8 @@ const SignInModal: React.FC<SignInModalProps> = ({ openSignUpModal, onClose, set
       console.error('Login error:', error);
       setInputError('ログイン中にエラーが発生しました');
     }
+
+  
   };
 
 

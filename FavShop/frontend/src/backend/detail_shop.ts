@@ -1,4 +1,4 @@
-  
+import { CardData } from "../App";
   /*画像の型*/
   /*
 export interface Photo {
@@ -7,14 +7,7 @@ export interface Photo {
     photo_reference: string;
     width: number;
   }*/
-export interface CardData {
-    id: number;
-    plaseid: number;
-    image: string;
-    title: string;
-    address: string;
-    hours: string;
-  }/*
+ /*
   const BASE_URL: string = process.env.REACT_APP_GOOGLE_PLACES_API_URL ?? "";
   const API_KEY: string = process.env.REACT_APP_GOOGLE_PLACES_API_KEY ?? "";
   export const SearchDetailShops = async (place_ids:string[]):Promise<CardData[]> => {

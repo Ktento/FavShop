@@ -3,11 +3,15 @@ import { styled } from '@mui/material/styles';
 import { Card, CardActionArea, CardContent, CardMedia, Typography } from '@mui/material';
 import ContentModal from './Content_Modal';
 import '../CSS/Content.css';
-import { CardData } from '../backend/detail_shop';
+import { CardData } from '../App';
+
 
 interface ContentProps {
   user_id: Number | null;
-  location: { latitude: number; longitude: number } | null;
+  location : { latitude: number; longitude: number } | null;
+  carddata : CardData[]|null;
+  //CardData配列をすべて初期化するか、配列の一つを更新するか選べる
+  setCardData:React.Dispatch<React.SetStateAction<CardData[]>>;
 }
 
 // スタイルを定義
@@ -58,52 +62,7 @@ const getStatusClass = (hours: string): string => {
     return 'open'; // 営業中
   }
 };
-
-// ダミーデータ
-const cardData: CardData[] = [
-  {
-    id: 1,
-    plaseid: 11111,
-    image: 'https://via.placeholder.com/300x140?text=Image+1',
-    title: '店名1',
-    address: '住所1',
-    hours: '09:00-17:00', // 営業中
-  },
-  {
-    id: 2,
-    plaseid: 11111,
-    image: 'https://via.placeholder.com/300x140?text=Image+2',
-    title: '店名2',
-    address: '住所2',
-    hours: '09:00-12:00', // 営業終了間近
-  },
-  {
-    id: 3,
-    plaseid: 11111,
-    image: 'https://via.placeholder.com/300x140?text=Image+3',
-    title: '店名3',
-    address: '住所3',
-    hours: '13:00-15:00', // 営業終了
-  },
-  {
-    id: 4,
-    plaseid: 11111,
-    image: 'https://via.placeholder.com/300x140?text=Image+4',
-    title: '店名4',
-    address: '住所4',
-    hours: '10:00-18:00', // 営業中
-  },
-  {
-    id: 5,
-    plaseid: 11111,
-    image: 'https://via.placeholder.com/300x140?text=Image+5',
-    title: '店名5',
-    address: '住所5',
-    hours: '00:00-23:59', // 常時営業
-  },
-];
-
-const Content: React.FC<ContentProps> = ({ user_id, location }) => {
+const Content: React.FC<ContentProps> = ({ user_id,location,carddata }) => {
   const [selectedCard, setSelectedCard] = useState<CardData | null>(null);
 
   const handleCardClick = (card: CardData) => {
@@ -130,7 +89,7 @@ const Content: React.FC<ContentProps> = ({ user_id, location }) => {
   return (
     <>
       <CustomCardWrapper>
-        {cardData.map(card => (
+        {carddata&&carddata.map(card => (
           <CustomCardRoot key={card.id} onClick={() => handleCardClick(card)}>
             <CardActionArea>
               <CustomCardMedia

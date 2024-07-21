@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { CircularProgress } from '@mui/material';
 import '../CSS/Add_Modal.css';
 import { SearchResult, searchPlaceByName } from '../backend/find_Shop';
-import { InsertShop } from '../backend/entry_shop';
-
+import {InsertShop} from '../backend/entry_shop';
+import { CardData } from '../App';
 interface AddModalProps {
   user: string | null; 
   user_id: Number | null;
@@ -11,13 +11,24 @@ interface AddModalProps {
   setUserID: (user_id: Number | null) => void;
   onClose: () => void;
   closeDrawer: () => void;
+  carddata : CardData[]|null;
+  //CardData配列をすべて初期化するか、配列の一つを更新するか選べる
+  setCardData:React.Dispatch<React.SetStateAction<CardData[]>>;
 }
 
-const Add_Modal: React.FC<AddModalProps> = ({ onClose, closeDrawer, user_id }) => {
+
+
+
+const Add_Modal: React.FC<AddModalProps> = ({ user_id,carddata,onClose, closeDrawer,setCardData}) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
   const [selectedResult, setSelectedResult] = useState<SearchResult | null>(null);
   const [loading, setLoading] = useState(false); 
+
+  /*カードデータ配列を追加する関数*/
+  const addCardData = (newCard: CardData) => {
+    setCardData((prevCardData) => [...prevCardData, newCard]);
+  };
 
   // 店舗検索関数
   const handleSearch = async () => {
