@@ -56,7 +56,8 @@ const Header: React.FC<HeaderProps> = ({ user, user_id,carddata,location,setUser
       >
  
         <Sidebar user={user} user_id={user_id} setUser={setUser} setUserID={setUserID} 
-        carddata={carddata} setCardData={setCardData} closeDrawer={closeDrawer} />
+        carddata={carddata} setCardData={setCardData} closeDrawer={closeDrawer} 
+        location={location}/>
       </Drawer>
     </>
   );

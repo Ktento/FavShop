@@ -14,8 +14,8 @@ interface ContentModalProps {
   open: boolean;
   handleClose: () => void;
   data: ModalData | null;
-  user_id: Number | null;
-  location: { latitude: number; longitude: number } | null;
+  user_id: number | null;
+  location :{latitude:number|null, longitude:number|null}|null;
 }
 
 // モーダルのスタイル設定

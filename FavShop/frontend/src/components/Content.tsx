@@ -7,7 +7,7 @@ import { CardData } from '../App';
 
 
 interface ContentProps {
-  user_id: Number | null;
+  user_id: number | null;
   location : { latitude: number|null; longitude: number|null } | null;
   carddata : CardData[]|null;
   //CardData配列をすべて初期化するか、配列の一つを更新するか選べる
