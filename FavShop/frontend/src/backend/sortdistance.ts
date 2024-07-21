@@ -19,6 +19,7 @@ const API_KEY: string = process.env.REACT_APP_GOOGLE_DISTANCE_API_KEY ?? "";
       const response = await fetch(`/api/distance-place?origin=${encodeURIComponent(origin)}&destination=${encodeURIComponent(place_id)}`);
       console.log(response);
       const data = await response.json();
+      console.log('Response JSON data:', data);
       //responseがすべてnullでないかの検査
       if (data.rows && data.rows[0] && data.rows[0].elements && data.rows[0].elements[0] && data.rows[0].elements[0].distance) {
         const distance = data.rows[0].elements[0].distance.value; // 距離（メートル）
