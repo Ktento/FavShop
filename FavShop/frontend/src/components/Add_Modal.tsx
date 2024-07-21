@@ -17,7 +17,7 @@ const Add_Modal: React.FC<AddModalProps> = ({ onClose, closeDrawer, user_id }) =
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
   const [selectedResult, setSelectedResult] = useState<SearchResult | null>(null);
-  const [loading, setLoading] = useState(false); // 新しい状態を追加
+  const [loading, setLoading] = useState(false); 
 
   // 店舗検索関数
   const handleSearch = async () => {
@@ -69,7 +69,11 @@ const Add_Modal: React.FC<AddModalProps> = ({ onClose, closeDrawer, user_id }) =
           className="input-field"
         />
         <button className="search-button" onClick={handleSearch} disabled={loading}>
-          {loading ? <CircularProgress size={24} /> : '検索'}
+          {loading ? (
+            <CircularProgress size={24} sx={{ color: 'white', borderWidth: 4 }} />
+          ) : (
+            '検索'
+          )}
         </button>
         <button className="confirm-button" onClick={handleConfirmSelection}>決定</button>
       </div>
