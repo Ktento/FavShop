@@ -18,6 +18,11 @@ import { CardData } from "../App";
       const photoReference = place.photos ? place.photos[0].photo_reference : '';
       const image = photoReference ? `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photoReference}&key=${API_KEY}` : '';
       
+      // 今日の曜日を取得する
+      const today = new Date().getDay(); // 0:日曜日, 1:月曜日, ..., 6:土曜日
+      const weekdayText = place.opening_hours?.weekday_text || [];
+      const hoursToday = weekdayText[today] || 'N/A'; // 今日の営業時間
+      console.log(hoursToday);
 
       return {
         id: user_id, // place_id をユニークな識別子として使用
@@ -25,7 +30,7 @@ import { CardData } from "../App";
         image,
         title: place.name || '',
         address: place.formatted_address || '',
-        hours: place.opening_hours?.weekday_text?.join(', ') || 'N/A', // 営業時間を結合
+        hours:  hoursToday,
       };
     });
     // すべてのプロミスが解決するのを待ち、結果を返す
