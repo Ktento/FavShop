@@ -7,16 +7,16 @@ import '../CSS/Header.css';
 import { CardData } from '../App';
 interface HeaderProps {
   user: string | null; 
-  user_id: Number | null; 
-  location :{latitude:number, longitude:number}|null;
+  user_id: number | null; 
+  location :{latitude:number|null, longitude:number|null}|null;
   setUser: (user: string | null) => void;
-  setUserID: (user_id: Number | null) => void;
+  setUserID: (user_id: number | null) => void;
   carddata : CardData[]|null;
   //CardData配列をすべて初期化するか、配列の一つを更新するか選べる
   setCardData:React.Dispatch<React.SetStateAction<CardData[]>>;
 }
 
-const Header: React.FC<HeaderProps> = ({ user, user_id,carddata,setUser,setUserID,setCardData}) => {
+const Header: React.FC<HeaderProps> = ({ user, user_id,carddata,location,setUser,setUserID,setCardData}) => {
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   const toggleDrawer = (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
@@ -47,7 +47,7 @@ const Header: React.FC<HeaderProps> = ({ user, user_id,carddata,setUser,setUserI
         </Toolbar>
       </AppBar>
       <Drawer anchor="left" open={drawerOpen} onClose={toggleDrawer(false)}>
-        <Sidebar user={user} user_id={user_id} setUser={setUser} setUserID={setUserID} 
+        <Sidebar user={user} user_id={user_id} location={location} setUser={setUser} setUserID={setUserID} 
         carddata={carddata} setCardData={setCardData} closeDrawer={closeDrawer} />
       </Drawer>
     </>

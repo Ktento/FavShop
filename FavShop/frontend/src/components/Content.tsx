@@ -8,7 +8,7 @@ import { CardData } from '../App';
 
 interface ContentProps {
   user_id: Number | null;
-  location : { latitude: number; longitude: number } | null;
+  location : { latitude: number|null; longitude: number|null } | null;
   carddata : CardData[]|null;
   //CardData配列をすべて初期化するか、配列の一つを更新するか選べる
   setCardData:React.Dispatch<React.SetStateAction<CardData[]>>;

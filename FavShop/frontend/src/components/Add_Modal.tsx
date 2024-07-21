@@ -7,7 +7,7 @@ interface AddModalProps {
   user: string | null; 
   user_id: Number | null;
   setUser: (user: string | null) => void;
-  setUserID: (user_id: Number | null) => void;
+  setUserID: (user_id: number | null) => void;
   onClose: () => void;
   closeDrawer: () => void;
   carddata : CardData[]|null;

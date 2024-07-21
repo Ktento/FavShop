@@ -1,7 +1,7 @@
 import { supabase } from './supabase';
 
 // 登録されている店舗を取得するための非同期関数
-export const user_entry_shops = async (user_id:Number):Promise<{ success: boolean; place_ids?:string[]}> => {
+export const user_entry_shops = async (user_id:number):Promise<{ success: boolean; place_ids?:string[]}> => {
 // entry_shopテーブルからuser_idが一致するplace_idカラムを取得し、userinfoに代入します。
 let {data:userinfo,error} = await supabase
 .from("entry_shop")

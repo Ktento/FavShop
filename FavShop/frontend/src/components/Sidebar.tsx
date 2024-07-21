@@ -13,16 +13,17 @@ import button_add_Image from '../assets/images/Plus.png';
 import { CardData } from '../App';
 interface SidebarProps {
   user: string | null; 
-  user_id: Number | null;
+  user_id: number | null;
+  location :{latitude:number|null, longitude:number|null}|null;
   setUser: (user: string | null) => void;
-  setUserID: (user_id: Number | null) => void;
+  setUserID: (user_id: number | null) => void;
   closeDrawer: () => void;
   carddata : CardData[]|null;
   //CardData配列をすべて初期化するか、配列の一つを更新するか選べる
   setCardData:React.Dispatch<React.SetStateAction<CardData[]>>;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ user,user_id,carddata,setUser,setUserID, setCardData,closeDrawer }) => {
+const Sidebar: React.FC<SidebarProps> = ({ user,user_id,carddata,location,setUser,setUserID, setCardData,closeDrawer }) => {
   const [signInModalOpen, setSignInModalOpen] = useState(false);
   const [signUpModalOpen, setSignUpModalOpen] = useState(false);
   const [addModalOpen, setAddModalOpen] = useState(false);
@@ -83,7 +84,8 @@ const Sidebar: React.FC<SidebarProps> = ({ user,user_id,carddata,setUser,setUser
 
       <Modal isOpen={signInModalOpen} onClose={closeSignInModal}>
         <SignInModal openSignUpModal={openSignUpModal} onClose={closeSignInModal} 
-        setUser={setUser} setUserID={setUserID} 
+        user={user} user_id={user_id} setUser={setUser} setUserID={setUserID}
+        location={location} 
         carddata={carddata} setCardData={setCardData}
         closeDrawer={closeDrawer}/>
       </Modal>
