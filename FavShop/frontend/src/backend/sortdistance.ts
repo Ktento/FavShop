@@ -16,7 +16,7 @@ const API_KEY: string = process.env.REACT_APP_GOOGLE_DISTANCE_API_KEY ?? "";
     const origin = `${latitude},${longitude}`;
 
     const distancePromises = place_ids.map(async (place_id) => {
-      const response = await fetch(`/api/distance-place?origin=${encodeURIComponent(origin)}&destination=${encodeURIComponent(place_id)}`);
+      const response = await fetch(`/api/distance-place?origin=${encodeURIComponent(origin)}&destination=place_id:${encodeURIComponent(place_id)}`);
       console.log(response);
       const data = await response.json();
       console.log('Response JSON data:', data);
