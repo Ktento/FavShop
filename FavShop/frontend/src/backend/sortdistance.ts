@@ -1,22 +1,18 @@
-interface Location{
-  location : { latitude: number; longitude: number } | null
-}
 interface PlaceDistance{
   place_id:string,
   distance:number
 }
 const BASE_URL: string = process.env.REACT_APP_GOOGLE_DISTANCE_API_URL ?? "";
 const API_KEY: string = process.env.REACT_APP_GOOGLE_DISTANCE_API_KEY ?? "";
-  export const SortDistance = async (place_ids:string[],location:Location):Promise<string[]> => {
+  export const SortDistance = async (place_ids:string[],latitude:number|null,longitude:number|null):Promise<string[]> => {
     // 環境変数が正しく設定されているか確認
     if (!BASE_URL || !API_KEY) {
       throw new Error("BASE_URL or API_KEY is not defined");
     }
     //現在地（緯度、経度)がnullでないことを確認
-  if (!location.location) {
+  if (!latitude||!longitude) {
     throw new Error("Current location is not defined");
   }
-    const { latitude, longitude } = location.location;
     const origin = `${latitude},${longitude}`;
 
     const distancePromises = place_ids.map(async (place_id) => {
