@@ -22,7 +22,35 @@ import { CardData } from "../App";
       const today = new Date().getDay(); // 0:日曜日, 1:月曜日, ..., 6:土曜日
       const weekdayText = place.opening_hours?.weekday_text || [];
       const hoursToday = weekdayText[today] || 'N/A'; // 今日の営業時間
-      console.log(hoursToday);
+      const formatTime = (time: string): string => {
+        const [start, end] = time.split(' – '); // 「AM – PM」の部分で分割
+        const format = (t: string): string => {
+          const [timePart, period] = t.split(' ');
+          let [hours, minutes] = timePart.split(':').map(num => parseInt(num, 10));
+          
+          // 24時間形式に変換
+          if (period === 'PM' && hours !== 12) {
+            hours += 12;
+          } else if (period === 'AM' && hours === 12) {
+            hours = 0;
+          }
+          
+          return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
+        };
+      
+        const formattedStart = format(start);
+        const formattedEnd = format(end);
+        
+        return `${formattedStart} – ${formattedEnd}`;
+      };
+
+      // 時間範囲が複数行ある場合の処理
+    const formattedHours = hoursToday
+    .split('\n') // 複数行の時間範囲がある場合に対応
+    .map((range:string) => formatTime(range.trim())) // 各範囲をフォーマット
+    .join(' / '); // 時間範囲を / で結合
+
+      console.log(formattedHours);
 
       return {
         id: user_id, // place_id をユニークな識別子として使用
@@ -30,7 +58,7 @@ import { CardData } from "../App";
         image,
         title: place.name || '',
         address: place.formatted_address || '',
-        hours:  hoursToday,
+        hours:  formattedHours,
       };
     });
     // すべてのプロミスが解決するのを待ち、結果を返す
