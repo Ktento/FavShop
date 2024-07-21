@@ -57,7 +57,6 @@ const formatHours = (hours: string): string => {
 
   return `${start24Hour}-${end24Hour}`;
 };
-
 const getStatusClass = (hours: string): string => {
   const currentTime = new Date();
   const formattedHours = formatHours(hours);

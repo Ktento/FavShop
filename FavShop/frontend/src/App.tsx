@@ -47,7 +47,7 @@ const App: React.FC = () => {
         image: 'https://via.placeholder.com/300x140?text=Image+1',
         title: '店名1',
         address: '住所1',
-        hours: '09:00-17:00',
+        hours: 'Sunday: 10:00 AM – 2:00 AM',
       },
       {
         id: 2,
@@ -55,7 +55,7 @@ const App: React.FC = () => {
         image: 'https://via.placeholder.com/300x140?text=Image+2',
         title: '店名2',
         address: '住所2',
-        hours: '09:00-12:00',
+        hours: 'Sunday: 10:00 AM – 2:00 AM',
       },
       {
         id: 3,
@@ -63,7 +63,7 @@ const App: React.FC = () => {
         image: 'https://via.placeholder.com/300x140?text=Image+3',
         title: '店名3',
         address: '住所3',
-        hours: '13:00-15:00',
+        hours: 'Sunday: 10:00 AM – 2:00 AM',
       },
       {
         id: 4,
@@ -71,7 +71,7 @@ const App: React.FC = () => {
         image: 'https://via.placeholder.com/300x140?text=Image+4',
         title: '店名4',
         address: '住所4',
-        hours: '10:00-18:00',
+        hours: 'Sunday: 10:00 AM – 2:00 AM',
       },
       {
         id: 5,
@@ -79,7 +79,7 @@ const App: React.FC = () => {
         image: 'https://via.placeholder.com/300x140?text=Image+5',
         title: '店名5',
         address: '住所5',
-        hours: '00:00-23:59',
+        hours: 'Sunday: 10:00 AM – 2:00 AM',
       },
     ]);
   }, []); // 空の依存配列でマウント時に一度だけ実行
