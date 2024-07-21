@@ -2,19 +2,24 @@ import React, { useState } from 'react';
 import '../CSS/SignIn_Modal.css'; 
 import {Login} from '../backend/Login';
 import { CardData } from '../App';
-
+import { user_entry_shops } from '../backend/user_entry_shops';
+import { SortDistance } from '../backend/sortdistance';
+import { SearchDetailShops } from '../backend/detail_shop';
 interface SignInModalProps {
+  user: string | null; 
+  user_id: number | null;
+  location :{latitude:number|null, longitude:number|null}|null;
   openSignUpModal: () => void;
   onClose: () => void;
   setUser: (user: string | null) => void;
-  setUserID: (user_id: Number | null) => void;
+  setUserID: (user_id: number | null) => void;
   closeDrawer: () => void;
   carddata : CardData[]|null;
   //CardData配列をすべて初期化するか、配列の一つを更新するか選べる
   setCardData:React.Dispatch<React.SetStateAction<CardData[]>>;
 }
 
-const SignInModal: React.FC<SignInModalProps> = ({ openSignUpModal, onClose, setUser,setUserID,closeDrawer,setCardData}) => {
+const SignInModal: React.FC<SignInModalProps> = ({ user_id,location,openSignUpModal, onClose, setUser,setUserID,closeDrawer,setCardData}) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [loginError, setLoginError] = useState(false);
@@ -40,6 +45,29 @@ const SignInModal: React.FC<SignInModalProps> = ({ openSignUpModal, onClose, set
         onClose(); 
         closeDrawer();
         alert('ログイン成功');
+        if(user_id){
+          const response=user_entry_shops(user_id);
+          if((await response).success){
+            const place_ids=(await response).place_ids;
+            if(place_ids){
+                if(location?.latitude!=null||location?.longitude!=null){
+                  const sortplace_ids=await SortDistance(place_ids,location.latitude,location.longitude);
+                  const card=await SearchDetailShops(user_id,sortplace_ids);
+                  setCardData(card);
+                }else{
+                  const card=await SearchDetailShops(user_id,place_ids);
+                  setCardData(card);
+                }
+            }else{
+              alert("placeidが取得できませんでした");
+            }
+
+          }else{
+            alert("お気に入りの店舗が登録されていません");
+          }
+        }else{
+          alert("user_idがありません");
+        } 
       } else {
         setInputError(null);
         setInputError('ログインできません');
