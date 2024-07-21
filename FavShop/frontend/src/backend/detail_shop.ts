@@ -19,7 +19,7 @@ import { CardData } from "../App";
       const image = photoReference ? `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photoReference}&key=${API_KEY}` : '';
       
       // 今日の曜日を取得する
-      const today = new Date().getDay(); // 0:日曜日, 1:月曜日, ..., 6:土曜日
+      const today = (new Date().getDay()+ 6) % 7; // 0:日曜日, 1:月曜日, ..., 6:土曜日
       console.log('tody is ',today)
       const weekdayText = place.opening_hours?.weekday_text || [];
       const hoursToday = weekdayText[today] || 'N/A'; // 今日の営業時間
