@@ -7,7 +7,7 @@ import { CardData } from '../backend/detail_shop';
 
 interface ContentProps {
   user_id: Number | null;
-  location : { latitude: number; longitude: number } | null
+  location: { latitude: number; longitude: number } | null;
 }
 
 // スタイルを定義
@@ -103,9 +103,9 @@ const cardData: CardData[] = [
   },
 ];
 
-const Content: React.FC<ContentProps> = ({ user_id,location }) => {
+const Content: React.FC<ContentProps> = ({ user_id, location }) => {
   const [selectedCard, setSelectedCard] = useState<CardData | null>(null);
-  console.log(location);
+
   const handleCardClick = (card: CardData) => {
     setSelectedCard(card);
   };
@@ -163,6 +163,8 @@ const Content: React.FC<ContentProps> = ({ user_id,location }) => {
           open={!!selectedCard}
           handleClose={handleCloseModal}
           data={selectedCard}
+          user_id={user_id}
+          location={location}
         />
       )}
     </>
