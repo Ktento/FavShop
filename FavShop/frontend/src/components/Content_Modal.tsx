@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Modal, Box, Typography, Grid, IconButton } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import { styled } from '@mui/material/styles';
@@ -8,14 +8,15 @@ interface ModalData {
   title: string;
   address: string;
   hours: string;
+  place_id: string; // 店舗IDを追加
 }
 
 interface ContentModalProps {
   open: boolean;
   handleClose: () => void;
   data: ModalData | null;
-  user_id: number | null;
-  location :{latitude:number|null, longitude:number|null}|null;
+  user_id: Number | null;
+  location: { latitude: number; longitude: number } | null;
 }
 
 // モーダルのスタイル設定
@@ -53,6 +54,33 @@ const ImageSpace = styled('div')({
 });
 
 const ContentModal: React.FC<ContentModalProps> = ({ open, handleClose, data, user_id, location }) => {
+  const [mapUrl, setMapUrl] = useState('');
+
+  useEffect(() => {
+    if (data?.place_id) {
+      const API_KEY = process.env.REACT_APP_GOOGLE_PLACES_API_KEY;
+      const STATIC_MAP_BASE_URL = 'https://maps.googleapis.com/maps/api/staticmap';
+      
+      // ここでGoogle Places APIを使って店舗の緯度経度を取得する
+      const fetchPlaceDetails = async () => {
+        try {
+          const response = await fetch(`https://maps.googleapis.com/maps/api/place/details/json?place_id=${data.place_id}&key=${API_KEY}`);
+          const placeDetails = await response.json();
+
+          if (placeDetails.result && placeDetails.result.geometry) {
+            const { lat, lng } = placeDetails.result.geometry.location;
+            const mapUrl = `${STATIC_MAP_BASE_URL}?center=${lat},${lng}&zoom=15&size=600x400&markers=color:red%7Clabel:C%7C${lat},${lng}&key=${API_KEY}`;
+            setMapUrl(mapUrl);
+          }
+        } catch (error) {
+          console.error('Error fetching place details:', error);
+        }
+      };
+
+      fetchPlaceDetails();
+    }
+  }, [data]);
+
   if (!data) return null;
 
   const handleUnfavorite = () => {
@@ -82,7 +110,7 @@ const ContentModal: React.FC<ContentModalProps> = ({ open, handleClose, data, us
           <CloseIcon />
         </IconButton>
         <MapSpace>
-        <MapSpace>地図</MapSpace>
+          {mapUrl && <img src={mapUrl} alt="Map" style={{ width: '100%', height: '100%' }} />}
         </MapSpace>
         <Grid container spacing={2}>
           <Grid item xs={6}>
