@@ -20,6 +20,7 @@ import { CardData } from "../App";
       
       // 今日の曜日を取得する
       const today = new Date().getDay(); // 0:日曜日, 1:月曜日, ..., 6:土曜日
+      console.log('tody is ',today)
       const weekdayText = place.opening_hours?.weekday_text || [];
       const hoursToday = weekdayText[today] || 'N/A'; // 今日の営業時間
       console.log(hoursToday);
