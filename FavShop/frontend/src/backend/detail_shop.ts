@@ -9,7 +9,7 @@ import { CardData } from "../App";
     const placeinfoPromises = place_ids.map(async (place_id) => {
       const response = await fetch(`/api/search-places-from-placeid?place_id=${encodeURIComponent(place_id)}`);
       const data = await response.json();
-      console.log('data='+data);
+      console.log('data=',data);
       if (!data.result) {
         throw new Error(`place_id: ${place_id} の詳細が見つかりません`);
       } const place = data.result;
