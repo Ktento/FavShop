@@ -42,20 +42,21 @@ const SignInModal: React.FC<SignInModalProps> = ({ user_id,location,openSignUpMo
         setInputError(null);
         setUser(response.username??null);
         setUserID(response.user_id??null);     //userstatusを設定
+        const setuser_id=response.user_id;
         onClose(); 
         closeDrawer();
         alert('ログイン成功');
-        if(user_id){
-          const response=user_entry_shops(user_id);
+        if(setuser_id){
+          const response=user_entry_shops(setuser_id);
           if((await response).success){
             const place_ids=(await response).place_ids;
             if(place_ids){
                 if(location?.latitude!=null||location?.longitude!=null){
                   const sortplace_ids=await SortDistance(place_ids,location.latitude,location.longitude);
-                  const card=await SearchDetailShops(user_id,sortplace_ids);
+                  const card=await SearchDetailShops(setuser_id,sortplace_ids);
                   setCardData(card);
                 }else{
-                  const card=await SearchDetailShops(user_id,place_ids);
+                  const card=await SearchDetailShops(setuser_id,place_ids);
                   setCardData(card);
                 }
             }else{
@@ -66,7 +67,7 @@ const SignInModal: React.FC<SignInModalProps> = ({ user_id,location,openSignUpMo
             alert("お気に入りの店舗が登録されていません");
           }
         }else{
-          alert(user_id);
+          alert(setuser_id);
         } 
       } else {
         setInputError(null);
