@@ -1,7 +1,7 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import fetch from 'node-fetch';
 
-const BASE_URL: string = process.env.REACT_APP_GOOGLE_PLACES_API_URL ?? "";
+const BASE_URL: string = process.env.REACT_APP_GOOGLE_DETAILS_API_URL ?? "";
 const API_KEY: string = process.env.REACT_APP_GOOGLE_PLACES_API_KEY ?? "";
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
