@@ -13,14 +13,15 @@ const InfoModal: React.FC<InfoModalProps> = ({ open, onClose }) => {
       <div className="modal-content">
         <div className="modal-header">
           <Typography variant="h6" className="modal-title">
-            アプリについて
+            ?アプリについて
           </Typography>
         </div>
         <div className="info-modal-content">
           <Typography variant="body1">
-            このアプリケーションは、ユーザーが様々な機能を利用できるように設計されています。
-            ここでは、アプリの簡単な説明や、主要な機能について説明します。
-            例えば、ユーザー登録やログイン、店舗の検索機能などが含まれます。
+            このアプリケーションは、自身のお気に入り店舗を登録することによりいつでも
+            営業状況を確認することができます。まずは登録しましょう。登録が完了したらお気に入り店舗を
+            追加しましょう。名前から検索,付近から検索をすることができます。あなたも自分だけのフルコースを
+            探しに行きましょう！！！！
           </Typography>
         </div>
       </div>
