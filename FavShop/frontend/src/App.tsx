@@ -13,10 +13,10 @@ export interface CardData {
 }
 const App: React.FC = () => {
   const [user, setUser] = useState<string | null>(null);          //**ユーザ情報を保持 */
-  const [user_id, setUserID] = useState<Number | null>(null);
+  const [user_id, setUserID] = useState<number | null>(null);
 
   /*現在地を保持*/
-  const [location, setLocation] = useState<{ latitude: number; longitude: number } | null>(null);
+  const [location, setLocation] = useState<{ latitude: number|null; longitude: number|null } | null>(null);
   /*カードデータを保持するための配列を定義*/
   const [carddata,setCardData] =useState<CardData[]>([]);
   /*現在地を取得*/
