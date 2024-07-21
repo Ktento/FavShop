@@ -1,34 +1,67 @@
-/* Sidebar.css */
-.sidebar { 
-  flex: 1;
+.sidebar {
+  width: 250px; /* デスクトップでのサイドバーの幅を設定 */
   background-color: #f0f0f0;
   display: flex;
   flex-direction: column;
+  padding: 10px;
+  position: fixed;
+  height: 100%; /* サイドバーを画面全体の高さに設定 */
+  top: 0;
+  left: 0;
+  overflow: hidden; /* サイドバーのスクロールを無効にする */
+  z-index: 1300; /* サイドバーを他のコンテンツの上に表示する */
+}
+
+.sidebar-content {
+  margin-top: 40px; /* バツボタンの下に余白を追加 */
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  padding-top: 10px; /* ボタンを上に詰める */
+}
+
+.close-sidebar-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: black;
 }
 
 .sidebar-button {
-  width: 150px; /* ボタンの幅を統一 */
-  height: 50px; /* ボタンの高さを統一 */
-  margin: 10px;
-  padding: 10px 20px;
+  width: calc(100% - 20px); /* ボタンが左右に見切れないように調整 */
+  height: 50px;
+  margin: 10px 0;
+  padding: 10px;
   font-size: 16px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 2px solid black; /* ボタンの枠を黒に設定 */
-  background-color: #f0f0f0; /* 背景色を統一 */
-  color: black; /* テキスト色を統一 */
+  border: 2px solid black;
+  background-color: #f0f0f0;
+  color: black;
 }
 
 .text-button {
-  background-color: #f0f0f0; /* 背景色を統一 */
-  color: black; /* テキスト色を統一 */
+  background-color: #f0f0f0;
+  color: black;
 }
 
 .button-image {
   width: 24px;
   height: 24px;
+}
+
+/* モバイル版の場合、サイドバーを画面全体の幅にするが、右側に20pxの余裕を持たせる */
+@media screen and (max-width: 600px) {
+  .sidebar {
+    width: calc(100% - 20px); /* モバイル画面でのサイドバーの幅を100%から20px引いた幅に設定 */
+    left: 0; /* サイドバーを左に固定 */
+  }
+  .sidebar-content {
+    margin-top: 40px; /* バツボタンの下に余白を追加 */
+  }
 }

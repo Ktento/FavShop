@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { IconButton } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
 import Footer from './Footer';
 import Modal from './Modal';
 import Modal2 from './Modal2';
@@ -72,14 +74,28 @@ const Sidebar: React.FC<SidebarProps> = ({ user,user_id,carddata,location,setUse
 
   return (
     <div className="sidebar">
-      <button className="sidebar-button text-button" onClick={openInfoModal}>FavShopとは</button>
-      <button className="sidebar-button text-button" onClick={openSignInModal}>Sign In</button>
-      <button className="sidebar-button" onClick={openAddModal}>
-        <img src={button_add_Image} alt="add" className="button-image" />
-      </button>
-      <button className="sidebar-button" onClick={openPositionModal}>
-        <img src={button_position_Image} alt="position" className="button-image" />
-      </button>
+      <IconButton
+        aria-label="close"
+        onClick={closeDrawer}
+        sx={{
+          position: 'absolute',
+          right: 8,
+          top: 8,
+          color: (theme) => theme.palette.grey[500],
+        }}
+      >
+        <CloseIcon />
+      </IconButton>
+      <div className="sidebar-content">
+        <button className="sidebar-button text-button" onClick={openInfoModal}>FavShopとは</button>
+        <button className="sidebar-button text-button" onClick={openSignInModal}>Sign In</button>
+        <button className="sidebar-button" onClick={openAddModal}>
+          <img src={button_add_Image} alt="add" className="button-image" />
+        </button>
+        <button className="sidebar-button" onClick={openPositionModal}>
+          <img src={button_position_Image} alt="position" className="button-image" />
+        </button>
+      </div>
       <Footer />
 
       <Modal isOpen={signInModalOpen} onClose={closeSignInModal}>

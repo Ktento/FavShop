@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { CircularProgress } from '@mui/material';
 import '../CSS/Add_Modal.css';
 import { SearchResult, searchPlaceByName } from '../backend/find_Shop';
 import {InsertShop} from '../backend/entry_shop';
@@ -22,7 +23,7 @@ const Add_Modal: React.FC<AddModalProps> = ({ user_id,carddata,onClose, closeDra
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
   const [selectedResult, setSelectedResult] = useState<SearchResult | null>(null);
-  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+  const [loading, setLoading] = useState(false); 
 
   /*カードデータ配列を追加する関数*/
   const addCardData = (newCard: CardData) => {
@@ -30,52 +31,37 @@ const Add_Modal: React.FC<AddModalProps> = ({ user_id,carddata,onClose, closeDra
   };
 
   // 店舗検索関数
-  const handleSearch = async() => {
-    try{
-    console.log(searchTerm);
+  const handleSearch = async () => {
+    try {
+      if (searchTerm.trim() === '') return;
+      setLoading(true); // 検索開始時にローディング状態を設定
 
-    if (searchTerm.trim() === '') return;
-    if(searchTerm!=undefined){
-    const results = await searchPlaceByName(searchTerm);
-    setSearchResults(results);
-    }
-    }catch(error){
-      console.log(error)
+      const results = await searchPlaceByName(searchTerm);
+      setSearchResults(results);
+
+      setLoading(false); // 検索終了後にローディング状態を解除
+    } catch (error) {
+      console.log(error);
+      setLoading(false); // エラーが発生した場合もローディング状態を解除
     }
   };
 
   // 選択された検索結果を処理する関数
   const handleSelectResult = (result: SearchResult) => {
     setSelectedResult(result);
-    console.log(setSelectedResult);
   };
 
   // 決定ボタンを押された場合の処理
-  const handleConfirmSelection = async() => {
-    console.log(user_id,selectedResult?.place_id)
-    if(selectedResult&&user_id!=null){
+  const handleConfirmSelection = async () => {
+    if (selectedResult && user_id != null) {
       const success = await InsertShop(user_id, selectedResult.place_id);
-      if(success){
+      if (success) {
         onClose();
         closeDrawer();
-      }else{
+      } else {
         console.log("Bad Insert");
       }
-      /*const response = await fetch("/api/server_supabase",{
-        method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ user_id: user_id, place_id: selectedResult.place_id })
-      });
-      const success = await response.json();
-      if(response.ok){
-        onClose();
-        closeDrawer();
-      }else{
-        console.log("Bad Insert");
-      }*/
-    }else{
+    } else {
       console.log("No result Error");
     }
   };
@@ -93,7 +79,13 @@ const Add_Modal: React.FC<AddModalProps> = ({ user_id,carddata,onClose, closeDra
           onChange={(e) => setSearchTerm(e.target.value)}
           className="input-field"
         />
-        <button className="search-button" onClick={handleSearch}>検索</button>
+        <button className="search-button" onClick={handleSearch} disabled={loading}>
+          {loading ? (
+            <CircularProgress size={24} sx={{ color: 'white', borderWidth: 4 }} />
+          ) : (
+            '検索'
+          )}
+        </button>
         <button className="confirm-button" onClick={handleConfirmSelection}>決定</button>
       </div>
       <ul className="result-list">

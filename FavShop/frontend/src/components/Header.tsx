@@ -46,8 +46,16 @@ const Header: React.FC<HeaderProps> = ({ user, user_id,carddata,location,setUser
           </Typography>
         </Toolbar>
       </AppBar>
-      <Drawer anchor="left" open={drawerOpen} onClose={toggleDrawer(false)}>
-        <Sidebar user={user} user_id={user_id} location={location} setUser={setUser} setUserID={setUserID} 
+      <Drawer
+        anchor="left"
+        open={drawerOpen}
+        onClose={toggleDrawer(false)}
+        PaperProps={{
+          sx: { width: { xs: '100%', sm: 250 } }, // スマホでは100%、デスクトップでは250pxの幅
+        }}
+      >
+ 
+        <Sidebar user={user} user_id={user_id} setUser={setUser} setUserID={setUserID} 
         carddata={carddata} setCardData={setCardData} closeDrawer={closeDrawer} />
       </Drawer>
     </>

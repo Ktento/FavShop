@@ -64,7 +64,7 @@ const getStatusClass = (hours: string): string => {
 };
 const Content: React.FC<ContentProps> = ({ user_id,location,carddata }) => {
   const [selectedCard, setSelectedCard] = useState<CardData | null>(null);
-  console.log(location);
+
   const handleCardClick = (card: CardData) => {
     setSelectedCard(card);
   };
@@ -122,6 +122,8 @@ const Content: React.FC<ContentProps> = ({ user_id,location,carddata }) => {
           open={!!selectedCard}
           handleClose={handleCloseModal}
           data={selectedCard}
+          user_id={user_id}
+          location={location}
         />
       )}
     </>

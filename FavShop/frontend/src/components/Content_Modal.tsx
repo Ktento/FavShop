@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Modal, Box, Typography, Grid, IconButton, Button } from '@mui/material';
+import React from 'react';
+import { Modal, Box, Typography, Grid, IconButton } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import { styled } from '@mui/material/styles';
 
@@ -14,6 +14,8 @@ interface ContentModalProps {
   open: boolean;
   handleClose: () => void;
   data: ModalData | null;
+  user_id: Number | null;
+  location: { latitude: number; longitude: number } | null;
 }
 
 // モーダルのスタイル設定
@@ -50,10 +52,14 @@ const ImageSpace = styled('div')({
   justifyContent: 'center',
 });
 
-const ContentModal: React.FC<ContentModalProps> = ({ open, handleClose, data }) => {
-  const [mainImage, setMainImage] = useState<string | null>(data?.image || null);
-
+const ContentModal: React.FC<ContentModalProps> = ({ open, handleClose, data, user_id, location }) => {
   if (!data) return null;
+
+  const handleUnfavorite = () => {
+    // ここで「お気に入り解除」の処理を行うことができます。
+    // 今回はモーダルを閉じる処理を行います。
+    handleClose();
+  };
 
   return (
     <Modal
@@ -75,7 +81,9 @@ const ContentModal: React.FC<ContentModalProps> = ({ open, handleClose, data }) 
         >
           <CloseIcon />
         </IconButton>
-        <MapSpace>地図</MapSpace> {/* 地図を表示するスペース */}
+        <MapSpace>
+        <MapSpace>地図</MapSpace>
+        </MapSpace>
         <Grid container spacing={2}>
           <Grid item xs={6}>
             <Typography id="modal-title" variant="h6" component="h2">
@@ -93,13 +101,13 @@ const ContentModal: React.FC<ContentModalProps> = ({ open, handleClose, data }) 
             <Typography component="a" href="#" variant="body2" color="primary" style={{ display: 'block', marginTop: 8 }}>
               店舗詳細を確認
             </Typography>
-            <Typography component="a" href="#" variant="body2" color="primary" style={{ display: 'block', marginTop: 8 }}>
+            <Typography component="a" href="" variant="body2" color="primary" style={{ display: 'block', marginTop: 8 }} onClick={handleUnfavorite}>
               お気に入り解除
             </Typography>
           </Grid>
           <Grid item xs={6}>
             <ImageSpace>
-              {mainImage && <img src={mainImage} alt={data.title} style={{ maxWidth: '100%', maxHeight: '100%' }} />}
+              {data.image && <img src={data.image} alt={data.title} style={{ maxWidth: '100%', maxHeight: '100%' }} />}
             </ImageSpace>
           </Grid>
         </Grid>
