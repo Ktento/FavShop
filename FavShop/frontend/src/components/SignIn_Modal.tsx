@@ -66,7 +66,7 @@ const SignInModal: React.FC<SignInModalProps> = ({ user_id,location,openSignUpMo
             alert("お気に入りの店舗が登録されていません");
           }
         }else{
-          alert("user_idがありません");
+          alert(user_id);
         } 
       } else {
         setInputError(null);
