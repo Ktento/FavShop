@@ -118,7 +118,7 @@ const Content: React.FC<ContentProps> = ({ user_id, location, carddata }) => {
     <>
       <CustomCardWrapper>
         {carddata && carddata.map(card => (
-          <CustomCardRoot key={card.id} onClick={() => handleCardClick(card)}>
+          <CustomCardRoot key={card.plaseid} onClick={() => handleCardClick(card)}>
             <CardActionArea>
               <CustomCardMedia
                 image={card.image}
