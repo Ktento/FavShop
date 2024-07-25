@@ -19,7 +19,7 @@ interface SignInModalProps {
   setCardData:React.Dispatch<React.SetStateAction<CardData[]>>;
 }
 
-const SignInModal: React.FC<SignInModalProps> = ({ user_id,location,openSignUpModal, onClose, setUser,setUserID,closeDrawer,setCardData}) => {
+const SignInModal: React.FC<SignInModalProps> = ({ user_id,carddata,location,openSignUpModal, onClose, setUser,setUserID,closeDrawer,setCardData}) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [loginError, setLoginError] = useState(false);
@@ -46,6 +46,7 @@ const SignInModal: React.FC<SignInModalProps> = ({ user_id,location,openSignUpMo
         onClose(); 
         closeDrawer();
         alert('ログイン成功');
+        setCardData([]);
         if(setuser_id){
           const response=user_entry_shops(setuser_id);
           if((await response).success){
