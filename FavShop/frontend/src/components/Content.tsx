@@ -47,8 +47,8 @@ const formatHours = (hours: string): string => {
 
   // 営業時間を分割
   const [openTimeStr, closeTimeStr] = timeRange.split('–').map(str => str.trim());
-  const [openHHMM, openAMPM] = openTimeStr.split(' ');
-  const [closeHHMM, closeAMPM] = closeTimeStr.split(' ');
+  const [openHHMM, openAMPM] = openTimeStr.split(' ');
+  const [closeHHMM, closeAMPM] = closeTimeStr.split(' ');
   console.log(openHHMM,openAMPM);
 
   // 24時間形式に変換
