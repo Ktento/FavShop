@@ -132,7 +132,7 @@ const Content: React.FC<ContentProps> = ({ user_id, location, carddata }) => {
                   {card.address}
                 </Typography>
                 <Typography className="card-hours" variant="body2" color="textSecondary" component="p">
-                  {formatHours(card.hours)}
+                  {card.hours.replace(/^(Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday):?\s*/, '')}
                 </Typography>
               </CardContent>
               <div className="status-wrapper">
