@@ -59,6 +59,14 @@ const formatHours = (hours: string): string => {
 };
 const getStatusClass = (hours: string): string => {
   console.log(hours);
+  if(hours.includes("Open 24 hours")){
+    /*
+    const every_openHour=0
+    const every_openMinute=0
+    const every_closeHour=24
+    const every_closeMinute=0*/
+    return 'open'
+  }
   const currentTime = new Date();
   const formattedHours = formatHours(hours);
   
