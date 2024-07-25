@@ -4,9 +4,11 @@ import '../CSS/Add_Modal.css';
 import { SearchResult, searchPlaceByName } from '../backend/find_Shop';
 import {InsertShop} from '../backend/entry_shop';
 import { CardData } from '../App';
+import { user_entry_shops } from '../backend/user_entry_shops';
+import { SearchDetailShops } from '../backend/get_shopmap';
 interface AddModalProps {
   user: string | null; 
-  user_id: Number | null;
+  user_id: number | null;
   setUser: (user: string | null) => void;
   setUserID: (user_id: number | null) => void;
   onClose: () => void;
@@ -25,10 +27,7 @@ const Add_Modal: React.FC<AddModalProps> = ({ user_id,carddata,onClose, closeDra
   const [selectedResult, setSelectedResult] = useState<SearchResult | null>(null);
   const [loading, setLoading] = useState(false); 
 
-  /*カードデータ配列を追加する関数*/
-  const addCardData = (newCard: CardData) => {
-    setCardData((prevCardData) => [...prevCardData, newCard]);
-  };
+
 
   // 店舗検索関数
   const handleSearch = async () => {
@@ -54,11 +53,25 @@ const Add_Modal: React.FC<AddModalProps> = ({ user_id,carddata,onClose, closeDra
   // 決定ボタンを押された場合の処理
   const handleConfirmSelection = async () => {
     if (selectedResult && user_id != null) {
+      const place_ids:string[]=[]
+      place_ids.push(selectedResult.place_id);
       const success = await InsertShop(user_id, selectedResult.place_id);
+
       if (success) {
         onClose();
         closeDrawer();
-      } else {
+        /*
+          if(selectedResult.place_id){
+            const card=await SearchDetailShops(place_ids);
+            if (cards && cards.length > 0) {
+            setCardData((prevCardData) => [...prevCardData, ...cards]);
+          } else {
+            alert("詳細情報が取得できませんでした");
+          }
+          }else{
+            alert("placeidが取得できませんでした");
+          }*/
+
         console.log("Bad Insert");
       }
     } else {
