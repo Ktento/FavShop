@@ -67,6 +67,9 @@ const getStatusClass = (hours: string): string => {
     const every_closeMinute=0*/
     return 'open'
   }
+  if(hours.includes("Closed")){
+    return 'closed'
+  }
   const currentTime = new Date();
   const formattedHours = formatHours(hours);
   
