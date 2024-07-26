@@ -3,6 +3,7 @@ import { Modal, Box, Typography, Grid, IconButton } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import { styled } from '@mui/material/styles';
 import { CardData } from '../App';
+import { DeleteFavShop } from '../backend/delete_favshop';
 
 interface ContentModalProps {
   open: boolean;
@@ -49,8 +50,18 @@ const ImageSpace = styled('div')({
 const ContentModal: React.FC<ContentModalProps> = ({ open, handleClose, data, user_id, location }) => {
   if (!data) return null;
 
-  const handleUnfavorite = () => {
+  const handleUnfavorite = async() => {
     // ここで「お気に入り解除」の処理を行うことができます。
+    if(user_id){
+      const response=await DeleteFavShop(user_id,data.plaseid);
+      if(response){
+        alert("お気に入りの店舗の削除しました")
+      }else{
+        alert("お気に入りの店舗の削除が正常にできませんでした。")
+      }
+    }else{
+      alert("user_idが設定されてません");
+    }
     // 今回はモーダルを閉じる処理を行います。
     handleClose();
   };

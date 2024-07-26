@@ -1,9 +1,10 @@
 import { supabase } from './supabase';
 
-// ログインできるかを取得するための非同期関数
-export const InsertShop = async (user_id:number,place_id:string):Promise<boolean> => {
-// entry_shopにINSERT
-let {status,statusText} = await supabase.from("entry_shop").insert({user_id:user_id,place_id:place_id});
+// お気に入りの店舗の削除をするための非同期関数
+export const DeleteFavShop = async (user_id:number,place_id:string):Promise<boolean> => {
+// entry_shopから行を削除
+let {status,statusText} = await supabase.from("entry_shop").delete().eq('user_id',user_id).
+eq('place_id',place_id);
 if (status==201) {
     console.log(status,statusText);
     return true;
