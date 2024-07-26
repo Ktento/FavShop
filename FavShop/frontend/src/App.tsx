@@ -9,6 +9,7 @@ export interface CardData {
   image: string;
   title: string;
   address: string;
+  webURL:string;
   hours: string;
 }
 const App: React.FC = () => {
@@ -47,6 +48,7 @@ const App: React.FC = () => {
         image: 'https://via.placeholder.com/300x140?text=Image+1',
         title: '店名1',
         address: '住所1',
+        webURL:"https://github.com/Ktento",
         hours: 'Sunday: 10:00 AM – 2:00 AM',
       },
       {
@@ -55,6 +57,7 @@ const App: React.FC = () => {
         image: 'https://via.placeholder.com/300x140?text=Image+2',
         title: '店名2',
         address: '住所2',
+        webURL:"https://github.com/Ktento",
         hours: 'Sunday: 10:00 AM – 2:00 AM',
       },
       {
@@ -63,6 +66,7 @@ const App: React.FC = () => {
         image: 'https://via.placeholder.com/300x140?text=Image+3',
         title: '店名3',
         address: '住所3',
+        webURL:"https://github.com/Ktento",
         hours: 'Sunday: 10:00 AM – 2:00 AM',
       },
       {
@@ -71,6 +75,7 @@ const App: React.FC = () => {
         image: 'https://via.placeholder.com/300x140?text=Image+4',
         title: '店名4',
         address: '住所4',
+        webURL:"https://github.com/Ktento",
         hours: 'Sunday: 10:00 AM – 2:00 AM',
       },
       {
@@ -79,6 +84,7 @@ const App: React.FC = () => {
         image: 'https://via.placeholder.com/300x140?text=Image+5',
         title: '店名5',
         address: '住所5',
+        webURL:"https://github.com/Ktento",
         hours: 'Sunday: 10:00 AM – 2:00 AM',
       },
     ]);

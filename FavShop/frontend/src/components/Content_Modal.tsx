@@ -91,11 +91,13 @@ const ContentModal: React.FC<ContentModalProps> = ({ open, handleClose, data, us
             </Typography>
             <Typography component="a" href="#" variant="body2" color="primary" style={{ display: 'block', marginTop: 8 }}>
               <a href={`https://www.google.com/maps/dir/?api=1&origin=${location?.latitude},${location?.longitude}&destination=${data.title}&destination_place_id=${data.plaseid}`}>
-              <p>店舗までの経路</p>
+              店舗までの経路
               </a>
             </Typography>
             <Typography component="a" href="#" variant="body2" color="primary" style={{ display: 'block', marginTop: 8 }}>
+            <a href={`${data.webURL}`}>
               店舗詳細を確認
+            </a>
             </Typography>
             <Typography component="a" href="" variant="body2" color="primary" style={{ display: 'block', marginTop: 8 }} onClick={handleUnfavorite}>
               お気に入り解除

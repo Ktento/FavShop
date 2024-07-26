@@ -31,6 +31,7 @@ import { CardData } from "../App";
         image,
         title: place.name || '',
         address: place.formatted_address || '',
+        webURL:place.website || '',
         hours:  hoursToday
       };
     });
