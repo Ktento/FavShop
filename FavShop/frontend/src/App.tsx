@@ -20,6 +20,15 @@ const App: React.FC = () => {
   const [location, setLocation] = useState<{ latitude: number|null; longitude: number|null } | null>(null);
   /*カードデータを保持するための配列を定義*/
   const [carddata,setCardData] =useState<CardData[]>([]);
+  // カード情報を追加する関数
+  const addCardData = (newCard: CardData) => {
+    setCardData(prevCardData => [...prevCardData, newCard]);
+  };
+  
+  // カード情報を削除する関数
+  const deleteCardData = (place_id: string) => {
+    setCardData(prevCardData => prevCardData.filter(card => card.plaseid !== place_id));
+  };
   /*現在地を取得*/
   useEffect(() => {
     // 位置情報を取得する関数
@@ -98,7 +107,8 @@ const App: React.FC = () => {
       <Header user={user} user_id={user_id} location={location} 
       setUser={setUser} setUserID={setUserID} carddata={carddata} setCardData={setCardData}/>
       <div className="main">
-        <Content user_id={user_id} location={location} carddata={carddata} setCardData={setCardData}/>
+        <Content user_id={user_id} location={location} 
+        carddata={carddata} setCardData={setCardData} addCardData={addCardData} deleteCardData={deleteCardData}/>
       </div>
     </div>
   );

@@ -9,6 +9,7 @@ interface ContentModalProps {
   open: boolean;
   handleClose: () => void;
   data: CardData | null;
+  deleteCardData: (id: string) => void;
   user_id: number | null;
   location :{latitude:number|null, longitude:number|null}|null;
 }
@@ -47,7 +48,7 @@ const ImageSpace = styled('div')({
   justifyContent: 'center',
 });
 
-const ContentModal: React.FC<ContentModalProps> = ({ open, handleClose, data, user_id, location }) => {
+const ContentModal: React.FC<ContentModalProps> = ({ open, handleClose, data, user_id, location,deleteCardData }) => {
   if (!data) return null;
 
   const handleUnfavorite = async() => {
@@ -55,15 +56,14 @@ const ContentModal: React.FC<ContentModalProps> = ({ open, handleClose, data, us
     if(user_id){
       const response=await DeleteFavShop(user_id,data.plaseid);
       if(response){
-        alert("お気に入りの店舗の削除しました")
+        deleteCardData(data.plaseid);
+        alert("お気に入りの店舗の削除しました");
       }else{
-        alert("お気に入りの店舗の削除が正常にできませんでした。")
+        alert("お気に入りの店舗の削除が正常にできませんでした。");
       }
     }else{
       alert("user_idが設定されてません");
     }
-    // 今回はモーダルを閉じる処理を行います。
-    handleClose();
   };
 
   return (

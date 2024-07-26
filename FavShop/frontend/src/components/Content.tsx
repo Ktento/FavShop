@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { styled } from '@mui/material/styles';
 import { Card, CardActionArea, CardContent, CardMedia, Typography } from '@mui/material';
 import ContentModal from './Content_Modal';
@@ -10,6 +10,8 @@ interface ContentProps {
   location: { latitude: number | null; longitude: number | null } | null;
   carddata: CardData[] | null;
   setCardData: React.Dispatch<React.SetStateAction<CardData[]>>;
+  addCardData: (newCard: CardData) => void;
+  deleteCardData: (id: string) => void;
 }
 
 // スタイルを定義
@@ -99,8 +101,9 @@ const getStatusClass = (hours: string): string => {
   }
 };
 
-const Content: React.FC<ContentProps> = ({ user_id, location, carddata }) => {
+const Content: React.FC<ContentProps> = ({ user_id, location,carddata,deleteCardData}) => {
   const [selectedCard, setSelectedCard] = useState<CardData | null>(null);
+
 
   console.log(carddata);
 
@@ -161,6 +164,7 @@ const Content: React.FC<ContentProps> = ({ user_id, location, carddata }) => {
           open={!!selectedCard}
           handleClose={handleCloseModal}
           data={selectedCard}
+          deleteCardData={deleteCardData}
           user_id={user_id}
           location={location}
         />
