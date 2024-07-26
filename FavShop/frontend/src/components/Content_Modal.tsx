@@ -2,18 +2,12 @@ import React from 'react';
 import { Modal, Box, Typography, Grid, IconButton } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import { styled } from '@mui/material/styles';
-
-interface ModalData {
-  image: string;
-  title: string;
-  address: string;
-  hours: string;
-}
+import { CardData } from '../App';
 
 interface ContentModalProps {
   open: boolean;
   handleClose: () => void;
-  data: ModalData | null;
+  data: CardData | null;
   user_id: number | null;
   location :{latitude:number|null, longitude:number|null}|null;
 }
@@ -96,7 +90,9 @@ const ContentModal: React.FC<ContentModalProps> = ({ open, handleClose, data, us
               {data.hours}
             </Typography>
             <Typography component="a" href="#" variant="body2" color="primary" style={{ display: 'block', marginTop: 8 }}>
-              店舗までの経路
+              <a href={`https://www.google.com/maps/dir/?api=1&origin=${location?.latitude},${location?.longitude}&destination=${data.plaseid}`}>
+              <p>店舗までの経路</p>
+              </a>
             </Typography>
             <Typography component="a" href="#" variant="body2" color="primary" style={{ display: 'block', marginTop: 8 }}>
               店舗詳細を確認
