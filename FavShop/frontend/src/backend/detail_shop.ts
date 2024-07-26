@@ -26,8 +26,8 @@ import { CardData } from "../App";
       console.log(hoursToday);
 
       return {
-        id: user_id, // place_id をユニークな識別子として使用
-        plaseid: parseInt(place_id, 10),
+        id: user_id, 
+        plaseid: place_id,// place_id をユニークな識別子として使用
         image,
         title: place.name || '',
         address: place.formatted_address || '',
