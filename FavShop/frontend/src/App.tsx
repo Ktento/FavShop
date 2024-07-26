@@ -5,7 +5,7 @@ import Header from './components/Header';
 import Content from './components/Content';
 export interface CardData {
   id: number;
-  plaseid: number;
+  plaseid: string;
   image: string;
   title: string;
   address: string;
@@ -43,7 +43,7 @@ const App: React.FC = () => {
     setCardData([
       {
         id: 1,
-        plaseid: 11111,
+        plaseid: "11111",
         image: 'https://via.placeholder.com/300x140?text=Image+1',
         title: '店名1',
         address: '住所1',
@@ -51,7 +51,7 @@ const App: React.FC = () => {
       },
       {
         id: 2,
-        plaseid: 11111,
+        plaseid: "11111",
         image: 'https://via.placeholder.com/300x140?text=Image+2',
         title: '店名2',
         address: '住所2',
@@ -59,7 +59,7 @@ const App: React.FC = () => {
       },
       {
         id: 3,
-        plaseid: 11111,
+        plaseid: "11111",
         image: 'https://via.placeholder.com/300x140?text=Image+3',
         title: '店名3',
         address: '住所3',
@@ -67,7 +67,7 @@ const App: React.FC = () => {
       },
       {
         id: 4,
-        plaseid: 11111,
+        plaseid: "11111",
         image: 'https://via.placeholder.com/300x140?text=Image+4',
         title: '店名4',
         address: '住所4',
@@ -75,7 +75,7 @@ const App: React.FC = () => {
       },
       {
         id: 5,
-        plaseid: 11111,
+        plaseid: "11111",
         image: 'https://via.placeholder.com/300x140?text=Image+5',
         title: '店名5',
         address: '住所5',
