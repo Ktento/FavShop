@@ -99,6 +99,7 @@ const getStatusClass = (hours: string): string => {
 };
 
 const Content: React.FC<ContentProps> = ({ user_id, location,carddata,deleteCardData}) => {
+  console.log("Content OPEN")
   const [selectedCard, setSelectedCard] = useState<CardData | null>(null);
 
   const handleCardClick = (card: CardData) => {
@@ -155,7 +156,7 @@ const Content: React.FC<ContentProps> = ({ user_id, location,carddata,deleteCard
       </CustomCardWrapper>
       {selectedCard && (
         <ContentModal
-          open={Boolean(selectedCard)}
+          open={!!selectedCard}
           handleClose={handleCloseModal}
           data={selectedCard}
           deleteCardData={deleteCardData}

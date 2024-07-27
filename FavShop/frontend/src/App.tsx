@@ -13,6 +13,7 @@ export interface CardData {
   hours: string;
 }
 const App: React.FC = () => {
+  console.log("APP OPEN")
   const [user, setUser] = useState<string | null>(null);          //**ユーザ情報を保持 */
   const [user_id, setUserID] = useState<number | null>(null);
 
