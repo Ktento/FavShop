@@ -51,7 +51,6 @@ const formatHours = (hours: string): string => {
   const [openTimeStr, closeTimeStr] = timeRange.split('–').map(str => str.trim());
   const [openHHMM, openAMPM] = openTimeStr.split(' ');
   const [closeHHMM, closeAMPM] = closeTimeStr.split(' ');
-  console.log(openHHMM,openAMPM);
 
   // 24時間形式に変換
   const start24Hour = convertTo24HourFormat(openHHMM, openAMPM);
@@ -60,7 +59,6 @@ const formatHours = (hours: string): string => {
   return `${start24Hour}-${end24Hour}`;
 };
 const getStatusClass = (hours: string): string => {
-  console.log(hours);
   if(hours.includes("Open 24 hours")){
     /*
     const every_openHour=0
@@ -80,7 +78,6 @@ const getStatusClass = (hours: string): string => {
   const [openHour, openMinute] = openTimeStr.split(':').map(Number);
   const [closeHour, closeMinute] = closeTimeStr.split(':').map(Number);
 
-  console.log(openHour,openMinute,closeHour,closeMinute);
 
   // 本日の営業開始と終了の Date オブジェクトを作成
   const openTime = new Date();
@@ -103,9 +100,6 @@ const getStatusClass = (hours: string): string => {
 
 const Content: React.FC<ContentProps> = ({ user_id, location,carddata,deleteCardData}) => {
   const [selectedCard, setSelectedCard] = useState<CardData | null>(null);
-
-
-  console.log(carddata);
 
   const handleCardClick = (card: CardData) => {
     setSelectedCard(card);
@@ -161,7 +155,7 @@ const Content: React.FC<ContentProps> = ({ user_id, location,carddata,deleteCard
       </CustomCardWrapper>
       {selectedCard && (
         <ContentModal
-          open={!!selectedCard}
+          open={Boolean(selectedCard)}
           handleClose={handleCloseModal}
           data={selectedCard}
           deleteCardData={deleteCardData}
