@@ -48,22 +48,7 @@ const App: React.FC = () => {
       alert("位置情報が取得できませんでした");
     };
 
-     // ログイン状態を localStorage に保存
-  useEffect(() => {
-    if (user !== null) {
-      localStorage.setItem('user', user);
-    } else {
-      localStorage.removeItem('user');
-    }
-  }, [user]);
-
-  useEffect(() => {
-    if (user_id !== null) {
-      localStorage.setItem('user_id', user_id.toString());
-    } else {
-      localStorage.removeItem('user_id');
-    }
-  }, [user_id]);
+   
     // 位置情報を取得
     getCurrentPosition();
 
@@ -116,6 +101,23 @@ const App: React.FC = () => {
       },
     ]);
   }, []); // 空の依存配列でマウント時に一度だけ実行
+
+   // ログイン状態を localStorage に保存
+   useEffect(() => {
+    if (user !== null) {
+      localStorage.setItem('user', user);
+    } else {
+      localStorage.removeItem('user');
+    }
+  }, [user]);
+
+  useEffect(() => {
+    if (user_id !== null) {
+      localStorage.setItem('user_id', user_id.toString());
+    } else {
+      localStorage.removeItem('user_id');
+    }
+  }, [user_id]);
 
 
   
