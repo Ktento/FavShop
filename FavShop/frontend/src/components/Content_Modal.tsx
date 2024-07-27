@@ -4,13 +4,21 @@ import CloseIcon from '@mui/icons-material/Close';
 import { styled } from '@mui/material/styles';
 import { CardData } from '../App';
 import { DeleteFavShop } from '../backend/delete_favshop';
+import Header from './Header';
+import Content from './Content';
 
 interface ContentModalProps {
   open: boolean;
   handleClose: () => void;
   data: CardData | null;
+  carddata : CardData[]|null;
+  setCardData: React.Dispatch<React.SetStateAction<CardData[]>>;
+  addCardData: (newCard: CardData) => void;
   deleteCardData: (id: string) => void;
+  user: string | null; 
   user_id: number | null;
+  setUser: (user: string | null) => void;
+  setUserID: (user_id: number | null) => void;
   location :{latitude:number|null, longitude:number|null}|null;
 }
 
@@ -48,7 +56,7 @@ const ImageSpace = styled('div')({
   justifyContent: 'center',
 });
 
-const ContentModal: React.FC<ContentModalProps> = ({ open, handleClose, data, user_id, location,deleteCardData }) => {
+const ContentModal: React.FC<ContentModalProps> = ({ user,user_id, setUser,setUserID,open, handleClose, data, location,carddata,setCardData,addCardData,deleteCardData }) => {
   if (!data) return null;
 
   const handleUnfavorite = async() => {
@@ -59,7 +67,15 @@ const ContentModal: React.FC<ContentModalProps> = ({ open, handleClose, data, us
         deleteCardData(data.plaseid);
         alert("お気に入りの店舗の削除しました");
         console.log("Content_Modal CLOSE")
-        handleClose();
+        return (<div className="App">
+        <Header user={user} user_id={user_id} location={location} 
+        setUser={setUser} setUserID={setUserID} carddata={carddata} setCardData={setCardData}/>
+        <div className="main">
+        <Content user={user} user_id={user_id} location={location} 
+        setUser={setUser} setUserID={setUserID} 
+        carddata={carddata} setCardData={setCardData} addCardData={addCardData} deleteCardData={deleteCardData}/>
+        </div>
+      </div>);
       }else{
         alert("お気に入りの店舗の削除が正常にできませんでした。");
       }

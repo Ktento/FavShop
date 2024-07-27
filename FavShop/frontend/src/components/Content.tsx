@@ -6,7 +6,10 @@ import '../CSS/Content.css';
 import { CardData } from '../App';
 
 interface ContentProps {
+  user: string | null; 
   user_id: number | null;
+  setUser: (user: string | null) => void;
+  setUserID: (user_id: number | null) => void;
   location: { latitude: number | null; longitude: number | null } | null;
   carddata: CardData[] | null;
   setCardData: React.Dispatch<React.SetStateAction<CardData[]>>;
@@ -98,7 +101,7 @@ const getStatusClass = (hours: string): string => {
   }
 };
 
-const Content: React.FC<ContentProps> = ({ user_id, location,carddata,deleteCardData}) => {
+const Content: React.FC<ContentProps> = ({ user,user_id, setUser,setUserID,location,carddata,setCardData,addCardData,deleteCardData}) => {
   console.log("Content OPEN")
   useEffect(() => { 
     console.log(user_id);
@@ -162,9 +165,9 @@ const Content: React.FC<ContentProps> = ({ user_id, location,carddata,deleteCard
         <ContentModal
           open={!!selectedCard}
           handleClose={handleCloseModal}
-          data={selectedCard}
+          carddata={carddata} data={selectedCard} setCardData={setCardData} addCardData={addCardData}
           deleteCardData={deleteCardData}
-          user_id={user_id}
+          user={user} user_id={user_id} setUser={setUser} setUserID={setUserID} 
           location={location}
         />
       )}
