@@ -100,6 +100,10 @@ const getStatusClass = (hours: string): string => {
 
 const Content: React.FC<ContentProps> = ({ user_id, location,carddata,deleteCardData}) => {
   console.log("Content OPEN")
+  useEffect(() => { 
+    console.log(user_id);
+
+  }, [carddata]);
   const [selectedCard, setSelectedCard] = useState<CardData | null>(null);
 
   const handleCardClick = (card: CardData) => {
