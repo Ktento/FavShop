@@ -13,9 +13,9 @@ export interface CardData {
   hours: string;
 }
 const App: React.FC = () => {
-  console.log("APP OPEN")
-  const [user, setUser] = useState<string | null>(null);          //**ユーザ情報を保持 */
-  const [user_id, setUserID] = useState<number | null>(null);
+  console.log("Content OPEN")
+  const [user, setUser] = useState<string | null>(localStorage.getItem('user') || null);
+  const [user_id, setUserID] = useState<number | null>(localStorage.getItem('user_id') ? parseInt(localStorage.getItem('user_id')!) : null);
 
   /*現在地を保持*/
   const [location, setLocation] = useState<{ latitude: number|null; longitude: number|null } | null>(null);
@@ -47,6 +47,23 @@ const App: React.FC = () => {
     const errorCallback = (error: GeolocationPositionError) => {
       alert("位置情報が取得できませんでした");
     };
+
+     // ログイン状態を localStorage に保存
+  useEffect(() => {
+    if (user !== null) {
+      localStorage.setItem('user', user);
+    } else {
+      localStorage.removeItem('user');
+    }
+  }, [user]);
+
+  useEffect(() => {
+    if (user_id !== null) {
+      localStorage.setItem('user_id', user_id.toString());
+    } else {
+      localStorage.removeItem('user_id');
+    }
+  }, [user_id]);
     // 位置情報を取得
     getCurrentPosition();
 
@@ -108,8 +125,7 @@ const App: React.FC = () => {
       <Header user={user} user_id={user_id} location={location} 
       setUser={setUser} setUserID={setUserID} carddata={carddata} setCardData={setCardData}/>
       <div className="main">
-        <Content user={user} user_id={user_id} location={location} 
-        setUser={setUser} setUserID={setUserID} 
+        <Content user_id={user_id} location={location} 
         carddata={carddata} setCardData={setCardData} addCardData={addCardData} deleteCardData={deleteCardData}/>
       </div>
     </div>
