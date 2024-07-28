@@ -102,6 +102,7 @@ const Content: React.FC<ContentProps> = ({ user_id, location,carddata,deleteCard
   console.log("Content OPEN")
   useEffect(() => { 
     console.log(user_id);
+    
 
   }, [carddata]);
   const [selectedCard, setSelectedCard] = useState<CardData | null>(null);

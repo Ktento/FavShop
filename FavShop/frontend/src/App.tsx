@@ -102,8 +102,8 @@ const App: React.FC = () => {
     ]);
   }, []); // 空の依存配列でマウント時に一度だけ実行
 
-   // ログイン状態を localStorage に保存
-   useEffect(() => {
+  // ログイン状態を localStorage に保存
+  useEffect(() => {
     if (user !== null) {
       localStorage.setItem('user', user);
     } else {
