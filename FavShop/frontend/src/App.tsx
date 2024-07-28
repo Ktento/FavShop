@@ -16,19 +16,34 @@ const App: React.FC = () => {
   console.log("Content OPEN")
   const [user, setUser] = useState<string | null>(localStorage.getItem('user') || null);
   const [user_id, setUserID] = useState<number | null>(localStorage.getItem('user_id') ? parseInt(localStorage.getItem('user_id')!) : null);
+  /*カードデータを保持するための配列を定義*/
+  const [carddata, setCardData] = useState<CardData[]>(() => {
+    // 初期状態としてlocalStorageからカードデータを取得
+    const savedCardData = localStorage.getItem('carddata');
+    return savedCardData ? JSON.parse(savedCardData) : [];
+  });
 
   /*現在地を保持*/
   const [location, setLocation] = useState<{ latitude: number|null; longitude: number|null } | null>(null);
-  /*カードデータを保持するための配列を定義*/
-  const [carddata,setCardData] =useState<CardData[]>([]);
+
   // カード情報を追加する関数
   const addCardData = (newCard: CardData) => {
-    setCardData(prevCardData => [...prevCardData, newCard]);
+    //setCardData(prevCardData => [...prevCardData, newCard]);
+    setCardData(prevCardData => {
+      const updatedCardData = [...prevCardData, newCard];
+      localStorage.setItem('carddata', JSON.stringify(updatedCardData)); // localStorageに保存
+      return updatedCardData;
+    });
   };
   
   // カード情報を削除する関数
   const deleteCardData = (place_id: string) => {
-    setCardData(prevCardData => prevCardData.filter(card => card.plaseid !== place_id));
+    //setCardData(prevCardData => prevCardData.filter(card => card.plaseid !== place_id));
+    setCardData(prevCardData => {
+      const updatedCardData = prevCardData.filter(card => card.plaseid !== place_id);
+      localStorage.setItem('carddata', JSON.stringify(updatedCardData)); // localStorageに保存
+      return updatedCardData;
+    });
   };
   /*現在地を取得*/
   useEffect(() => {
