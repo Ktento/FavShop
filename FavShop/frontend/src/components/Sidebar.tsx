@@ -23,9 +23,10 @@ interface SidebarProps {
   carddata : CardData[]|null;
   //CardData配列をすべて初期化するか、配列の一つを更新するか選べる
   setCardData:React.Dispatch<React.SetStateAction<CardData[]>>;
+  addCardData: (newCard: CardData) => void;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ user,user_id,carddata,location,setUser,setUserID, setCardData,closeDrawer }) => {
+const Sidebar: React.FC<SidebarProps> = ({ user,user_id,carddata,location,setUser,setUserID, setCardData,addCardData,closeDrawer }) => {
   const [signInModalOpen, setSignInModalOpen] = useState(false);
   const [signUpModalOpen, setSignUpModalOpen] = useState(false);
   const [addModalOpen, setAddModalOpen] = useState(false);
@@ -111,7 +112,7 @@ const Sidebar: React.FC<SidebarProps> = ({ user,user_id,carddata,location,setUse
       <Modal isOpen={addModalOpen} onClose={closeAddModal}>
         <AddModal onClose={closeAddModal} closeDrawer={closeDrawer} 
         user={user} user_id={user_id} setUser={setUser} setUserID={setUserID}
-        carddata={carddata} setCardData={setCardData}/>
+        carddata={carddata} setCardData={setCardData} addCardData={addCardData}/>
       </Modal>
       <Modal isOpen={positionModalOpen} onClose={closePositionModal}>
         <PositionModal onClose={closePositionModal} closeDrawer={closeDrawer} />

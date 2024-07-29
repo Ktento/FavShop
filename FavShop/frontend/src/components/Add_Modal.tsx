@@ -4,8 +4,7 @@ import '../CSS/Add_Modal.css';
 import { SearchResult, searchPlaceByName } from '../backend/find_Shop';
 import {InsertShop} from '../backend/entry_shop';
 import { CardData } from '../App';
-import { user_entry_shops } from '../backend/user_entry_shops';
-import { SearchDetailShops } from '../backend/get_shopmap';
+import { SearchDetailShops } from '../backend/detail_shop';
 interface AddModalProps {
   user: string | null; 
   user_id: number | null;
@@ -16,12 +15,13 @@ interface AddModalProps {
   carddata : CardData[]|null;
   //CardData配列をすべて初期化するか、配列の一つを更新するか選べる
   setCardData:React.Dispatch<React.SetStateAction<CardData[]>>;
+  addCardData: (newCard: CardData) => void;
 }
 
 
 
 
-const Add_Modal: React.FC<AddModalProps> = ({ user_id,carddata,onClose, closeDrawer,setCardData}) => {
+const Add_Modal: React.FC<AddModalProps> = ({ user_id,carddata,onClose, closeDrawer,setCardData,addCardData}) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
   const [selectedResult, setSelectedResult] = useState<SearchResult | null>(null);
@@ -56,21 +56,19 @@ const Add_Modal: React.FC<AddModalProps> = ({ user_id,carddata,onClose, closeDra
       const place_ids:string[]=[]
       place_ids.push(selectedResult.place_id);
       const success = await InsertShop(user_id, selectedResult.place_id);
-
       if (success) {
         onClose();
         closeDrawer();
-        /*
           if(selectedResult.place_id){
-            const card=await SearchDetailShops(place_ids);
-            if (cards && cards.length > 0) {
-            setCardData((prevCardData) => [...prevCardData, ...cards]);
+            const card=await SearchDetailShops(user_id,place_ids);
+            if (card && card.length == 1) {
+              addCardData(card[0]);
           } else {
             alert("詳細情報が取得できませんでした");
           }
           }else{
             alert("placeidが取得できませんでした");
-          }*/
+          }
 
         console.log("Bad Insert");
       }

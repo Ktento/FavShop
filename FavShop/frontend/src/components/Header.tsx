@@ -14,9 +14,10 @@ interface HeaderProps {
   carddata : CardData[]|null;
   //CardData配列をすべて初期化するか、配列の一つを更新するか選べる
   setCardData:React.Dispatch<React.SetStateAction<CardData[]>>;
+  addCardData: (newCard: CardData) => void;
 }
 
-const Header: React.FC<HeaderProps> = ({ user, user_id,carddata,location,setUser,setUserID,setCardData}) => {
+const Header: React.FC<HeaderProps> = ({ user, user_id,carddata,location,setUser,setUserID,setCardData,addCardData}) => {
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   const toggleDrawer = (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
@@ -56,7 +57,8 @@ const Header: React.FC<HeaderProps> = ({ user, user_id,carddata,location,setUser
       >
  
         <Sidebar user={user} user_id={user_id} setUser={setUser} setUserID={setUserID} 
-        carddata={carddata} setCardData={setCardData} closeDrawer={closeDrawer} 
+        carddata={carddata} setCardData={setCardData} addCardData={addCardData}
+        closeDrawer={closeDrawer} 
         location={location}/>
       </Drawer>
     </>

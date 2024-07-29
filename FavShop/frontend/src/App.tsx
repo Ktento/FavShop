@@ -147,7 +147,8 @@ const App: React.FC = () => {
   return (
     <div className="App">
       <Header user={user} user_id={user_id} location={location} 
-      setUser={setUser} setUserID={setUserID} carddata={carddata} setCardData={setCardData}/>
+      setUser={setUser} setUserID={setUserID} 
+      carddata={carddata} setCardData={setCardData} addCardData={addCardData}/>
       <div className="main">
         <Content user_id={user_id} location={location} 
         carddata={carddata} setCardData={setCardData} addCardData={addCardData} deleteCardData={deleteCardData}/>
