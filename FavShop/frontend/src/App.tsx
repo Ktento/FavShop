@@ -11,6 +11,8 @@ export interface CardData {
   address: string;
   webURL:string;
   hours: string;
+  latitude: number|null; 
+  longitude: number|null;
 }
 const App: React.FC = () => {
   console.log("Content OPEN")
@@ -78,6 +80,8 @@ const App: React.FC = () => {
         address: '住所1',
         webURL:"https://github.com/Ktento",
         hours: 'Sunday: 10:00 AM – 2:00 AM',
+        latitude:null,
+        longitude:null,
       },
       {
         id: 2,
@@ -87,6 +91,8 @@ const App: React.FC = () => {
         address: '住所2',
         webURL:"https://github.com/Ktento",
         hours: 'Sunday: 10:00 AM – 2:00 AM',
+        latitude:null,
+        longitude:null,
       },
       {
         id: 3,
@@ -96,6 +102,8 @@ const App: React.FC = () => {
         address: '住所3',
         webURL:"https://github.com/Ktento",
         hours: 'Sunday: 10:00 AM – 2:00 AM',
+        latitude:null,
+        longitude:null,
       },
       {
         id: 4,
@@ -105,6 +113,8 @@ const App: React.FC = () => {
         address: '住所4',
         webURL:"https://github.com/Ktento",
         hours: 'Sunday: 10:00 AM – 2:00 AM',
+        latitude:null,
+        longitude:null,
       },
       {
         id: 5,
@@ -114,6 +124,8 @@ const App: React.FC = () => {
         address: '住所5',
         webURL:"https://github.com/Ktento",
         hours: 'Sunday: 10:00 AM – 2:00 AM',
+        latitude:null,
+        longitude:null,
       },
     ]);
     }
