@@ -9,7 +9,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow-y: auto;
   }
   
   /* モーダル全体のスタイルを定義 */
@@ -22,12 +21,7 @@
     margin: 0 auto;
     position: relative;
     min-height: 400px; /* モーダルの最小高さを設定 */
-    max-height: 90vh;
-    overflow-y: auto; 
   }
-  .info-modal-list li {
-    margin-bottom: 10px; /* 各項目の間隔を調整 */
-}
   
   /* モーダルヘッダーのスタイルを定義 */
   .modal-header {
