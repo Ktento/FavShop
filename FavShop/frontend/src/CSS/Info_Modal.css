@@ -24,6 +24,9 @@
     min-height: 400px; /* モーダルの最小高さを設定 */
     overflow-y: auto; 
   }
+  .info-modal-list li {
+    margin-bottom: 10px; /* 各項目の間隔を調整 */
+}
   
   /* モーダルヘッダーのスタイルを定義 */
   .modal-header {
