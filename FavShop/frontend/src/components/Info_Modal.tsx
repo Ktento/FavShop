@@ -16,7 +16,7 @@ const InfoModal: React.FC<InfoModalProps> = ({ open, onClose }) => {
             アプリについて
           </Typography>
         </div>
-        <div className="info-modal-content">
+        <div className="modal-content">
           <Typography variant="body1">
             このアプリケーションは、ユーザーが様々な機能を利用できるように設計されています。
             <li>近くの店舗表示機能</li>

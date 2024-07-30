@@ -9,6 +9,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow-y: auto;
   }
   
   /* モーダル全体のスタイルを定義 */
@@ -18,16 +19,6 @@
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     max-width: 400px;
-    margin: 0 auto;
-    position: relative;
-    min-height: 400px; /* モーダルの最小高さを設定 */
-  }
-  .info-modal-content {
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    max-width: 800px;
     margin: 0 auto;
     position: relative;
     min-height: 400px; /* モーダルの最小高さを設定 */
