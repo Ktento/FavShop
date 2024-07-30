@@ -58,21 +58,6 @@ const App: React.FC = () => {
       const { latitude, longitude } = position.coords;
       setLocation({ latitude, longitude });
     };
-    useEffect(() => {
-    const fetchNearbyShops = async () => {
-      if (location?.latitude && location?.longitude && carddata.length === 0) {
-        try {
-          const card = await SearchNearShops(location.latitude, location.longitude);
-          setCardData(card);
-        } catch (error) {
-          console.error('Error fetching nearby shops:', error);
-        }
-      }
-    };
-
-    fetchNearbyShops();
-  }, [location, carddata]);
-
 
     // 取得に失敗した場合の処理
     const errorCallback = (error: GeolocationPositionError) => {
@@ -95,7 +80,7 @@ const App: React.FC = () => {
     };
 
     fetchNearbyShops();
-  }, [location]);
+  }, [location, carddata]);
 
   // ログイン状態を localStorage に保存
   useEffect(() => {
