@@ -17,7 +17,7 @@ const InfoModal: React.FC<InfoModalProps> = ({ open, onClose }) => {
           </Typography>
         </div>
         <div className="modal-content">
-          <Typography variant="body1">
+          <Typography variant="body2">
             このアプリケーションは、ユーザーが様々な機能を利用できるように設計されています。
             <li>近くの店舗表示機能</li>
               ログアウト状態では周辺の店舗が初期状態として表示されます。
