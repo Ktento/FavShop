@@ -41,6 +41,7 @@ const Add_Modal: React.FC<AddModalProps> = ({ user_id,carddata,onClose, closeDra
       setLoading(false); // 検索終了後にローディング状態を解除
     } catch (error) {
       console.log(error);
+      alert("既に登録済みです")
       setLoading(false); // エラーが発生した場合もローディング状態を解除
     }
   };
