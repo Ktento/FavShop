@@ -24,7 +24,7 @@ import { CardData } from "../App";
         title: place.name || '',
         address: place.vicinity || '',
         webURL:'',
-        hours:  ''
+        hours:'',
       };
     });
     return cardData;

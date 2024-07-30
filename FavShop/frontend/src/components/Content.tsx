@@ -59,6 +59,9 @@ const formatHours = (hours: string): string => {
   return `${start24Hour}-${end24Hour}`;
 };
 const getStatusClass = (hours: string): string => {
+  if(hours.length<=0){
+    return '?'
+  }
   if(hours.includes("Open 24 hours")){
     /*
     const every_openHour=0
