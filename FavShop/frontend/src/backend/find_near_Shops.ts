@@ -6,7 +6,7 @@ import { CardData } from "../App";
     if (!BASE_URL || !API_KEY) {
       throw new Error("BASE_URL or API_KEY is not defined");
     }
-    const response = await fetch(`${BASE_URL}/maps/api/place/nearbysearch/json?location=${latitude},${longitude}&radius=1500&type=store&key=${API_KEY}`);
+    const response = await fetch(`/api/search-near-places?latitude=${encodeURIComponent(latitude.toString())}&longitude=${encodeURIComponent(longitude.toString())}`);
     const data = await response.json();
     console.log('data=',data);
     if (!data.results||data.results.length==0) {

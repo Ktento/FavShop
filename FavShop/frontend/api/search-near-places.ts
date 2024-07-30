@@ -16,7 +16,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     }
   
     try {
-      const response = await fetch(`${BASE_URL}?location=${latitude},${longitude}&radius=1500&type=store&key=${API_KEY}`);
+      const response = await fetch(`${BASE_URL}?location=${encodeURIComponent(latitude as string)},${encodeURIComponent(longitude as string)}&radius=1500&type=store&key=${API_KEY}`);
       const data = await response.json();
       res.status(200).json(data);
     } catch (error) {
