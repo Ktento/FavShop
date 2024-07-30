@@ -61,6 +61,7 @@ const App: React.FC = () => {
       if(carddata.length==0){
         if(location?.latitude&&location?.longitude){
           const card=await SearchNearShops(location?.latitude,location?.longitude);
+          alert("AAA")
           setCardData(card);
         }
       }
