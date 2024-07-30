@@ -54,19 +54,25 @@ const App: React.FC = () => {
     };
 
     // 取得に成功した場合の処理
-    const successCallback = async(position: GeolocationPosition) => {
+    const successCallback = (position: GeolocationPosition) => {
       const { latitude, longitude } = position.coords;
       setLocation({ latitude, longitude });
-
-      if(carddata.length==0){
-        alert(location?.latitude)
-        alert(location?.longitude)
-        if(location?.latitude&&location?.longitude){
-          const card=await SearchNearShops(location?.latitude,location?.longitude);
+    };
+    useEffect(() => {
+    const fetchNearbyShops = async () => {
+      if (location?.latitude && location?.longitude && carddata.length === 0) {
+        try {
+          const card = await SearchNearShops(location.latitude, location.longitude);
           setCardData(card);
+        } catch (error) {
+          console.error('Error fetching nearby shops:', error);
         }
       }
     };
+
+    fetchNearbyShops();
+  }, [location, carddata]);
+
 
     // 取得に失敗した場合の処理
     const errorCallback = (error: GeolocationPositionError) => {
@@ -75,6 +81,21 @@ const App: React.FC = () => {
     // 位置情報を取得
     getCurrentPosition();
   }, []); // 空の依存配列でマウント時に一度だけ実行
+
+  useEffect(() => {
+    const fetchNearbyShops = async () => {
+      if (location?.latitude && location?.longitude && carddata.length === 0) {
+        try {
+          const card = await SearchNearShops(location.latitude, location.longitude);
+          setCardData(card);
+        } catch (error) {
+          console.error('Error fetching nearby shops:', error);
+        }
+      }
+    };
+
+    fetchNearbyShops();
+  }, [location]);
 
   // ログイン状態を localStorage に保存
   useEffect(() => {
