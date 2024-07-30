@@ -22,6 +22,7 @@
     margin: 0 auto;
     position: relative;
     min-height: 400px; /* モーダルの最小高さを設定 */
+    max-height: 90vh;
     overflow-y: auto; 
   }
   .info-modal-list li {
