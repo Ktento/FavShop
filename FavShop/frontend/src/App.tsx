@@ -57,11 +57,12 @@ const App: React.FC = () => {
     const successCallback = async(position: GeolocationPosition) => {
       const { latitude, longitude } = position.coords;
       setLocation({ latitude, longitude });
+      alert("BBB")
 
       if(carddata.length==0){
+        alert("AAA")
         if(location?.latitude&&location?.longitude){
           const card=await SearchNearShops(location?.latitude,location?.longitude);
-          alert("AAA")
           setCardData(card);
         }
       }
