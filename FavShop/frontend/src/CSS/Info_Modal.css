@@ -22,6 +22,7 @@
     margin: 0 auto;
     position: relative;
     min-height: 400px; /* モーダルの最小高さを設定 */
+    overflow-y: auto; 
   }
   
   /* モーダルヘッダーのスタイルを定義 */
