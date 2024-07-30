@@ -8,8 +8,6 @@ interface Place {
       lng: number;
     };
 }
-let BASE_URL="https://maps.googleapis.com/maps/api/place/textsearch/json";
-let API_KEY="AIzaSyBz5FX9M10pvm3UAiECGW_3HrysEWfFzws";
 
 
 export const searchPlaceByName = async (Shopname:string):Promise<Place[]> => {
