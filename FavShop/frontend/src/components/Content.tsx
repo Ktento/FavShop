@@ -65,7 +65,7 @@ const getStatusClass = (hours: string): string => {
     const every_closeMinute=0*/
     return 'open'
   }
-  if(hours.includes("Closed")){
+  if(hours.includes("閉店")||hours.includes("利用できません")||hours.includes("情報なし")){
     return 'closed'
   }
   const currentTime = new Date();
