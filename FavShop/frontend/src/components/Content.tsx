@@ -57,7 +57,7 @@ const getStatusClass = (hours: string): string => {
   if(hours.length<=0){
     return '?'
   }
-  if(hours.includes("Open 24 hours")){
+  if(hours.includes("24 時間営業")){
     /*
     const every_openHour=0
     const every_openMinute=0
