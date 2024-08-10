@@ -127,7 +127,7 @@ const Content: React.FC<ContentProps> = ({ user_id, location,carddata,deleteCard
       case 'closed':
         return '営業終了';
       default:
-        return '不明';
+        return null;
     }
   };
 

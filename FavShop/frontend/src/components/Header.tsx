@@ -43,7 +43,11 @@ const Header: React.FC<HeaderProps> = ({ user, user_id,carddata,location,setUser
           </IconButton>
           <img src={logo} alt="Logo" className="header-logo" />
           <Typography variant="h6" component="div" className="title">
-            {user ? `ログイン中:${user}` : '未ログイン'}
+          {user
+              ? `ログイン中:${user}`
+              : location
+              ? '近くの店舗を表示中'
+              : '未ログイン'}
           </Typography>
         </Toolbar>
       </AppBar>
