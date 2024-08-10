@@ -35,30 +35,25 @@ const CustomCardRoot = styled(Card)({
 const CustomCardMedia = styled(CardMedia)({
   height: 140,
 });
-
-const convertTo24HourFormat = (time: string, period: string): string => {
-  let [hours, minutes] = time.split(':').map(Number);
-  if (period === 'PM' && hours < 12) hours += 12;
-  if (period === 'AM' && hours === 12) hours = 0;
-  return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
-};
-
-const formatHours = (hours: string): string => {
+const formatHours = (hours: string): string[] => {
   // 曜日を取り除く
-  const timeRange = hours.replace(/^(Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday):?\s*/, '');
-
+  const jptime = hours.replace(/^(Sunday|日曜日|Monday|月曜日|Tuesday|火曜日|Wednesday|水曜日|Thursday|木曜日|Friday|金曜日|Saturday|土曜日):?\s*/, '');
+  const entime=jptime
+  .replace(/時/g,':')
+  .replace(/分/g,'')
+  .replace(/～/g,'-')
   // 営業時間を分割
-  const [openTimeStr, closeTimeStr] = timeRange.split('–').map(str => str.trim());
-  const [openHHMM, openAMPM] = openTimeStr.split(' ');
-  const [closeHHMM, closeAMPM] = closeTimeStr.split(' ');
-
-  // 24時間形式に変換
-  const start24Hour = convertTo24HourFormat(openHHMM, openAMPM);
-  const end24Hour = convertTo24HourFormat(closeHHMM, closeAMPM);
-
-  return `${start24Hour}-${end24Hour}`;
+  let openTimeStr;
+  if(entime.includes(',')){
+      openTimeStr = entime.split(',')
+  }else{
+      openTimeStr=[entime];
+  }
+  return openTimeStr;
 };
 const getStatusClass = (hours: string): string => {
+  console.log("before");
+  console.log(hours);
   if(hours.length<=0){
     return '?'
   }
@@ -75,31 +70,45 @@ const getStatusClass = (hours: string): string => {
   }
   const currentTime = new Date();
   const formattedHours = formatHours(hours);
-  
-  // 分割して時間を取得
-  const [openTimeStr, closeTimeStr] = formattedHours.split('-');
-  const [openHour, openMinute] = openTimeStr.split(':').map(Number);
-  const [closeHour, closeMinute] = closeTimeStr.split(':').map(Number);
-
-
-  // 本日の営業開始と終了の Date オブジェクトを作成
-  const openTime = new Date();
-  openTime.setHours(openHour, openMinute, 0, 0);
-
-  const closeTime = new Date();
-  closeTime.setHours(closeHour, closeMinute, 0, 0);
-
-  // 営業時間の判定
-  if (currentTime < openTime) {
-    return 'closed'; // 営業開始前
-  } else if (currentTime > closeTime) {
-    return 'closed'; // 営業終了後
-  } else if ((closeTime.getTime() - currentTime.getTime()) < (30 * 60 * 1000)) { // 営業終了30分前
-    return 'closing-soon';
-  } else {
-    return 'open'; // 営業中
+  const sales_state:number[]=[-1];
+  for (const opentime of formattedHours) {
+      // 分割して時間を取得
+      const [openTimeStr, closeTimeStr] = opentime.split('-');
+      const [openHour, openMinute] = openTimeStr.split(':').map(Number);
+      const [closeHour, closeMinute] = closeTimeStr.split(':').map(Number);
+   // 本日の営業開始と終了の Date オブジェクトを作成
+   const openTime = new Date();
+   openTime.setHours(openHour, openMinute, 0, 0);
+   const closeTime = new Date();
+   closeTime.setHours(closeHour, closeMinute, 0, 0);
+   // 営業時間の判定
+   if (currentTime < openTime) {
+      sales_state.push(0);
+   } else if (currentTime > closeTime) {
+      sales_state.push(0);
+   } else if ((closeTime.getTime() - currentTime.getTime()) < (30 * 60 * 1000)) {
+      sales_state.push(1); 
+   } else {
+      sales_state.push(2);
+   }
   }
+  let maxNumber: number =sales_state[0];
+
+  for (const num of sales_state) {
+      if (num > maxNumber) {
+          maxNumber = num;
+      }
+  }
+  if(maxNumber==0)
+      return 'closed';
+  else if(maxNumber==1)
+      return 'closing-soon';
+  else if(maxNumber==2)
+      return 'open';
+  else
+      return 'closed'
 };
+
 
 const Content: React.FC<ContentProps> = ({ user_id, location,carddata,deleteCardData}) => {
   console.log("Content OPEN")
