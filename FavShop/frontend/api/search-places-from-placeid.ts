@@ -16,7 +16,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   try {
-    const response = await fetch(`${BASE_URL}?key=${API_KEY}&place_id=${encodeURIComponent(placeId)}`);
+    const response = await fetch(`${BASE_URL}?key=${API_KEY}&place_id=${encodeURIComponent(placeId)}&language=ja`);
     const data = await response.json();
     res.status(200).json(data);
   } catch (error) {

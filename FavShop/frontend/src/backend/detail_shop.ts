@@ -7,7 +7,7 @@ import { CardData } from "../App";
       throw new Error("BASE_URL or API_KEY is not defined");
     }
     const placeinfoPromises = place_ids.map(async (place_id) => {
-      const response = await fetch(`/api/search-places-from-placeid?place_id=${encodeURIComponent(place_id)}&language=ja`);
+      const response = await fetch(`/api/search-places-from-placeid?place_id=${encodeURIComponent(place_id)}`);
       const data = await response.json();
       console.log('data=',data);
       if (!data.result) {
