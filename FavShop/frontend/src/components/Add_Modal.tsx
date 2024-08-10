@@ -70,7 +70,6 @@ const Add_Modal: React.FC<AddModalProps> = ({ user_id,carddata,onClose, closeDra
           }else{
             alert("placeidが取得できませんでした");
           }
-
         console.log("Bad Insert");
       }
     } else {
