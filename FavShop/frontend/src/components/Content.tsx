@@ -36,8 +36,10 @@ const CustomCardMedia = styled(CardMedia)({
   height: 140,
 });
 const formatHours = (hours: string): string[] => {
-  // 曜日を取り除く
+  // 曜日を取り除く(例:日曜日: 7時00分～9時45分, 11時00分～14時45分  →  7時00分～9時45分, 11時00分～14時45分)
   const jptime = hours.replace(/^(Sunday|日曜日|Monday|月曜日|Tuesday|火曜日|Wednesday|水曜日|Thursday|木曜日|Friday|金曜日|Saturday|土曜日):?\s*/, '');
+  //Date型にしやすくするために正規化
+  //例:7時00分～9時45分, 11時00分～14時45分　　→　[7:00-9:45,11:00-14:45]　
   const entime=jptime
   .replace(/時/g,':')
   .replace(/分/g,'')
@@ -51,12 +53,15 @@ const formatHours = (hours: string): string[] => {
   }
   return openTimeStr;
 };
+//営業状態を返す関数
 const getStatusClass = (hours: string): string => {
   console.log("before");
   console.log(hours);
+  //営業時間が未設定
   if(hours.length<=0){
     return '?'
   }
+  //24時間営業
   if(hours.includes("24 時間営業")){
     /*
     const every_openHour=0
@@ -65,9 +70,11 @@ const getStatusClass = (hours: string): string => {
     const every_closeMinute=0*/
     return 'open'
   }
+  //営業日でないor閉店
   if(hours.includes("閉店")||hours.includes("利用できません")||hours.includes("情報なし")){
     return 'closed'
   }
+  //現在営業中か算出
   const currentTime = new Date();
   const formattedHours = formatHours(hours);
   const sales_state:number[]=[-1];
@@ -76,24 +83,25 @@ const getStatusClass = (hours: string): string => {
       const [openTimeStr, closeTimeStr] = opentime.split('-');
       const [openHour, openMinute] = openTimeStr.split(':').map(Number);
       const [closeHour, closeMinute] = closeTimeStr.split(':').map(Number);
-   // 本日の営業開始と終了の Date オブジェクトを作成
-   const openTime = new Date();
-   openTime.setHours(openHour, openMinute, 0, 0);
-   const closeTime = new Date();
-   closeTime.setHours(closeHour, closeMinute, 0, 0);
-   // 営業時間の判定
-   if (currentTime < openTime) {
-      sales_state.push(0);
-   } else if (currentTime > closeTime) {
-      sales_state.push(0);
-   } else if ((closeTime.getTime() - currentTime.getTime()) < (30 * 60 * 1000)) {
-      sales_state.push(1); 
-   } else {
-      sales_state.push(2);
-   }
+      // 本日の営業開始と終了の Date オブジェクトを作成
+      const openTime = new Date();
+      openTime.setHours(openHour, openMinute, 0, 0);
+      const closeTime = new Date();
+      closeTime.setHours(closeHour, closeMinute, 0, 0);
+      // 営業時間の判定
+      //閉店→0,閉店まじか(30分前)→2,開店→1
+      if (currentTime < openTime) {
+          sales_state.push(0);
+      } else if (currentTime > closeTime) {
+          sales_state.push(0);
+      } else if ((closeTime.getTime() - currentTime.getTime()) < (30 * 60 * 1000)) {
+          sales_state.push(1); 
+      } else {
+          sales_state.push(2);
+      }
   }
+  //最適な営業状態の選出
   let maxNumber: number =sales_state[0];
-
   for (const num of sales_state) {
       if (num > maxNumber) {
           maxNumber = num;
@@ -111,12 +119,6 @@ const getStatusClass = (hours: string): string => {
 
 
 const Content: React.FC<ContentProps> = ({ user_id, location,carddata,deleteCardData}) => {
-  console.log("Content OPEN")
-  useEffect(() => { 
-    console.log(user_id);
-    
-
-  }, [carddata]);
   const [selectedCard, setSelectedCard] = useState<CardData | null>(null);
 
   const handleCardClick = (card: CardData) => {
