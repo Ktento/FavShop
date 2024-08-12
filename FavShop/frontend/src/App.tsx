@@ -95,7 +95,7 @@ const App: React.FC = () => {
   };
 
   useEffect(() => {
-    fetchNearbyShops();
+    if (location) fetchNearbyShops();
   }, [location]);
 
   // ログイン状態を localStorage に保存

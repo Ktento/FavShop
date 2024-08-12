@@ -86,12 +86,12 @@ const Sidebar: React.FC<SidebarProps> = ({
     setInfoModalOpen(false);
   };
 
-  const Logout = (): void => {
+  const Logout = async (): Promise<void> => {
     try {
       setUser(null);
       setUserID(null);
       //carddataがnullでない場合のみ実行
-      if (carddata) fetchNearbyShops();
+      if (carddata) await fetchNearbyShops();
       alert("ログアウト完了");
     } catch {
       alert("ログアウトできませんでした");
