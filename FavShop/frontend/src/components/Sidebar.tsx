@@ -14,7 +14,6 @@ import button_position_Image from "../assets/images/Map pin.png";
 import button_add_Image from "../assets/images/Plus.png";
 import { CardData } from "../App";
 import { SearchNearShops } from "../backend/find_near_Shops";
-import e from "express";
 interface SidebarProps {
   user: string | null;
   user_id: number | null;
@@ -87,25 +86,20 @@ const Sidebar: React.FC<SidebarProps> = ({
     setInfoModalOpen(false);
   };
 
-  const Logout = () => {
-    /*
+  const Logout = async () => {
     if (user_id != null) {
       try {
-        //setUser(null);
-        //setUserID(null);
-        //logout_setLoading(false);
+        setUser(null);
+        setUserID(null);
+        logout_setLoading(false);
         //carddataがnullでない場合のみ実行
-        //if (carddata) await //fetchNearbyShops();
-        alert("ログアウト完了");
-      } catch (error) {
-        console.log(error);
-        alert("ログアウトできませんでした");
+        if (carddata) await fetchNearbyShops();
+      } catch {
       } finally {
         logout_setLoading(false); // ローディング終了
       }
     } else {
-      alert("ログインをしてください");
-    }*/
+    }
   };
 
   return (
@@ -143,7 +137,7 @@ const Sidebar: React.FC<SidebarProps> = ({
           />
         </button>
         <button
-          className="logout-sidebar-button"
+          className="sidebar-button text-button"
           onClick={Logout}
           style={{ color: "red" }}
         >
