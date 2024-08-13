@@ -89,7 +89,9 @@ const Sidebar: React.FC<SidebarProps> = ({
   const Logout = async (): Promise<void> => {
     if (user_id != null) {
       try {
+        console.log("setUser");
         setUser(null);
+        console.log("setUserID");
         setUserID(null);
         //carddataがnullでない場合のみ実行
         //if (carddata) await fetchNearbyShops();
@@ -139,7 +141,7 @@ const Sidebar: React.FC<SidebarProps> = ({
           />
         </button>
         <button
-          className="sidebar-button"
+          className="sidebar-button text-button"
           onClick={Logout}
           style={{ color: "red" }}
         >
