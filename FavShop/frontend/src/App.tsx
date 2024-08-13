@@ -78,6 +78,7 @@ const App: React.FC = () => {
   }, []); // 空の依存配列でマウント時に一度だけ実行
   //現在地から近い店舗のカード情報を登録する関数
   const fetchNearbyShops = async () => {
+    console.log("fetchNearbyShops実行");
     if (location?.latitude && location?.longitude && carddata.length === 0) {
       try {
         const card = await SearchNearShops(
@@ -89,6 +90,9 @@ const App: React.FC = () => {
         console.error("Error fetching nearby shops:", error);
       }
     } else {
+      console.log("if分ではじかれた");
+      console.log("latitude", location?.latitude);
+      console.log("carddata", carddata, carddata.length);
       setCardData([]);
     }
   };
