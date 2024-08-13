@@ -79,7 +79,11 @@ const App: React.FC = () => {
   //現在地から近い店舗のカード情報を登録する関数
   const fetchNearbyShops = async () => {
     console.log("fetchNearbyShops実行");
-    if (location?.latitude && location?.longitude) {
+    if (
+      location?.latitude &&
+      location?.longitude &&
+      (user || user_id || carddata)
+    ) {
       try {
         const card = await SearchNearShops(
           location.latitude,
