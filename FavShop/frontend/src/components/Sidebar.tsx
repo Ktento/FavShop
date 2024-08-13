@@ -45,7 +45,6 @@ const Sidebar: React.FC<SidebarProps> = ({
   const [addModalOpen, setAddModalOpen] = useState(false);
   const [positionModalOpen, setPositionModalOpen] = useState(false);
   const [infoModalOpen, setInfoModalOpen] = useState(false);
-  const [logout_loading, logout_setLoading] = useState(false);
   const openSignInModal = () => {
     setSignInModalOpen(true);
   };
@@ -93,11 +92,9 @@ const Sidebar: React.FC<SidebarProps> = ({
         setUser(null);
         setUserID(null);
         setCardData([]);
-        logout_setLoading(false);
         await fetchNearbyShops();
       } catch {
       } finally {
-        logout_setLoading(false); // ローディング終了
       }
     } else {
     }
@@ -130,19 +127,20 @@ const Sidebar: React.FC<SidebarProps> = ({
         <button className="sidebar-button" onClick={openAddModal}>
           <img src={button_add_Image} alt="add" className="button-image" />
         </button>
+        {/*現在地からのお気に入り店舗登録
         <button className="sidebar-button" onClick={openPositionModal}>
           <img
             src={button_position_Image}
             alt="position"
             className="button-image"
           />
-        </button>
+        </button>*/}
         <button
           className="sidebar-button text-button"
           onClick={Logout}
           style={{ color: "red" }}
         >
-          {logout_loading ? <CircularProgress size={20} /> : "Log out"}
+          Log out
         </button>
       </div>
       <Footer />
