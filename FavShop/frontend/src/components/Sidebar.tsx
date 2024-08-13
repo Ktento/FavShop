@@ -88,7 +88,6 @@ const Sidebar: React.FC<SidebarProps> = ({
   };
 
   const Logout = () => {
-    alert("AAAAAAAAAA");
     /*
     if (user_id != null) {
       try {
@@ -144,7 +143,7 @@ const Sidebar: React.FC<SidebarProps> = ({
           />
         </button>
         <button
-          className="sidebar-button"
+          className="logout-sidebar-button"
           onClick={Logout}
           style={{ color: "red" }}
         >
