@@ -139,7 +139,7 @@ const Sidebar: React.FC<SidebarProps> = ({
           />
         </button>
         <button
-          className="sidebar-button text-button"
+          className="sidebar-button"
           onClick={Logout}
           style={{ color: "red" }}
         >
