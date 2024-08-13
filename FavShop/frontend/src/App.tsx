@@ -118,6 +118,7 @@ const App: React.FC = () => {
 
   useEffect(() => {
     console.log("setcardata");
+    console.log(carddata);
     localStorage.setItem("carddata", JSON.stringify(carddata));
   }, [carddata]);
 
