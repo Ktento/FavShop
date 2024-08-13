@@ -93,7 +93,6 @@ const Sidebar: React.FC<SidebarProps> = ({
         setUser(null);
         setUserID(null);
         setCardData([]);
-        console.log(carddata);
         logout_setLoading(false);
         await fetchNearbyShops();
       } catch {
