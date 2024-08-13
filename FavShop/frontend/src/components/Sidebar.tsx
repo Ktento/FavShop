@@ -89,13 +89,9 @@ const Sidebar: React.FC<SidebarProps> = ({
   const Logout = async () => {
     if (user_id != null) {
       try {
-        setUser(null);
-        setUserID(null);
-        setCardData([]);
-        console.log(carddata);
+        localStorage.clear();
         logout_setLoading(false);
-        //carddataがnullでない場合のみ実行
-        if (carddata) await fetchNearbyShops();
+        await fetchNearbyShops();
       } catch {
       } finally {
         logout_setLoading(false); // ローディング終了
