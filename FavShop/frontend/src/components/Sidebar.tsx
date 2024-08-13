@@ -92,6 +92,7 @@ const Sidebar: React.FC<SidebarProps> = ({
         setUser(null);
         setUserID(null);
         setCardData([]);
+        console.log(carddata);
         logout_setLoading(false);
         //carddataがnullでない場合のみ実行
         if (carddata) await fetchNearbyShops();
