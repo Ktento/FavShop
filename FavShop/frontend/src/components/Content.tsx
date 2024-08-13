@@ -64,8 +64,6 @@ const formatHours = (hours: string): string[] => {
 };
 //営業状態を返す関数
 const getStatusClass = (hours: string): string => {
-  console.log("before");
-  console.log(hours);
   //営業時間が未設定
   if (hours.length <= 0) {
     return "?";

@@ -14,7 +14,6 @@ export interface CardData {
   hours: string;
 }
 const App: React.FC = () => {
-  console.log("Content OPEN");
   const [user, setUser] = useState<string | null>(
     localStorage.getItem("user") || null
   );
@@ -116,7 +115,6 @@ const App: React.FC = () => {
   }, [user_id]);
 
   useEffect(() => {
-    console.log("useEffect card set");
     localStorage.setItem("carddata", JSON.stringify(carddata));
   }, [carddata]);
 
