@@ -14,6 +14,7 @@ import button_position_Image from "../assets/images/Map pin.png";
 import button_add_Image from "../assets/images/Plus.png";
 import { CardData } from "../App";
 import { SearchNearShops } from "../backend/find_near_Shops";
+import e from "express";
 interface SidebarProps {
   user: string | null;
   user_id: number | null;
@@ -89,17 +90,14 @@ const Sidebar: React.FC<SidebarProps> = ({
   const Logout = async () => {
     if (user_id != null) {
       try {
-        console.log("setUser");
         setUser(null);
-        console.log("setUserID");
         setUserID(null);
-        console.log("logoutsetloding");
         logout_setLoading(false);
-        console.log("fetchNearbyShops");
         //carddataがnullでない場合のみ実行
         if (carddata) await fetchNearbyShops();
         alert("ログアウト完了");
-      } catch {
+      } catch (error) {
+        console.log(error);
         alert("ログアウトできませんでした");
       } finally {
         logout_setLoading(false); // ローディング終了
