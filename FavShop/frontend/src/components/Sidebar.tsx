@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { IconButton } from "@mui/material";
+import { IconButton, CircularProgress } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import Footer from "./Footer";
 import Modal from "./Modal";
@@ -45,7 +45,7 @@ const Sidebar: React.FC<SidebarProps> = ({
   const [addModalOpen, setAddModalOpen] = useState(false);
   const [positionModalOpen, setPositionModalOpen] = useState(false);
   const [infoModalOpen, setInfoModalOpen] = useState(false);
-
+  const [logout_loading, logout_setLoading] = useState(false);
   const openSignInModal = () => {
     setSignInModalOpen(true);
   };
@@ -87,14 +87,18 @@ const Sidebar: React.FC<SidebarProps> = ({
   };
 
   const Logout = async (): Promise<void> => {
-    try {
-      setUser(null);
-      setUserID(null);
-      //carddataがnullでない場合のみ実行
-      if (carddata) await fetchNearbyShops();
-      alert("ログアウト完了");
-    } catch {
-      alert("ログアウトできませんでした");
+    if (user_id != null) {
+      try {
+        setUser(null);
+        setUserID(null);
+        //carddataがnullでない場合のみ実行
+        if (carddata) await fetchNearbyShops();
+        alert("ログアウト完了");
+      } catch {
+        alert("ログアウトできませんでした");
+      } finally {
+        logout_setLoading(false); // ローディング終了
+      }
     }
   };
 
@@ -137,7 +141,7 @@ const Sidebar: React.FC<SidebarProps> = ({
           onClick={Logout}
           style={{ color: "red" }}
         >
-          Log out
+          {logout_loading ? <CircularProgress size={20} /> : "Log out"}
         </button>
       </div>
       <Footer />

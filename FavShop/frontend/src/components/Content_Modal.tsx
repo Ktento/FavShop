@@ -1,9 +1,9 @@
-import React from 'react';
-import { Modal, Box, Typography, Grid, IconButton } from '@mui/material';
-import CloseIcon from '@mui/icons-material/Close';
-import { styled } from '@mui/material/styles';
-import { CardData } from '../App';
-import { DeleteFavShop } from '../backend/delete_favshop';
+import React from "react";
+import { Modal, Box, Typography, Grid, IconButton } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
+import { styled } from "@mui/material/styles";
+import { CardData } from "../App";
+import { DeleteFavShop } from "../backend/delete_favshop";
 
 interface ContentModalProps {
   open: boolean;
@@ -11,59 +11,66 @@ interface ContentModalProps {
   data: CardData | null;
   deleteCardData: (id: string) => void;
   user_id: number | null;
-  location :{latitude:number|null, longitude:number|null}|null;
+  location: { latitude: number | null; longitude: number | null } | null;
 }
 
 // モーダルのスタイル設定
 const style = {
-  position: 'absolute' as 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: '80%',
-  maxWidth: '600px',
-  height: 'auto',
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
+  position: "absolute" as "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: "80%",
+  maxWidth: "600px",
+  height: "auto",
+  bgcolor: "background.paper",
+  border: "2px solid #000",
   boxShadow: 24,
   p: 4,
-  overflow: 'auto',
+  overflow: "auto",
 };
 
 // 地図のスタイル設定
-const MapSpace = styled('div')({
-  width: '80%',
-  height: '20vh',
-  backgroundColor: '#eee',
-  margin: '0 auto 16px auto',
+const MapSpace = styled("div")({
+  width: "80%",
+  height: "20vh",
+  backgroundColor: "#eee",
+  margin: "0 auto 16px auto",
 });
 
 // メイン画像のスタイル設定
-const ImageSpace = styled('div')({
-  width: '100%',
-  height: '30vh',
-  backgroundColor: '#ddd',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
+const ImageSpace = styled("div")({
+  width: "100%",
+  height: "30vh",
+  backgroundColor: "#ddd",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
 });
 
-const ContentModal: React.FC<ContentModalProps> = ({ open, handleClose, data, user_id, location,deleteCardData }) => {
+const ContentModal: React.FC<ContentModalProps> = ({
+  open,
+  handleClose,
+  data,
+  user_id,
+  location,
+  deleteCardData,
+}) => {
   if (!data) return null;
 
-  const handleUnfavorite = async() => {
+  const handleUnfavorite = async () => {
     // ここで「お気に入り解除」の処理を行うことができます。
-    if(user_id){
-      const response=await DeleteFavShop(user_id,data.plaseid);
-      if(response){
+    if (user_id) {
+      const response = await DeleteFavShop(user_id, data.plaseid);
+      if (response) {
         deleteCardData(data.plaseid);
         alert("お気に入りの店舗の削除しました");
-        console.log("Content_Modal CLOSE")
+        console.log("Content_Modal CLOSE");
         handleClose();
-      }else{
+      } else {
         alert("お気に入りの店舗の削除が正常にできませんでした。");
       }
-    }else{
+    } else {
       alert("user_idが設定されてません");
     }
   };
@@ -80,7 +87,7 @@ const ContentModal: React.FC<ContentModalProps> = ({ open, handleClose, data, us
           aria-label="close"
           onClick={handleClose}
           sx={{
-            position: 'absolute',
+            position: "absolute",
             right: 8,
             top: 8,
             color: (theme) => theme.palette.grey[500],
@@ -89,7 +96,7 @@ const ContentModal: React.FC<ContentModalProps> = ({ open, handleClose, data, us
           <CloseIcon />
         </IconButton>
         <MapSpace>
-        <MapSpace>地図</MapSpace>
+          <MapSpace>地図</MapSpace>
         </MapSpace>
         <Grid container spacing={2}>
           <Grid item xs={6}>
@@ -102,28 +109,52 @@ const ContentModal: React.FC<ContentModalProps> = ({ open, handleClose, data, us
             <Typography variant="body2" color="textSecondary">
               {data.hours}
             </Typography>
-            <Typography component="a" href="#" variant="body2" color="primary" style={{ display: 'block', marginTop: 8 }}>
-              <a href={`https://www.google.com/maps/dir/?api=1&origin=${location?.latitude},${location?.longitude}&destination=${data.title}&destination_place_id=${data.plaseid}`}>
-              店舗までの経路
+            <Typography
+              component="a"
+              href="#"
+              variant="body2"
+              color="primary"
+              style={{ display: "block", marginTop: 8 }}
+            >
+              <a
+                href={`https://www.google.com/maps/dir/?api=1&origin=${location?.latitude},${location?.longitude}&destination=${data.title}&destination_place_id=${data.plaseid}`}
+              >
+                店舗までの経路
               </a>
             </Typography>
-            {data.webURL&&(
-               <Typography component="a" href="#" variant="body2" color="primary" style={{ display: 'block', marginTop: 8 }}>
-               <a href={`${data.webURL}`}>
-                 店舗詳細を確認
-               </a>
-               </Typography>
-
+            {data.webURL && (
+              <Typography
+                component="a"
+                href="#"
+                variant="body2"
+                color="primary"
+                style={{ display: "block", marginTop: 8 }}
+              >
+                <a href={`${data.webURL}`}>店舗詳細を確認</a>
+              </Typography>
             )}
             {user_id && (
-              <Typography component="a" href="#" variant="body2" color="primary" style={{ display: 'block', marginTop: 8 }} onClick={handleUnfavorite}>
+              <Typography
+                component="a"
+                href="#"
+                variant="body2"
+                color="primary"
+                style={{ display: "block", marginTop: 8 }}
+                onClick={handleUnfavorite}
+              >
                 お気に入り解除
               </Typography>
             )}
           </Grid>
           <Grid item xs={6}>
             <ImageSpace>
-              {data.image && <img src={data.image} alt={data.title} style={{ maxWidth: '100%', maxHeight: '100%' }} />}
+              {data.image && (
+                <img
+                  src={data.image}
+                  alt={data.title}
+                  style={{ maxWidth: "100%", maxHeight: "100%" }}
+                />
+              )}
             </ImageSpace>
           </Grid>
         </Grid>
