@@ -90,9 +90,6 @@ const App: React.FC = () => {
         console.error("Error fetching nearby shops:", error);
       }
     } else {
-      console.log("if分ではじかれた");
-      console.log("latitude", location?.latitude);
-      console.log("carddata", carddata, carddata.length);
       setCardData([]);
     }
   };
