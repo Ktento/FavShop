@@ -87,7 +87,9 @@ const Sidebar: React.FC<SidebarProps> = ({
     setInfoModalOpen(false);
   };
 
-  const Logout = async () => {
+  const Logout = () => {
+    alert("AAAAAAAAAA");
+    /*
     if (user_id != null) {
       try {
         //setUser(null);
@@ -104,7 +106,7 @@ const Sidebar: React.FC<SidebarProps> = ({
       }
     } else {
       alert("ログインをしてください");
-    }
+    }*/
   };
 
   return (
