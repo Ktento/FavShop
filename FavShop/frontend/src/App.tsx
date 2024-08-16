@@ -56,6 +56,7 @@ const App: React.FC = () => {
       return updatedCardData;
     });
   };
+
   /*現在地を取得*/
   useEffect(() => {
     // 位置情報を取得する関数
@@ -76,6 +77,7 @@ const App: React.FC = () => {
     // 位置情報を取得
     getCurrentPosition();
   }, []); // 空の依存配列でマウント時に一度だけ実行
+
   //現在地から近い店舗のカード情報を登録する関数
   const fetchNearbyShops = async () => {
     console.log("fetchNearbyShops実行");
