@@ -78,11 +78,12 @@ const getStatusClass = (hours: string): string => {
     const every_closeMinute=0*/
     return "open";
   }
-  //営業日でないor閉店
+  //営業日でないor閉店or定休日
   if (
     hours.includes("閉店") ||
     hours.includes("利用できません") ||
-    hours.includes("情報なし")
+    hours.includes("情報なし") ||
+    hours.includes("定休日")
   ) {
     return "closed";
   }
