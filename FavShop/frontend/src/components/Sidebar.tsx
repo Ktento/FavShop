@@ -18,6 +18,7 @@ interface SidebarProps {
   user: string | null;
   user_id: number | null;
   location: { latitude: number | null; longitude: number | null } | null;
+  loginFlag: boolean;
   setUser: (user: string | null) => void;
   setUserID: (user_id: number | null) => void;
   closeDrawer: () => void;
@@ -26,6 +27,7 @@ interface SidebarProps {
   setCardData: React.Dispatch<React.SetStateAction<CardData[]>>;
   addCardData: (newCard: CardData) => void;
   fetchNearbyShops: () => void;
+  setloginFlag: (loginFlag: boolean) => void;
 }
 
 const Sidebar: React.FC<SidebarProps> = ({
@@ -33,12 +35,14 @@ const Sidebar: React.FC<SidebarProps> = ({
   user_id,
   carddata,
   location,
+  loginFlag,
   setUser,
   setUserID,
   setCardData,
   addCardData,
   closeDrawer,
   fetchNearbyShops,
+  setloginFlag,
 }) => {
   const [signInModalOpen, setSignInModalOpen] = useState(false);
   const [signUpModalOpen, setSignUpModalOpen] = useState(false);
@@ -95,6 +99,7 @@ const Sidebar: React.FC<SidebarProps> = ({
         await fetchNearbyShops();
       } catch {
       } finally {
+        setloginFlag(false);
       }
     } else {
     }

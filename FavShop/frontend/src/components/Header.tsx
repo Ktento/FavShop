@@ -9,6 +9,7 @@ interface HeaderProps {
   user: string | null;
   user_id: number | null;
   location: { latitude: number | null; longitude: number | null } | null;
+  loginFlag: boolean;
   setUser: (user: string | null) => void;
   setUserID: (user_id: number | null) => void;
   carddata: CardData[] | null;
@@ -16,6 +17,7 @@ interface HeaderProps {
   setCardData: React.Dispatch<React.SetStateAction<CardData[]>>;
   addCardData: (newCard: CardData) => void;
   fetchNearbyShops: () => void;
+  setloginFlag: (loginFlag: boolean) => void;
 }
 
 const Header: React.FC<HeaderProps> = ({
@@ -23,11 +25,13 @@ const Header: React.FC<HeaderProps> = ({
   user_id,
   carddata,
   location,
+  loginFlag,
   setUser,
   setUserID,
   setCardData,
   addCardData,
   fetchNearbyShops,
+  setloginFlag,
 }) => {
   const [drawerOpen, setDrawerOpen] = useState(false);
 
@@ -81,14 +85,16 @@ const Header: React.FC<HeaderProps> = ({
         <Sidebar
           user={user}
           user_id={user_id}
+          location={location}
+          loginFlag={loginFlag}
           setUser={setUser}
           setUserID={setUserID}
           carddata={carddata}
           setCardData={setCardData}
           addCardData={addCardData}
           closeDrawer={closeDrawer}
-          location={location}
           fetchNearbyShops={fetchNearbyShops}
+          setloginFlag={setloginFlag}
         />
       </Drawer>
     </>

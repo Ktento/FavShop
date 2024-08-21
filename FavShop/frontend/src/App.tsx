@@ -34,6 +34,8 @@ const App: React.FC = () => {
     latitude: number | null;
     longitude: number | null;
   } | null>(null);
+  //ログイン状態を判別するためのフラグ
+  const [loginFlag, setloginFlag] = useState<boolean>(true);
 
   // カード情報を追加する関数
   const addCardData = (newCard: CardData) => {
@@ -84,7 +86,7 @@ const App: React.FC = () => {
     if (
       location?.latitude &&
       location?.longitude &&
-      (user || user_id || carddata)
+      (!loginFlag || (!loginFlag && !user))
     ) {
       try {
         const card = await SearchNearShops(
@@ -134,12 +136,14 @@ const App: React.FC = () => {
         user={user}
         user_id={user_id}
         location={location}
+        loginFlag={loginFlag}
         setUser={setUser}
         setUserID={setUserID}
         carddata={carddata}
         setCardData={setCardData}
         addCardData={addCardData}
         fetchNearbyShops={fetchNearbyShops}
+        setloginFlag={setloginFlag}
       />
       <div className="main">
         <Content
