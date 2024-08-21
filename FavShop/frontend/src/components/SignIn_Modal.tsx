@@ -9,11 +9,13 @@ interface SignInModalProps {
   user: string | null;
   user_id: number | null;
   location: { latitude: number | null; longitude: number | null } | null;
+  loginFlag: boolean;
   openSignUpModal: () => void;
   onClose: () => void;
   setUser: (user: string | null) => void;
   setUserID: (user_id: number | null) => void;
   closeDrawer: () => void;
+  setloginFlag: (loginFlag: boolean) => void;
   carddata: CardData[] | null;
   //CardData配列をすべて初期化するか、配列の一つを更新するか選べる
   setCardData: React.Dispatch<React.SetStateAction<CardData[]>>;
@@ -23,12 +25,14 @@ const SignInModal: React.FC<SignInModalProps> = ({
   user_id,
   carddata,
   location,
+  loginFlag,
   openSignUpModal,
   onClose,
   setUser,
   setUserID,
   closeDrawer,
   setCardData,
+  setloginFlag,
 }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -59,6 +63,7 @@ const SignInModal: React.FC<SignInModalProps> = ({
         onClose();
         closeDrawer();
         alert("ログイン成功");
+        setloginFlag(true);
         setCardData([]);
         if (setuser_id) {
           const response = user_entry_shops(setuser_id);

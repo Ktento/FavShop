@@ -35,7 +35,7 @@ const App: React.FC = () => {
     longitude: number | null;
   } | null>(null);
   //ログイン状態を判別するためのフラグ
-  const [loginFlag, setloginFlag] = useState<boolean>(true);
+  const [loginFlag, setloginFlag] = useState<boolean>(false);
 
   // カード情報を追加する関数
   const addCardData = (newCard: CardData) => {

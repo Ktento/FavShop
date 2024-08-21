@@ -156,12 +156,14 @@ const Sidebar: React.FC<SidebarProps> = ({
           onClose={closeSignInModal}
           user={user}
           user_id={user_id}
-          setUser={setUser}
-          setUserID={setUserID}
           location={location}
           carddata={carddata}
+          loginFlag={loginFlag}
+          setUser={setUser}
+          setUserID={setUserID}
           setCardData={setCardData}
           closeDrawer={closeDrawer}
+          setloginFlag={setloginFlag}
         />
       </Modal>
       <Modal2 isOpen={signUpModalOpen} onClose={closeSignUpModal}>
