@@ -85,11 +85,7 @@ const App: React.FC = () => {
     console.log("fetchNearbyShops実行");
     console.log("loginFlag=", loginFlag);
     console.log("user=", user);
-    if (
-      location?.latitude &&
-      location?.longitude &&
-      (!loginFlag || (!loginFlag && !user))
-    ) {
+    if (location?.latitude && location?.longitude) {
       try {
         const card = await SearchNearShops(
           location.latitude,
@@ -106,8 +102,16 @@ const App: React.FC = () => {
   };
 
   useEffect(() => {
-    if (location) fetchNearbyShops();
-  }, [location]);
+    if (user) {
+      setloginFlag(true);
+    }
+    if (location) {
+      if (loginFlag) {
+      } else {
+        fetchNearbyShops();
+      }
+    }
+  }, [location, loginFlag, user]);
 
   // ログイン状態を localStorage に保存
   useEffect(() => {

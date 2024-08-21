@@ -92,13 +92,13 @@ const Sidebar: React.FC<SidebarProps> = ({
   const Logout = async () => {
     if (user_id != null) {
       try {
-        localStorage.clear();
         setUser(null);
         setUserID(null);
         setCardData([]);
         await fetchNearbyShops();
       } catch {
       } finally {
+        localStorage.clear();
         setloginFlag(false);
       }
     } else {
