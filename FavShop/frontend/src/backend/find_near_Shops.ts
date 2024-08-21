@@ -11,15 +11,10 @@ import { CardData } from "../App";
     if (!data.results||data.results.length==0) {
         throw new Error(`詳細が見つかりません`);
     } 
-    // 今日の曜日を取得する
-    const today = (new Date().getDay()+ 6) % 7; // 0:日曜日, 1:月曜日, ..., 6:土曜日
     const cardData: CardData[] = data.results.map((place: any) => {
         // 写真の参照を取得し、画像URLを構成する
         const photoReference = place.photos ? place.photos[0].photo_reference : '';
         const image = photoReference ? `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photoReference}&key=${API_KEY}` : '';
-
-        const weekdayText = place.opening_hours?.weekday_text || [];
-        const hoursToday = weekdayText[today] || 'N/A'; // 今日の営業時間
 
       return {
         id: null, 
@@ -28,7 +23,7 @@ import { CardData } from "../App";
         title: place.name || '',
         address: place.vicinity || '',
         webURL:'',
-        hours:hoursToday,
+        hours:'',
       };
     });
     return cardData;
