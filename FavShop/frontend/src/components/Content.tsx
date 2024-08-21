@@ -180,7 +180,7 @@ const Content: React.FC<ContentProps> = ({
                     color="textSecondary"
                     component="p"
                   >
-                    {card.address}
+                    {card.address.replace(/日本|、|〒\d{3}-\d{4}\s*/g, "")}
                   </Typography>
                   <Typography
                     className="card-hours"
