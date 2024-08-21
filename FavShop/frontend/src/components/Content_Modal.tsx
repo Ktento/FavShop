@@ -65,7 +65,6 @@ const ContentModal: React.FC<ContentModalProps> = ({
       if (response) {
         deleteCardData(data.plaseid);
         alert("お気に入りの店舗の削除しました");
-        console.log("Content_Modal CLOSE");
         handleClose();
       } else {
         alert("お気に入りの店舗の削除が正常にできませんでした。");

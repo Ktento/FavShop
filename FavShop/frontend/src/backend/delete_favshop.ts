@@ -6,7 +6,6 @@ export const DeleteFavShop = async (user_id:number,place_id:string):Promise<bool
 let {status,statusText} = await supabase.from("entry_shop").delete().eq('user_id',user_id).
 eq('place_id',place_id);
 if (status==201||status === 204) {
-    console.log(status,statusText);
     return true;
   }else{
     console.log("ERROR")

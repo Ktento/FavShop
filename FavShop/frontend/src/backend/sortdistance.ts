@@ -17,9 +17,7 @@ const API_KEY: string = process.env.REACT_APP_GOOGLE_DISTANCE_API_KEY ?? "";
 
     const distancePromises = place_ids.map(async (place_id) => {
       const response = await fetch(`/api/distance-place?origin=${encodeURIComponent(origin)}&destination=place_id:${encodeURIComponent(place_id)}`);
-      console.log(response);
       const data = await response.json();
-      console.log('Response JSON data:', data);
       //responseがすべてnullでないかの検査
       if (data.rows && data.rows[0] && data.rows[0].elements && data.rows[0].elements[0] && data.rows[0].elements[0].distance) {
         const distance = data.rows[0].elements[0].distance.value; // 距離（メートル）
@@ -39,7 +37,7 @@ const API_KEY: string = process.env.REACT_APP_GOOGLE_DISTANCE_API_KEY ?? "";
   
   /*テスト用のコード*/
   /*
-  const placeName = '粋蓮華'; // 検索したい店の名前
+  const placeName = ''; // 検索したい店の名前
   searchPlaceByName(placeName).then(places => {
     console.log('Found places:', places);
   });*/

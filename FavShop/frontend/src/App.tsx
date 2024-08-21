@@ -82,9 +82,6 @@ const App: React.FC = () => {
 
   //現在地から近い店舗のカード情報を登録する関数
   const fetchNearbyShops = async () => {
-    console.log("fetchNearbyShops実行");
-    console.log("loginFlag=", loginFlag);
-    console.log("user=", user);
     if (location?.latitude && location?.longitude) {
       try {
         const card = await SearchNearShops(
@@ -96,7 +93,6 @@ const App: React.FC = () => {
         console.error("Error fetching nearby shops:", error);
       }
     } else {
-      console.log(carddata);
       setCardData([]);
     }
   };
@@ -131,8 +127,6 @@ const App: React.FC = () => {
   }, [user_id]);
 
   useEffect(() => {
-    console.log("setcardata");
-    console.log(carddata);
     localStorage.setItem("carddata", JSON.stringify(carddata));
   }, [carddata]);
 

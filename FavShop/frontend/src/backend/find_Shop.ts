@@ -18,7 +18,6 @@ export const searchPlaceByName = async (Shopname:string):Promise<SearchResult[]>
     throw new Error("BASE_URL or API_KEY is not defined");
   }
     const response = await fetch(`/api/search-places?query=${encodeURIComponent(Shopname)}`);
-    console.log(response)
     const data = await response.json();
     console.log('API Response:', data); // レスポンスをコンソールに出力
     if (!data.results) {
@@ -41,7 +40,7 @@ export const searchPlaceByName = async (Shopname:string):Promise<SearchResult[]>
 
 /*テスト用のコード*/
 /*
-const placeName = '粋蓮華'; // 検索したい店の名前
+const placeName = ''; // 検索したい店の名前
 searchPlaceByName(placeName).then(places => {
   console.log('Found places:', places);
 });*/

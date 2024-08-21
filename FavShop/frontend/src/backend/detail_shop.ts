@@ -9,7 +9,6 @@ import { CardData } from "../App";
     const placeinfoPromises = place_ids.map(async (place_id) => {
       const response = await fetch(`/api/search-places-from-placeid?place_id=${encodeURIComponent(place_id)}`);
       const data = await response.json();
-      console.log('data=',data);
       if (!data.result) {
         throw new Error(`place_id: ${place_id} の詳細が見つかりません`);
       } const place = data.result;
@@ -20,10 +19,8 @@ import { CardData } from "../App";
       
       // 今日の曜日を取得する
       const today = (new Date().getDay()+ 6) % 7; // 0:日曜日, 1:月曜日, ..., 6:土曜日
-      console.log('tody is ',today)
       const weekdayText = place.opening_hours?.weekday_text || [];
       const hoursToday = weekdayText[today] || 'N/A'; // 今日の営業時間
-      console.log(hoursToday);
 
       return {
         id: user_id, 
@@ -42,7 +39,7 @@ import { CardData } from "../App";
   
   /*テスト用のコード*/
   /*
-  const placeName = '粋蓮華'; // 検索したい店の名前
+  const placeName = ''; // 検索したい店の名前
   searchPlaceByName(placeName).then(places => {
     console.log('Found places:', places);
   });*/

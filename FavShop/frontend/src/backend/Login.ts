@@ -20,8 +20,8 @@ if (error) {
 
 /*テスト用のコード*/
 /*
-const user="Ktento";
-const pass="Kento0s721";
+const user="";
+const pass="";
 Login(user, pass).then(result => {
   console.log(result.success);
 });*/

@@ -8,7 +8,6 @@ import { CardData } from "../App";
     }
     const response = await fetch(`/api/search-near-places?latitude=${encodeURIComponent(latitude.toString())}&longitude=${encodeURIComponent(longitude.toString())}`);
     const data = await response.json();
-    console.log('data=',data);
     if (!data.results||data.results.length==0) {
         throw new Error(`詳細が見つかりません`);
     } 
@@ -32,7 +31,7 @@ import { CardData } from "../App";
 
   /*テスト用のコード*/
   /*
-  const placeName = '粋蓮華'; // 検索したい店の名前
+  const placeName = ''; // 検索したい店の名前
   searchPlaceByName(placeName).then(places => {
     console.log('Found places:', places);
   });*/
