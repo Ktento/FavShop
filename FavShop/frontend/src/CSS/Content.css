@@ -48,7 +48,7 @@
 /* カードのスタイル */
 .card-root {
   width: 300px; /* カードの幅を固定 */
-  height: 300px; /* カードの高さを固定 */
+  height: 250px; /* カードの高さを固定 */
   position: relative; /* ステータス表示のために相対位置 */
 }
 

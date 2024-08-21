@@ -33,7 +33,7 @@ const CustomCardWrapper = styled("div")({
 });
 
 const CustomCardRoot = styled(Card)({
-  width: 300,
+  width: 350,
   height: 250,
   position: "relative",
 });
