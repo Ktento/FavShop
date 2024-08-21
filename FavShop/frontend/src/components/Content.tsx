@@ -182,26 +182,30 @@ const Content: React.FC<ContentProps> = ({
                   >
                     {card.address.replace(/日本|、|〒\d{3}-\d{4}\s*/g, "")}
                   </Typography>
-                  <Typography
-                    className="card-hours"
-                    variant="body2"
-                    color="textSecondary"
-                    component="p"
-                  >
-                    {card.hours.replace(
-                      /^(Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday):?\s*/,
-                      ""
-                    )}
-                  </Typography>
+                  {card.hours && (
+                    <Typography
+                      className="card-hours"
+                      variant="body2"
+                      color="textSecondary"
+                      component="p"
+                    >
+                      {card.hours.replace(
+                        /^(Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday):?\s*/,
+                        ""
+                      )}
+                    </Typography>
+                  )}
                 </CardContent>
-                <div className="status-wrapper">
-                  <div
-                    className={`status-indicator ${getStatusClass(card.hours)}`}
-                  />
-                  <Typography variant="body2" className="status-text">
-                    {getStatusText(getStatusClass(card.hours))}
-                  </Typography>
-                </div>
+                {card.hours && (
+                  <div className="status-wrapper">
+                    <div
+                      className={`status-indicator ${getStatusClass(card.hours)}`}
+                    />
+                    <Typography variant="body2" className="status-text">
+                      {getStatusText(getStatusClass(card.hours))}
+                    </Typography>
+                  </div>
+                )}
               </CardActionArea>
             </CustomCardRoot>
           ))}
