@@ -66,7 +66,7 @@ const formatHours = (hours: string): string[] => {
 const getStatusClass = (hours: string): string => {
   console.log(hours);
   //営業時間が未設定
-  if (hours.length <= 0) {
+  if (hours.length <= 0 || hours.includes("N/A")) {
     return "?";
   }
   //24時間営業
