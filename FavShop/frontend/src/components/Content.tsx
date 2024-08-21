@@ -175,14 +175,6 @@ const Content: React.FC<ContentProps> = ({
                     {card.title}
                   </Typography>
                   <Typography
-                    className="card-address"
-                    variant="body2"
-                    color="textSecondary"
-                    component="p"
-                  >
-                    {card.address}
-                  </Typography>
-                  <Typography
                     className="card-hours"
                     variant="body2"
                     color="textSecondary"
