@@ -1,8 +1,9 @@
 /* ステータス表示のためのスタイル */
 .status-wrapper {
   position: absolute;
-  bottom: 10px;
+  top: 10px;
   right: 10px;
+  background-color: white;
   display: flex;
   align-items: center;
 }
@@ -37,7 +38,7 @@
 
 /* カードのテキストが長くなってもカードの大きさが変わらないようにする */
 .card-title,
-.card-address,
+.card-address
 .card-hours {
   white-space: nowrap;
   overflow: hidden;
