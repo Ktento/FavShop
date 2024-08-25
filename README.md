@@ -5,4 +5,4 @@
 
 # 使用技術一覧
 
-<img alt="skills" src="https://skillicons.dev/icons?theme=dark&perline=7&i=html,css,ts,nodejs,react,postgres,supabase" />
+<img alt="skills" src="https://skillicons.dev/icons?theme=dark&perline=7&i=html,css,ts,nodejs,react,postgres,supabase,vercel" />
