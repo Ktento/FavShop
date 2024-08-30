@@ -1,3 +1,4 @@
+//APIを使用するためのサーバレス関数
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import fetch from 'node-fetch';
 
