@@ -4,6 +4,7 @@ import fetch from 'node-fetch';
 
 const BASE_URL: string = process.env.REACT_APP_GOOGLE_NEARBYSEARCH_API_URL ?? "";
 const API_KEY: string = process.env.REACT_APP_GOOGLE_PLACES_API_KEY ?? "";
+//test
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
     const { latitude, longitude } = req.query;
